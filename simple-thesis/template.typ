@@ -1,4 +1,5 @@
 #let thesis(
+  unilogo: "../Logo_Uni.png",
   title: "",
   author: "",
   degree1: "",
@@ -11,6 +12,7 @@
   date: datetime(year: 0001, month: 01, day: 01,),
   advisor: "",
   committee: (),
+  acronyms: [],
   abstract: [],
   signature: [],
   acknowledgements: [],
@@ -30,12 +32,12 @@
   set page(
     paper: "a4",
     margin: (left: 30mm, right: 30mm, top: 30mm, bottom: 30mm),
-    numbering: none,
+    numbering: "I"
+    ,
   )
-  
   // Text formatting
   set text(
-    font: "times",
+    font: "Times New Roman",
     size: 12pt,
     weight: "regular"
   )
@@ -59,36 +61,45 @@
   // Initialize heading counters
   let heading-counter = counter("heading")
   // Front matter
-  align(center)[
   
-    #text(size: 18pt, weight: "bold")[#title]
+  
+
+  //align(center)[
+    // University logo
     
-    *#author*
-    #v(6em)
-    Submitted
-    \
-    in partial fulfillment of the
-    requirements for the degree of
-    \
-    #degree1
-    \ at the #upper[#institution1]
-    \
-    and
-    \
-    #degree2
-    \
-    at the #upper[#institution2]
+    //#text(size: 18pt, weight: "bold")[#title]
     
-    #v(6em)
-    #school1
-    \
-    #institution1
+    //*#author*
+    //#v(6em)
+    //Submitted
+    //\
+    //in partial fulfillment of the
+   // requirements for the degree of
+   // \
+   // #degree1
+   // \ at the #upper[#institution1]
+   // \
+   // and
+   // \
+   // #degree2
+   // \
+   // at the #upper[#institution2]
     
-    #school2
-    \
-    #institution2
+   // #v(6em)
+  //  #school1
+  //  \
+  //  #institution1
     
-    #date.display("[month repr:long] [year]")
+   // #school2
+  //  \
+  //  #institution2
+    
+  //  #date.display("[month repr:long] [year]")
+  //]
+  // Acronyms
+  page[
+    #heading(level: 1, "Acronyms")
+    #acronyms
   ]
   // Abstract
   page[
@@ -139,7 +150,7 @@
     #outline(
       title: "Table of Content",
       target: heading,
-      indent: true
+      indent: auto,
     )
   ]
   // Lists of Figures and Tables
