@@ -22,7 +22,7 @@
 
 // Title page content
  #align(right)[
-  #image("Logo_Uni.png", width: 40%)
+  #image("logo_uni_due.svg", width: 40%)
 ]
 
 #set align(horizon+center)
@@ -49,8 +49,6 @@ Performed at Vorwerk Elektrowerke GmbH & Co. KG Wuppertal
 
 #text(15pt)[
 #author\
-#addrLineEins\
-#addrLineZwei\
 Matriculation No.: #matrikelNr\
 #v(20mm)
 
@@ -75,7 +73,7 @@ Matriculation No.: #matrikelNr\
 #v(10mm)
 
 #align(center)[
-  #image("Vorwerk_VW_Original_green_RGB.png", width: 15%)
+  #image("Vorwerk_VW_Original_green_RGB.svg", width: 15%)
 ]
 
 

@@ -54,16 +54,17 @@
 
 = Introduction
 == Problem Statement
-#lorem(150)
+In many engineering applications, products are routinely exposed to complex vibration environments throughout their operational lifetime. These include components in automobiles, aerospace systems, and consumer electronics, where mechanical fatigue due to vibration can be a crucial factor affecting reliability and safety. To ensure durability, manufacturers commonly perform environmental.
+
 
 == Objective
 #lorem(100)
 
-= Literature Review
-== Topic Area 1
+= State of art
+== Mission Synthesis
 #lorem(200)
 
-== Topic Area 2
+== Fatigue Damage Spectrum (FDS)
 #lorem(200)
 
 = Methodology
