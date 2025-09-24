@@ -53,6 +53,7 @@
 )
 
 = Introduction
+
 == Problem Statement
 In many engineering applications, products are routinely exposed to complex vibration environments throughout their operational lifetime. These include components in automobiles, aerospace systems, and consumer electronics, where mechanical fatigue due to vibration can be a crucial factor affecting reliability and safety. To ensure durability, manufacturers commonly perform environmental.
 
@@ -60,35 +61,64 @@ In many engineering applications, products are routinely exposed to complex vibr
 == Objective
 #lorem(100)
 
-= State of art
+= Literature Review
+
+= Theoretical Backround
+
 == Mission Synthesis
-#lorem(200)
+
 
 == Fatigue Damage Spectrum (FDS)
-#lorem(200)
+
+
+
+== Extreme Response Spectrum (ERS)
+
+== Shock Response Spectrum (SRS)
+
+= Endurance profile
 
 = Methodology
+
 == Research Design
-#lorem(150)
+#lorem(150) 
 
-== Data Collection
-#lorem(150)
+== Data Acquisition
 
-= Results
+=== Vibration Data Acquisition
+For the synthesis of an accelerated PSD that provides equivalent damage as all the rotational speeds of the Thermomix according to the endurance profile, we need to first measure the vibration signals acting on the Thermomix, more precisely, the backend.
+
+=== Accelerometer Placement
+Since in our case we are focusing only on the backend circuit board of the TM7, we need to figure out which places are the most important for the placement of accelerometers.
+For that purpose, a modal analysis of the backend is conducted to find out the various mode shapes. This was conducted both in ANSYS and experimentally using impulse hammer test.
+From the mode shapes, the points of maximum deformation are noted and accelerometer placement is determined likewise.
+
+[Insert images of Modal Analysis to make justifications]
+
+Through a compromise, the sensors were placed as shown in the figure taking into account the restrictions but still making sure the critical areas are covered. 2 minitriaxial accelerometers and 1 triaxial accelerometer was used for the data acquisition.
+
+=== Squadriga - Frontend
+
+== Signal Processing Pipeline
+== Accelerated PSD Generation
+== Time History Synthesis from PSD
+== Validation Procedure
+
+= Experimental Setup
+
+= Results and Discussion
 == Finding 1
 #lorem(200)
 
 == Finding 2
 #lorem(200)
-
-= Discussion
 == Analysis
 #lorem(250)
 
 == Implications
 #lorem(250)
 
-= Conclusion
+= Conclusion and Outlook
 == Summary
 #lorem(150)
 
