@@ -38,7 +38,11 @@
     [Publication 2. Authors. "Title." *Venue*, Location, Date.],
   ),
   acronyms: [
-    #lorem(100),
+    N - Number of cycles to failure \
+    #sym.zeta - Damping factor \
+    #sym.sigma - Stress \
+    b - Parameter b of basquin relationship N #sym.sigma#super[b] = C
+    
   ],
   abstract: [
     #lorem(200)
@@ -55,7 +59,35 @@
 = Introduction
 
 == Problem Statement
-In many engineering applications, products are routinely exposed to complex vibration environments throughout their operational lifetime. These include components in automobiles, aerospace systems, and consumer electronics, where mechanical fatigue due to vibration can be a crucial factor affecting reliability and safety. To ensure durability, manufacturers commonly perform environmental.
+Many engineered products operate in complex vibration environments over their service life. This can gradually lead to mechanical fatigue that threatens reliability and safety. To manage that risk, manufacturers run endurance tests to show that a product meets a specified lifetime in the field. The challenge is that traditional endurance testing is lengthy and resource intensive, which makes it hard to iterate and slows down development.
+
+The Thermomix#super[#sym.trademark.registered] TM7, a product of the Vorwerk Group, is affected by vibrational and thermal loads that originate within the device itself. Inside the company, a combined vibration and thermal endurance profile is used to assure 4,000 field hours of service. Running this complete profile on a complex assembly takes considerable time and effort, which motivates a more efficient approach.
+
+This thesis formulates a methodology to derive an accelerated test profile that reproduces, in a laboratory setting, the fatigue damage and relevant operational loads observed in the field, while reducing test duration. The TM7 serves as the case study; the methodology is intended to generalise to other complex assemblies.
+
+== Thermomix#super[#sym.trademark.registered] TM7
+#align(center)[
+  #figure(
+    image("../../Images/Thermomix_TM7_Product_Photo_MainDeviceSide-scaled.jpeg", width: 120mm),
+    caption: [Thermomix#super[#sym.trademark.registered] TM7 @thermomix_tm7_image],
+  )
+]
+
+*Thermomix#super[#sym.trademark.registered] TM7* is the latest generation multifunctional cooking appliance by Vorwerk, designed to integrate numerous cooking, mixing, heating, and food-preparation capabilities into a single device.
+
+Key features and specifications,
+- Dimensions: 33.6cm #sym.times 25.3cm #sym.times 40.5cm
+- Speed range: 40-10700rpm
+- Weight: 8.6kg
+- Mixing bowl capacity: 2.2L
+- Heating power: 1000W
+- Motor power: 500W @vorwerk_tm7
+
+
+
+
+== Endurance profile for Thermomix#super[#sym.trademark.registered] TM7
+In Vorwerk, an endurance profile is developed for Thermomix TM7#super[#sym.trademark.registered] which 
 
 
 == Objective
@@ -69,6 +101,18 @@ In many engineering applications, products are routinely exposed to complex vibr
 
 
 == Fatigue Damage Spectrum (FDS)
+
+*Fatigue Damage Spectrum (FDS)* describes how a single-degree-of-freedom system accumulates fatigue damage when subjected to a specific vibration input, as a function of its natural frequency f#sub[0] and a chosen damping ratio #sym.zeta.
+
+The calculation of the FDS is based on several assumptions:
+- The system is modeled as a single-degree-of-freedom linear oscillator.
+- The S-N curve follows Basquin’s relation ($N#sym.sigma _p^b = C$).
+- The peak stress is assumed proportional to the maximum relative displacement ($#sym.sigma _p = K z_p$).
+- the rainflow counting method is used to count the response peaks.
+- Miner's Damage accumulation rule is assumed. 
+
+
+@lalanne2010mechanicalvol 
 
 
 
