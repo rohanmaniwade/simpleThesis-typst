@@ -42,7 +42,7 @@
     #sym.zeta - Damping factor \
     #sym.sigma - Stress \
     b - Parameter b of basquin relationship N #sym.sigma#super[b] = C
-    
+
   ],
   abstract: [
     #lorem(200)
@@ -87,11 +87,15 @@ Key features and specifications,
 
 
 == Endurance profile for Thermomix#super[#sym.trademark.registered] TM7
-In Vorwerk, an endurance profile is developed for Thermomix TM7#super[#sym.trademark.registered] which 
+Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.trademark.registered] TM7 based on usage patterns observed in earlier product generations. If the appliance experiences a characteristic distribution of knife speeds and heating temperatures over 4,000 hours in the field, the qualification test should reproduce that distribution. Accordingly, field data captures how frequently each speed mode is engaged, its average dwell time, and associated temperature ranges. Each mode is therefore assigned a percentage share of the cumulative operating interval.
+
+To shorten development cycles, the same workload is transformed into an accelerated profile. Time and cycle allocations across modes are rebalanced so that essential exposure to critical combinations of speed and temperature is retained while the total laboratory duration is reduced to roughly 800 hours. The resulting schedule still exercises representative operating segments but in a more concentrated form that preserves relevance to real field use.
+
+Even in this accelerated form, the campaign remains lengthy and resource demanding once pauses, handling, and supervision are included. This residual duration highlights a clear need for methods that can achieve additional reduction without sacrificing representativeness.
 
 
 == Objective
-#lorem(100)
+The main objective of this thesis is to establish a reliable and efficient methodology for accelerating vibration endurance testing of complex assemblies. By leveraging the Fatigue Damage Spectrum (FDS) as the link between measured time histories of different modes of the test subject and laboratory test specifications, the study aims to generate equivalent and accelerated Power Spectral Densities (PSDs) that reproduce real operational fatigue damage within a reduced test duration. The methodology will be applied to Thermomix#super[#sym.trademark.registered] TM7  backend as a representative case study validated through experimental vibration testing and response spectrum criteria following the MIL-STD-810 for test tailoring specification and the works of Christian Lalanne on Specification Development. 
 
 = Literature Review
 
