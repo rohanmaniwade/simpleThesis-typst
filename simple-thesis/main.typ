@@ -95,7 +95,9 @@ Even in this accelerated form, the campaign remains lengthy and resource demandi
 
 
 == Objective
-The main objective of this thesis is to establish a reliable and efficient methodology for accelerating vibration endurance testing of complex assemblies. By leveraging the Fatigue Damage Spectrum (FDS) as the link between measured time histories of different modes of the test subject and laboratory test specifications, the study aims to generate equivalent and accelerated Power Spectral Densities (PSDs) that reproduce real operational fatigue damage within a reduced test duration. The methodology will be applied to Thermomix#super[#sym.trademark.registered] TM7  backend as a representative case study validated through experimental vibration testing and response spectrum criteria following the MIL-STD-810 for test tailoring specification and the works of Christian Lalanne on Specification Development. 
+The main objective of this thesis is to establish a reliable and efficient methodology for accelerating vibration endurance testing of complex assemblies. In our case,  The endurance profile for the 
+
+By leveraging the Fatigue Damage Spectrum (FDS) as the link between measured time histories of different modes of the test subject and laboratory test specifications, the study aims to generate equivalent and accelerated Power Spectral Densities (PSDs) that reproduce real operational fatigue damage within a reduced test duration. The methodology will be applied to Thermomix#super[#sym.trademark.registered] TM7  backend as a representative case study validated through experimental vibration testing and response spectrum criteria following the MIL-STD-810G for test tailoring specification and the works of Christian Lalanne on Specification Development. 
 
 = Literature Review
 
@@ -148,11 +150,16 @@ Through a compromise, the sensors were placed as shown in the figure taking into
 === Squadriga - Frontend
 
 == Signal Processing Pipeline
+
 == Accelerated PSD Generation
+
 == Time History Synthesis from PSD
+
 == Validation Procedure
 
 = Experimental Setup
+== Design and Modal Analysis of test fixture for the backend
+
 
 = Results and Discussion
 == Finding 1
