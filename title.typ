@@ -37,8 +37,8 @@
 
 
 #text(12pt)[
-  Presented to the #faculty\
-in the University of Duisburg Essen &\
+#faculty\
+University of Duisburg Essen &\
 Performed at Vorwerk Elektrowerke GmbH & Co. KG Wuppertal
 ]
 #v(5mm)

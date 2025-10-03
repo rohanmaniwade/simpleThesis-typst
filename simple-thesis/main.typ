@@ -159,10 +159,17 @@ In this work, one‑minute time history segments are sampled, converted to PSD f
 
 
 == Extreme Response Spectrum (ERS)
+The _Extreme Response Spectrum_ (ERS) (or _Maximum Response Spectrum_) gives, for each natural frequency $f_0$ at damping #sym.zeta, the maximum relative displacement response of an equivalent linear SDOF system driven by the input. @lalanne2010mechanicalvol
+
+ERS: $ E R S (f_0; #sym.zeta) = max_t | z(t; f_0, #sym.zeta) |. $
+
+Scaled acceleration form: $ E R S _ a (f_0; #sym.zeta) = (2pi f_0)^2 max_t | z(t; f_0, #sym.zeta) |. $
+
+Convention used here: block‑wise sample maximum over uniform time segments for both field and accelerated data.
+
+
 
 == Shock Response Spectrum (SRS)
-
-= Endurance profile
 
 = Methodology
 
@@ -187,6 +194,21 @@ Through a compromise, the sensors were placed as shown in the figure taking into
 
 == Signal Processing Pipeline
 
+After collecting the time samples of the different modes of Thermomix#super[#sym.trademark.registered], it is time to apply Lalanne's specification to calculate accelerated PSDs for the endurance profile.
+
+The python library "VibeAccelKit" was used for the signal processing, the calculation of accelerated tests, as well as the verification of the profiles.
+
+As we have three different sensors along with their 3-dimensions, 9 different accelerated profiles are calculated. The algorithm followed in the code is as follows,
+
++ Visualisation of the time history signals of all the modes
++ Conversion of the time history signals to PSDs
++ Calculation of the _Fatigue Damage Spectrum_ (FDS) for each mode
++ Calculation of the composite FDS summing up the damage of all the modes according to their time duration in the endurance profile
++ Inversion of the FDS into a PSD with the duration equal to the life cycle
++ Using the time reduction formula using the "b" factor to get acceleration PSDs for 1hr, 5hr, 10hr, 50hr, 100hr, and 200hr.
++ Calculation of the _Extreme Response Spectrum_ (ERS) of each of the accelerated profiles and comparing the severity of the same against the envelope of _Shock Response Spectrum_ (SRS) of the shock load (blending of the Grana Padano cheese blocks)
+
+
 == Accelerated PSD Generation
 
 == Time History Synthesis from PSD
@@ -194,7 +216,9 @@ Through a compromise, the sensors were placed as shown in the figure taking into
 == Validation Procedure
 
 = Experimental Setup
-== Design and Modal Analysis of test fixture for the backend
+== Test Fixture for the Backend
+
+== 
 
 
 = Results and Discussion
