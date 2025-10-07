@@ -159,17 +159,46 @@ In this work, one‑minute time history segments are sampled, converted to PSD f
 
 
 == Extreme Response Spectrum (ERS)
-The _Extreme Response Spectrum_ (ERS) (or _Maximum Response Spectrum_) gives, for each natural frequency $f_0$ at damping #sym.zeta, the maximum relative displacement response of an equivalent linear SDOF system driven by the input. @lalanne2010mechanicalvol
+The Extreme Response Spectrum gives, for each natural frequency $f_0$ at damping ζ, the maximum relative displacement response of an equivalent linear SDOF system driven by the input @lalanne2010mechanicalvol.
 
-ERS: $ E R S (f_0; #sym.zeta) = max_t | z(t; f_0, #sym.zeta) |. $
+ERS in displacement form is
 
-Scaled acceleration form: $ E R S _ a (f_0; #sym.zeta) = (2pi f_0)^2 max_t | z(t; f_0, #sym.zeta) |. $
+$ E R S (f_0, ζ) = max_t | z(t; f_0, ζ) | $
 
-Convention used here: block‑wise sample maximum over uniform time segments for both field and accelerated data.
+and the scaled acceleration form is
+
+$ E R S _ a (f_0, ζ) = (2pi f_0)^2 max_t | z(t; f_0, ζ) | $
+
+In practice, ERS is computed by filtering the input through a bank of linear SDOF systems across $f_0$ at the chosen damping and then taking the per‑filter maximum of the relative displacement or the corresponding acceleration. ERS assumes linearity and a specified damping ratio. Unlike FDS, it summarises peak response rather than accumulated damage @lalanne2010mechanicalvol.
+
 
 
 
 == Shock Response Spectrum (SRS)
+
+The Shock Response Spectrum characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base‑excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo‑velocity forms that are useful for damage correlation and historical limits @lalanne2010mechanicalvol.
+
+Acceleration form for a base‑excited SDOF is
+
+$ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $
+
+Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter @lalanne2010mechanicalvol. We adopt the maximax SRS convention, meaning the peak of peak values across events @lalanne2010mechanicalvol.
+
+
+== Difference between Extreme Response Spectrum and Shock Response Spectrum
+ERS and SRS use the same mathematical device, a bank of linear SDOF oscillators at a chosen damping ratio ζ, equivalently a quality factor $Q ≈ (2 ζ)^(-1)$, to report a peak response versus natural frequency. They differ mainly in the type of input they target and in how the peak is interpreted.
+
+- Input and intent - ERS is used for random long duration vibration. SRS is used for short transients and shocks.
+- How the peak is taken - For SRS the largest response may occur during or after the shock. Practice is to take the envelope of the primary and residual responses. For ERS under random excitation peaks are taken over a defined time window or sample. When ERS is derived from a PSD it represents an expected maximum for the specified duration.
+- Required representation - SRS is computed from a time history. ERS can be computed from time histories or, under stationarity and Gaussian assumptions, from PSDs.
+
+In this thesis ERS characterises peak response under random profiles. SRS provides the reference envelope for shock severity. @lalanne2010mechanicalvol
+
+== Response spectrum validation
+
+We check peak response consistency by comparing the ERS of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. We select a small damping ζ to match structural behaviour and we space frequency points on a logarithmic grid. This confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
+
+[Add the verification of time reduction images]
 
 = Methodology
 
@@ -179,34 +208,28 @@ Convention used here: block‑wise sample maximum over uniform time segments for
 == Data Acquisition
 
 === Vibration Data Acquisition
-For the synthesis of an accelerated PSD that provides equivalent damage as all the rotational speeds of the Thermomix according to the endurance profile, we need to first measure the vibration signals acting on the Thermomix, more precisely, the backend.
+We begin by measuring vibration at the Thermomix backend printed‑circuit board (PCB). These measurements anchor the accelerated PSDs to real operational responses. For each representative operating mode in the endurance profile (motor speed and thermal state), we record time histories that capture the structural input the backend experiences in service.
 
 === Accelerometer Placement
-Since in our case we are focusing only on the backend circuit board of the TM7, we need to figure out which places are the most important for the placement of accelerometers.
-For that purpose, a modal analysis of the backend is conducted to find out the various mode shapes. This was conducted both in ANSYS and experimentally using impulse hammer test.
-From the mode shapes, the points of maximum deformation are noted and accelerometer placement is determined likewise.
+We instrument the backend PCB at dynamically critical points. Candidate locations were selected through a modal analysis performed in ANSYS and verified experimentally with an impulse‑hammer test. Based on the resulting mode shapes, we placed accelerometers near antinodes (regions of maximum deformation) while respecting packaging, cable routing, and mass‑loading constraints. This ensures the measured signals are sensitive to resonant amplification yet representative of in‑service response.
 
-[Insert images of Modal Analysis to make justifications]
-
-Through a compromise, the sensors were placed as shown in the figure taking into account the restrictions but still making sure the critical areas are covered. 2 minitriaxial accelerometers and 1 triaxial accelerometer was used for the data acquisition.
+To balance constraints with coverage, two mini‑triaxial accelerometers and one triaxial accelerometer were installed at locations that collectively capture the dominant bending and torsional responses of the board.
 
 === Squadriga - Frontend
 
 == Signal Processing Pipeline
 
-After collecting the time samples of the different modes of Thermomix#super[#sym.trademark.registered], it is time to apply Lalanne's specification to calculate accelerated PSDs for the endurance profile.
+With time histories collected for each operating mode of the Thermomix#super[#sym.trademark.registered], we apply Lalanne’s specification to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit is used for signal processing, test synthesis, and verification.
 
-The python library "VibeAccelKit" was used for the signal processing, the calculation of accelerated tests, as well as the verification of the profiles.
+Because three sensors record along three orthogonal axes, nine accelerated profiles are produced (one per sensor‑axis channel). The pipeline proceeds as follows:
 
-As we have three different sensors along with their 3-dimensions, 9 different accelerated profiles are calculated. The algorithm followed in the code is as follows,
-
-+ Visualisation of the time history signals of all the modes
-+ Conversion of the time history signals to PSDs
-+ Calculation of the _Fatigue Damage Spectrum_ (FDS) for each mode
-+ Calculation of the composite FDS summing up the damage of all the modes according to their time duration in the endurance profile
-+ Inversion of the FDS into a PSD with the duration equal to the life cycle
-+ Using the time reduction formula using the "b" factor to get acceleration PSDs for 1hr, 5hr, 10hr, 50hr, 100hr, and 200hr.
-+ Calculation of the _Extreme Response Spectrum_ (ERS) of each of the accelerated profiles and comparing the severity of the same against the envelope of _Shock Response Spectrum_ (SRS) of the shock load (blending of the Grana Padano cheese blocks)
+1. Inspect time‑history signals for each mode (visualisation and sanity checks).
+2. Convert time histories to Power Spectral Densities (PSDs).
+3. Compute the Fatigue Damage Spectrum (FDS) for each mode.
+4. Form a composite FDS by summing modal damage contributions weighted by their dwell times in the endurance profile.
+5. Invert the composite FDS to an equivalent PSD for the target life duration.
+6. Apply time‑compression (via the b‑factor) to derive accelerated PSDs for 1 h, 2 h, 5 h, 10 h, 50 h, and 100 h.
+7. Compute the Extreme Response Spectrum (ERS) for each accelerated PSD and compare against the Shock Response Spectrum (SRS) envelope of the reference shock event (e.g., cheese‑blending load) to check severity.
 
 
 == Accelerated PSD Generation
