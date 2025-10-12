@@ -1,5 +1,6 @@
 // main.typ
 #import "@preview/muchpdf:0.1.1": muchpdf
+#import "@preview/tblr:0.4.1": *
 #import "template.typ": thesis
 #include "../title.typ"
 
@@ -56,6 +57,8 @@
   doc,
 )
 
+#show figure.where(kind: table): set block(breakable: true, sticky: true)
+
 = Introduction
 
 == Problem Statement
@@ -70,7 +73,7 @@ This thesis formulates a methodology to derive an accelerated test profile that 
   #figure(
     image("../../Images/Thermomix_TM7_Product_Photo_MainDeviceSide-scaled.jpeg", width: 120mm),
     caption: [Thermomix#super[#sym.trademark.registered] TM7 @thermomix_tm7_image],
-  )
+  ))
 ]
 
 *Thermomix#super[#sym.trademark.registered] TM7* is the latest generation multifunctional cooking appliance by Vorwerk, designed to integrate numerous cooking, mixing, heating, and food-preparation capabilities into a single device.
@@ -92,6 +95,84 @@ Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.
 To shorten development cycles, an accelerated profile is created with approximately the same load. Time and cycle allocations across modes are rebalanced so that essential exposure to critical combinations of speed and temperature is retained while the total laboratory duration is reduced to roughly 800 hours. The resulting schedule still exercises representative operating segments but in a more concentrated form that preserves relevance to real field use.
 
 Even in this accelerated form, the campaign remains lengthy and resource demanding once pauses, handling, and supervision are included. This residual duration highlights a clear need for methods that can achieve additional reduction without sacrificing representativeness.
+
+
+
+#let data = from-csv(delimiter: ",", "
+000000,-8800,1,4.00,32,16896000
+,-4400,1,2.50,20,5280000
+,-3100,20,0.50,4,744000
+,-2000,25,0.50,4,480000
+,-1100,1,0.50,4,264000
+,-800,62,0.50,4,192000
+,-500,418,0.50,4,120000
+,-350,1,0.50,4,84000
+,-200,840,1.00,8,96000
+,-150,1,0.50,4,36000
+,-100,11903,6.00,48,288000
+,-70,421,1.00,8,33600
+,-40,9287,5.00,40,96000
+,0,2713,3.00,24,0
+,40,10398,6.00,48,115200
+,66,1,2.00,16,63360
+,70,44,2.00,16,67200
+,80,9,2.00,16,76800
+,100,26574,7.00,56,336000
+,150,188,2.00,16,144000
+,200,10170,4.00,32,384000
+,350,195,2.00,16,336000
+,500,1528,2.00,16,480000
+,800,752,2.00,16,768000
+,1100,4389,4.00,32,2112000
+,1550,108,2.00,16,1488000
+,2000,5924,6.00,48,5760000
+,2550,163,2.00,16,2448000
+,3100,242,2.00,16,2976000
+,4000,126,2.00,16,3840000
+,4400,219,2.00,16,4224000
+,5100,44,2.00,16,4896000
+,5800,196,3.00,24,8352000
+,6700,16,2.00,16,6432000
+,7600,48,2.00,16,7296000
+,8800,16,2.00,16,8448000
+,10000,1214,6.00,48,28800000
+
+")
+
+#let bar_n(x) = {
+  rect(width: int(x) / 7000000 * 0.85cm, fill: red.lighten(20%), text(fill: black, x))
+}
+
+#let bar_p(x) = {
+  rect(width: float(x) / 3 * 1cm, fill: green.darken(0%), text(fill: black, x))
+}
+
+#let bar_h(x) = {
+  rect(width: int(x) /  70 * 1cm, fill: green.darken(0%), text(fill: black, x))
+}
+
+#let bar_t(x) = {
+  rect(width: int(x) /  5000 * 1cm, fill: red.lighten(20%), text(fill: black, x))
+}
+
+#figure(kind: table, caption: [Endurance Motor Load])[
+#tblr(columns: 5,
+  stroke: black,
+  align: center,
+  // formatting directives#
+  cells((0, 0), colspan: 2,),
+  rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
+  rows(within: "header", auto, inset: (y: 0.5em)),
+  cols(within: "body", 3, align: left, hooks: bar_p),
+  cols(within: "body", -1, align: left, hooks: bar_n),
+  cols(within: "body", 4, align: left, hooks: bar_h),
+  cols(within: "body", 1, align: left, hooks: bar_t),
+  cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
+    // content
+  table.header([Target Speed (rpm)],[Target Speed (rpm)],[Count],[Percentage (%)],[Duration (h)],[Number of cycles (n)]),
+  ..data,
+)
+]
 
 
 == Objective
@@ -124,14 +205,16 @@ Risam et al. (2006) @risam2006methodology presented iterative electrodynamic sha
 Lalanne (2010) @lalanne2010mechanicalvol formalised a specification development framework in which measured environments are transformed into fatigue damage spectra (FDS). These spectra are enveloped or summed (depending on whether environments act in parallel or sequence) to build a composite target; an accelerated PSD is then synthesised to deliver equivalent cumulative damage in a compressed duration and validated against SRS / ERS envelopes. This frequency‑resolved damage approach bridges operational variability and laboratory reproducibility more directly than scalar stress escalation alone.
 
 === Gap and motivation for this work
-A remaining gap is a systematic, component‑level methodology that: (1) ingests heterogeneous operational modes (e.g. multiple motor speeds, thermal states), (2) consolidates them via a single damage‑equivalent spectral target, and (3) embeds explicit validation checkpoints (FDS equivalence plus SRS / ERS envelopes) while keeping overall test duration tractable. This thesis leverages the FDS framework as the integrating layer, extending prior art by applying it to a complex electro‑mechanical assembly (Thermomix backend) with coupled thermal and vibrational loading, and by providing a transparent pathway from raw field usage distributions to an accelerated laboratory PSD.
+
+In Vorwerk, testing time takes up a considerable amount of resources and creates a bottleneck hinder
 
 
 
 = Theoretical Background
 
 == Mission Synthesis
-
+=== Origins and Historical Development
+Mission Synthesis referes to the methodology of tailoring vibration tests based on actual service (mission) environments, ensuring lab tests produce equivalent damage to real-world usage. The concept emerged in the mid-20th century as engineers sought more realistic test criteria than generic benchmarks. As early as the 1950s, aerospace data were collected from aircraft flights and used to derive vibration test standards
 
 == Fatigue Damage Spectrum (FDS)
 
@@ -156,7 +239,7 @@ In this work, one‑minute time history segments are sampled, converted to PSD f
 
 
 
-
+nce 
 
 == Extreme Response Spectrum (ERS)
 The Extreme Response Spectrum gives, for each natural frequency $f_0$ at damping ζ, the maximum relative displacement response of an equivalent linear SDOF system driven by the input @lalanne2010mechanicalvol.
