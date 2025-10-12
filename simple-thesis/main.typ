@@ -96,80 +96,181 @@ To shorten development cycles, an accelerated profile is created with approximat
 
 Even in this accelerated form, the campaign remains lengthy and resource demanding once pauses, handling, and supervision are included. This residual duration highlights a clear need for methods that can achieve additional reduction without sacrificing representativeness.
 
-
-
 #let data = from-csv(delimiter: ",", "
-000000,-8800,1,4.00,32,16896000
-,-4400,1,2.50,20,5280000
-,-3100,20,0.50,4,744000
-,-2000,25,0.50,4,480000
-,-1100,1,0.50,4,264000
-,-800,62,0.50,4,192000
-,-500,418,0.50,4,120000
-,-350,1,0.50,4,84000
-,-200,840,1.00,8,96000
-,-150,1,0.50,4,36000
-,-100,11903,6.00,48,288000
-,-70,421,1.00,8,33600
-,-40,9287,5.00,40,96000
-,0,2713,3.00,24,0
-,40,10398,6.00,48,115200
-,66,1,2.00,16,63360
-,70,44,2.00,16,67200
-,80,9,2.00,16,76800
-,100,26574,7.00,56,336000
-,150,188,2.00,16,144000
-,200,10170,4.00,32,384000
-,350,195,2.00,16,336000
-,500,1528,2.00,16,480000
-,800,752,2.00,16,768000
-,1100,4389,4.00,32,2112000
-,1550,108,2.00,16,1488000
-,2000,5924,6.00,48,5760000
-,2550,163,2.00,16,2448000
-,3100,242,2.00,16,2976000
-,4000,126,2.00,16,3840000
-,4400,219,2.00,16,4224000
-,5100,44,2.00,16,4896000
-,5800,196,3.00,24,8352000
-,6700,16,2.00,16,6432000
-,7600,48,2.00,16,7296000
-,8800,16,2.00,16,8448000
-,10000,1214,6.00,48,28800000
+11111111,-8800,1,0.00,0,0
+0,-4400,1,0.00,0,0
+0,-3100,20,0.02,0.8,148800
+0,-2000,25,0.03,1.2,144000
+0,-1100,1,0.00,0,0
+0,-800,62,0.07,2.8,134400
+0,-500,418,0.47,18.8,564000
+0,-350,1,0.00,0,0
+0,-200,840,0.95,38,456000
+0,-150,1,0.00,0,0
+0,-100,11903,13.48,539.2,3235200
+0,-70,421,0.48,19.2,80640
+0,-40,9287,10.52,420.8,1009920
+0,0,2713,3.07,122.8,0
+0,40,10398,11.78,471.2,1130880
+0,66,1,0.00,0,0
+0,70,44,0.05,2,8400
+0,80,9,0.01,0.4,1920
+0,100,26574,30.10,1204,7224000
+0,150,188,0.21,8.4,75600
+0,200,10170,11.52,460.8,5529600
+0,350,195,0.22,8.8,184800
+0,500,1528,1.73,69.2,2076000
+0,800,752,0.85,34,1632000
+0,1100,4389,4.97,198.8,13120800
+0,1550,108,0.12,4.8,446400
+0,2000,5924,6.71,268.4,32208000
+0,2550,163,0.18,7.2,1101600
+0,3100,242,0.27,10.8,2008800
+0,4000,126,0.14,5.6,1344000
+0,4400,219,0.25,10,2640000
+0,5100,44,0.05,2,612000
+0,5800,196,0.22,8.8,3062400
+0,6700,16,0.02,0.8,321600
+0,7600,48,0.05,2,912000
+0,8800,16,0.02,0.8,422400
+0,10000,1214,1.37,54.8,32880000
+0,10700,42,0.05,2,1284000
 
 ")
 
-#let bar_n(x) = {
-  rect(width: int(x) / 7000000 * 0.85cm, fill: red.lighten(20%), text(fill: black, x))
+#let bar_na(y) = {
+  rect(width: int(y) / 10000000 * 0.85cm, fill: red.lighten(30%), text(fill: black, y))
 }
 
-#let bar_p(x) = {
-  rect(width: float(x) / 3 * 1cm, fill: green.darken(0%), text(fill: black, x))
+#let bar_pa(y) = {
+  rect(width: float(y) / 11 * 1cm, fill: green.darken(0%), text(fill: black, y))
 }
 
-#let bar_h(x) = {
-  rect(width: int(x) /  70 * 1cm, fill: green.darken(0%), text(fill: black, x))
+#let bar_ha(y) = {
+  rect(width: float(y) /  500 * 1cm, fill: green.darken(0%), text(fill: black, y))
 }
 
-#let bar_t(x) = {
-  rect(width: int(x) /  5000 * 1cm, fill: red.lighten(20%), text(fill: black, x))
+#let bar_ta(y) = {
+  rect(width: int(y) /  5000 * 1cm, fill: red.lighten(30%), text(fill: black, y))
 }
 
-#figure(kind: table, caption: [Endurance Motor Load])[
+#let bar_ua(y) = {
+  rect(width: int(y) / 7000000 * 0.85cm, fill: red.lighten(30%), text(fill: white, y))
+}
+
+#figure(kind: table, caption: [Average Motor Load])[
 #tblr(columns: 5,
   stroke: black,
   align: center,
   // formatting directives#
-  cells((0, 0), colspan: 2,),
+  cells((0, 0), colspan: 6),
+  cells((1, 0), colspan: 2),
   cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
   rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
-  rows(within: "header", auto, inset: (y: 0.5em)),
-  cols(within: "body", 3, align: left, hooks: bar_p),
-  cols(within: "body", -1, align: left, hooks: bar_n),
-  cols(within: "body", 4, align: left, hooks: bar_h),
-  cols(within: "body", 1, align: left, hooks: bar_t),
+  rows(within: "header", auto, inset: (y: 0.6em)),
+  cols(within: "body", 3, align: left, hooks: bar_pa),
+  cols(within: "body", -1, align: left, hooks: bar_na),
+  cols(within: "body", 4, align: left, hooks: bar_ha),
+  cols(within: "body", 1, align: left, hooks: bar_ta),
+  cols(within: "body", 0, align: left, hooks: bar_ua),
     // content
-  table.header([Target Speed (rpm)],[Target Speed (rpm)],[Count],[Percentage (%)],[Duration (h)],[Number of cycles (n)]),
+  table.header([Average Motor Load],[],[],[],[],[],[Target Speed (rpm)],[],[Count],[Percentage (%)],[Duration (h)],[Number of cycles (n)]),
+  ..data,
+)
+]
+
+
+#let data = from-csv(delimiter: ",", "
+111100,-8800,4.00,32,16896000,0,0,0,0
+0,-4400,2.50,20,5280000,0,0,0,1
+0,-3100,0.50,4,744000,1,4,120,1
+0,-2000,0.50,4,480000,1,4,120,1
+0,-1100,0.50,4,264000,1,4,120,1
+0,-800,0.50,4,192000,1,4,120,1
+0,-500,0.50,4,120000,1,4,120,1
+0,-350,0.50,4,84000,1,4,120,1
+0,-200,1.00,8,96000,1,8,120,1
+0,-150,0.50,4,36000,1,4,120,1
+0,-100,6.00,48,288000,1,48,120,0
+0,-70,1.00,8,33600,1,8,120,1
+0,-40,5.00,40,96000,1,40,120,1
+0,0,3.00,24,0,1,24,120,1
+0,40,6.00,48,115200,1,48,120,1
+0,66,2.00,16,63360,1,16,120,1
+0,70,2.00,16,67200,1,16,120,1
+0,80,2.00,16,76800,1,16,120,1
+0,100,7.00,56,336000,1,56,120,1
+0,150,2.00,16,144000,1,16,120,1
+0,200,4.00,32,384000,1,32,120,1
+0,350,2.00,16,336000,1,16,120,1
+0,500,2.00,16,480000,1,16,120,1
+0,800,2.00,16,768000,1,16,120,1
+0,1100,4.00,32,2112000,1,32,120,1
+0,1550,2.00,16,1488000,1,16,120,1
+0,2000,6.00,48,5760000,1,48,120,1
+0,2550,2.00,16,2448000,1,16,160,0
+00,3100,2.00,16,2976000,1,16,120,1
+0,4000,2.00,16,3840000,0,0,0,1
+0,4400,2.00,16,4224000,0,0,0,1
+0,5100,2.00,16,4896000,0,0,0,1
+0,5800,3.00,24,8352000,0,0,0,1
+0,6700,2.00,16,6432000,0,0,0,1
+0,7600,2.00,16,7296000,0,0,0,1
+0,8800,2.00,16,8448000,0,0,0,0
+0,10000,6.00,48,28800000,0,0,0,0
+0,10700,0.00,0,0,0,0,0,0
+0,600,5.00,40,1440000,0,0,0,1
+0,0,1.00,8,0,1,8,100,1
+
+
+
+")
+
+#let bar_ne(x) = {
+  rect(width: int(x) / 9000000 * 0.5cm, fill: red.lighten(30%), text(fill: black, x))
+}
+
+#let bar_pe(x) = {
+  rect(width: float(x) / 5 * 1cm, fill: green.darken(0%), text(fill: black, x))
+}
+
+#let bar_te(x) = {
+  rect(width: int(x) /  5000 * 0.3cm, fill: red.lighten(30%), text(fill: black, x))
+}
+
+#let bar_ue(x) = {
+  rect(width: int(x) / 50000000 * 0.85cm, fill: red.lighten(30%), text(fill: white, x))
+}
+
+#let bar_he(x) = {
+  rect(width: int(x) / 30 * 1.0cm, fill: purple.lighten(50%), text(fill: black, x))
+}
+
+#figure(kind: table, caption: [Endurance Motor Load])[
+#tblr(columns: 9, header-rows: 2,
+  stroke: black,
+  align: center,
+  // formatting directives#
+  cells((0, 0), colspan: 5),
+  cells((0, 5), colspan: 4),
+  cells((1, 0), colspan: 2),
+  cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
+  rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
+  rows(within: "header", auto, inset: (x: 0.05em)),
+  cols(within: "body", 4, inset: (x: 0.04em)),
+  cols(within: "body", 5, fill: green.lighten(30%)),
+  cols(within: "body", 7, fill: green.lighten(30%)),
+  cols(within: "body", 8, fill: green.lighten(30%)),
+  cells((span(4, 30),-2), (-1,-2),fill: yellow),
+  cells((span(2,3),5),(span(-11,-2),5),(-13,(7,8)),((2,12,-3,-4,-5),8), fill: red.lighten(30%)),
+  cols(within: "body", 2, align: left, hooks: bar_pe),
+  cols(within: "body", 4, align: left, hooks: bar_ne),
+  cols(within: "body", 1, align: left, hooks: bar_te),
+  cols(within: "body", 0, align: left, hooks: bar_ue),
+  cols(within: "body", -3, align: left, hooks: bar_he),
+
+    // content
+  table.header([Endurance Motor Load],[],[],[],[],[Heater Load],[],[],[],[Target Speed (rpm)],[],[Percentage (%)],[Duration (h)],[Number of cycles (n)],[Heater Status], [Heating Duration (h)],[Target temperature (°C)],[Water]),
   ..data,
 )
 ]
