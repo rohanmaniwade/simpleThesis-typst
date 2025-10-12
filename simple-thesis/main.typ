@@ -161,13 +161,13 @@ Even in this accelerated form, the campaign remains lengthy and resource demandi
   align: center,
   // formatting directives#
   cells((0, 0), colspan: 2,),
+  cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
   rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
   rows(within: "header", auto, inset: (y: 0.5em)),
   cols(within: "body", 3, align: left, hooks: bar_p),
   cols(within: "body", -1, align: left, hooks: bar_n),
   cols(within: "body", 4, align: left, hooks: bar_h),
   cols(within: "body", 1, align: left, hooks: bar_t),
-  cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
     // content
   table.header([Target Speed (rpm)],[Target Speed (rpm)],[Count],[Percentage (%)],[Duration (h)],[Number of cycles (n)]),
   ..data,
