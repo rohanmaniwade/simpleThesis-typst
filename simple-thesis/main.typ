@@ -73,7 +73,7 @@ This thesis formulates a methodology to derive an accelerated test profile that 
   #figure(
     image("../../Images/Thermomix_TM7_Product_Photo_MainDeviceSide-scaled.jpeg", width: 120mm),
     caption: [Thermomix#super[#sym.trademark.registered] TM7 @thermomix_tm7_image],
-  ))
+  ) <thermomix>
 ]
 
 *Thermomix#super[#sym.trademark.registered] TM7* is the latest generation multifunctional cooking appliance by Vorwerk, designed to integrate numerous cooking, mixing, heating, and food-preparation capabilities into a single device.
@@ -86,15 +86,26 @@ Key features and specifications,
 - Heating power: 1000W
 - Motor power: 500W @vorwerk_tm7
 
+== Backend
 
-
+The backend is the heart of Thermomix#super(sym.trademark.registered). It is the Printed Circuit Board (PCB) that controls the functioning of the device. 
 
 == Endurance profile for Thermomix#super[#sym.trademark.registered] TM7
-Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.trademark.registered] TM7 based on usage patterns observed in earlier product generations. If the appliance experiences a characteristic distribution of motor speeds and heating temperatures over 4,000 hours in the field, the qualification test should reproduce that distribution. Accordingly, field data captures how frequently each speed mode is engaged, its average dwell time, and associated temperature ranges. Each mode is therefore assigned a percentage share of the cumulative operating interval.
+Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.trademark.registered] TM7 based on usage patterns observed in earlier product generations @Vorwerk2025HALT. In normal household use, the appliance experiences a characteristic distribution of motor speeds and heating temperatures over a lifetime of roughly 4,000 hours. To ensure that laboratory testing remains representative of real operation, the qualification profile was designed to reproduce this same distribution.
 
-To shorten development cycles, an accelerated profile is created with approximately the same load. Time and cycle allocations across modes are rebalanced so that essential exposure to critical combinations of speed and temperature is retained while the total laboratory duration is reduced to roughly 800 hours. The resulting schedule still exercises representative operating segments but in a more concentrated form that preserves relevance to real field use.
+Field data was analysed to understand how often each speed level is used, how long it typically remains active, and what temperature ranges are associated with these operating modes. Each mode was then assigned a proportional share of the total usage time so that the cumulative exposure during the test reflects actual customer behaviour.
 
-Even in this accelerated form, the campaign remains lengthy and resource demanding once pauses, handling, and supervision are included. This residual duration highlights a clear need for methods that can achieve additional reduction without sacrificing representativeness.
+To shorten the development cycle, an accelerated endurance profile was derived that preserves the essential combination of mechanical and thermal loads while reducing the total test duration to around 800 hours. The time and cycle allocation across the various operating modes were adjusted to maintain the same exposure to critical conditions, ensuring that the results remain relevant to field performance.
+
+=== Development Methodology
+
+The endurance profile was developed using a structured, data‑driven approach that ensures a realistic representation of the product’s operation. The statistical distribution of speeds and heating levels observed in the field was aligned with the internal endurance requirements used for product qualification. Both operating time and the total number of revolutions were treated as governing parameters to reproduce fatigue accumulation and mechanical wear patterns.
+
+This approach maintains the balance between duration and load intensity, allowing the test to simulate real‑world stress conditions within a shorter timeframe. The resulting load spectrum captures the essential dynamic characteristics of the motor, including dwell at each speed and the associated vibration behaviour. Minor refinements during physical testing may still be necessary to address effects that are difficult to model in advance.
+
+The statistical distribution of motor speeds and their relative dwell times is summarised in @averagemotorload, which reports the average motor loads observed in customer use. The final row totals approximately 4,000 hours of field operation.
+
+@endurancemotorload lists the qualification schedule derived from this distribution, with motor and heater loads rebalanced for test efficiency. The third‑last and second‑last rows correspond to dough mode (600 rpm) and egg mode (no rotation, heating only). The final row reports the total motor duration, total heater duration, and total number of cycles for the schedule.
 
 #let data = from-csv(delimiter: ",", "
 11111111,-8800,1,0.00,0,0
@@ -135,27 +146,28 @@ Even in this accelerated form, the campaign remains lengthy and resource demandi
 0,8800,16,0.02,0.8,422400
 0,10000,1214,1.37,54.8,32880000
 0,10700,42,0.05,2,1284000
+,Total,,99.98,3999.2,116000160
 
 ")
 
 #let bar_na(y) = {
-  rect(width: int(y) / 10000000 * 0.85cm, fill: red.lighten(30%), text(fill: black, y))
+  rect(width: int(y) / 10000000 * 1.159cm, fill: gradient.linear(red,white), stroke: red, text(fill: black, y))
 }
 
 #let bar_pa(y) = {
-  rect(width: float(y) / 11 * 1cm, fill: green.darken(0%), text(fill: black, y))
+  rect(width: float(y) / 10 * 1.03cm, fill: gradient.linear(green,white), stroke: green, text(fill: black, y))
 }
 
 #let bar_ha(y) = {
-  rect(width: float(y) /  500 * 1cm, fill: green.darken(0%), text(fill: black, y))
+  rect(width: float(y) /  600 * 1.28cm, fill: gradient.linear(green,white), stroke: green, text(fill: black, y))
 }
 
 #let bar_ta(y) = {
-  rect(width: int(y) /  5000 * 1cm, fill: red.lighten(30%), text(fill: black, y))
+  rect(width: int(y) /  5000 * 0.9cm, fill: gradient.linear(red,white), stroke: red, text(fill: black, y))
 }
 
 #let bar_ua(y) = {
-  rect(width: int(y) / 7000000 * 0.85cm, fill: red.lighten(30%), text(fill: white, y))
+  text(fill: white, y)
 }
 
 #figure(kind: table, caption: [Average Motor Load])[
@@ -166,22 +178,42 @@ Even in this accelerated form, the campaign remains lengthy and resource demandi
   cells((0, 0), colspan: 6),
   cells((1, 0), colspan: 2),
   cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
+  cols(within: "body", 1,3,4,5, inset: (x: 0.04em)),
   rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
   rows(within: "header", auto, inset: (y: 0.6em)),
-  cols(within: "body", 3, align: left, hooks: bar_pa),
-  cols(within: "body", -1, align: left, hooks: bar_na),
-  cols(within: "body", 4, align: left, hooks: bar_ha),
-  cols(within: "body", 1, align: left, hooks: bar_ta),
-  cols(within: "body", 0, align: left, hooks: bar_ua),
-    // content
+  cells((span(2,-2),3), align: left, hooks: bar_pa),
+  cells((span(2,-2),-1), align: left, hooks: bar_na),
+  cells((span(2,-2),4), align: left, hooks: bar_ha),
+  cells((span(2,-2),1), align: left, hooks: bar_ta),
+  cells((span(2,-2),0), align: left, hooks: bar_ua),
+  // content
   table.header([Average Motor Load],[],[],[],[],[],[Target Speed (rpm)],[],[Count],[Percentage (%)],[Duration (h)],[Number of cycles (n)]),
   ..data,
 )
-]
+] <averagemotorload>
+
+
+=== Heating and Thermal Load
+
+The heating element follows a complementary load profile designed to introduce representative and demanding thermal conditions. Heating is primarily applied at low rotational speeds since high-speed operation already produces significant frictional heating through the interaction of the blades with the water. This targeted strategy increases the load on the heating system while avoiding excessive stress on the motor.
+
+In certain test segments, the bowl is intentionally left without water so that the heating element can reach temperatures above 100 °C. These dry-heating phases are intended to place the heating circuit under additional stress, providing a more complete evaluation of the system’s reliability.
+
+=== Actuator Cycles and Test Sequence
+
+Each endurance cycle consists of 20 minutes of operation followed by a 4-minute pause. During the pause, the actuator completes 20 full movements. Three consecutive cycles form one cycle block, representing approximately one hour of total operation.
+
+For profiles that involve heating, 1.5 litres of water are added to the bowl at the start of each block. This structured repetition of load, rest, and actuation creates a controlled and repeatable simulation of household use, allowing consistent evaluation of long-term durability.
+
+=== Water Evaporation and Energy Considerations
+
+The thermal energy required to evaporate one litre of water is about 2.25 megajoules, which equals roughly 0.625 kilowatt-hours. Most test profiles consume more than this amount of energy per cycle block, meaning that the water is typically fully evaporated within each sequence. This process ensures that a wide range of harmonic and damping effects are present during the endurance test.
+
+In certain configurations, the bowl remains empty and no heating target is applied. These stages are designed to achieve the maximum number of motor revolutions in the given period, placing additional stress on the bearings and rotating components.
 
 
 #let data = from-csv(delimiter: ",", "
-111100,-8800,4.00,32,16896000,0,0,0,0
+1111000000,-8800,4.00,32,16896000,0,0,0,0
 0,-4400,2.50,20,5280000,0,0,0,1
 0,-3100,0.50,4,744000,1,4,120,1
 0,-2000,0.50,4,480000,1,4,120,1
@@ -219,34 +251,35 @@ Even in this accelerated form, the campaign remains lengthy and resource demandi
 0,8800,2.00,16,8448000,0,0,0,0
 0,10000,6.00,48,28800000,0,0,0,0
 0,10700,0.00,0,0,0,0,0,0
-0,600,5.00,40,1440000,0,0,0,1
-0,0,1.00,8,0,1,8,100,1
+dough mode:,600,5.00,40,1440000,0,0,0,1
+egg mode:,0,1.00,8,0,1,8,100,1
+,Total,100.0,800,115892160,,540,,
 
 
 
 ")
 
 #let bar_ne(x) = {
-  rect(width: int(x) / 9000000 * 0.5cm, fill: red.lighten(30%), text(fill: black, x))
+  rect(width: int(x) / 9000000 * 0.54cm, fill: gradient.linear(red,white), stroke: red,text(fill: black, x))
 }
 
 #let bar_pe(x) = {
-  rect(width: float(x) / 5 * 1cm, fill: green.darken(0%), text(fill: black, x))
+  rect(width: float(x) / 5 * 1.22cm, fill: gradient.linear(green,white), stroke: green, text(fill: black, x))
 }
 
 #let bar_te(x) = {
-  rect(width: int(x) /  5000 * 0.3cm, fill: red.lighten(30%), text(fill: black, x))
+  rect(width: int(x) /  5000 * 0.7cm, fill: gradient.linear(red,white), stroke: red, text(fill: black, x))
 }
 
 #let bar_ue(x) = {
-  rect(width: int(x) / 50000000 * 0.85cm, fill: red.lighten(30%), text(fill: white, x))
+text(fill: white, x)
 }
 
 #let bar_he(x) = {
-  rect(width: int(x) / 30 * 1.0cm, fill: purple.lighten(50%), text(fill: black, x))
+  rect(width: int(x) / 40 * 1.23cm, fill: gradient.linear(purple,white), stroke: purple, text(fill: black, x))
 }
 
-#figure(kind: table, caption: [Endurance Motor Load])[
+#figure(kind: table, caption: [Endurance Motor Loads and Heater Loads])[
 #tblr(columns: 9, header-rows: 2,
   stroke: black,
   align: center,
@@ -257,29 +290,47 @@ Even in this accelerated form, the campaign remains lengthy and resource demandi
   cols(within: "body", 0, align: right, stroke: (right: 0.0em)),
   rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
   rows(within: "header", auto, inset: (x: 0.05em)),
-  cols(within: "body", 4, inset: (x: 0.04em)),
-  cols(within: "body", 5, fill: green.lighten(30%)),
-  cols(within: "body", 7, fill: green.lighten(30%)),
-  cols(within: "body", 8, fill: green.lighten(30%)),
-  cells((span(4, 30),-2), (-1,-2),fill: yellow),
-  cells((span(2,3),5),(span(-11,-2),5),(-13,(7,8)),((2,12,-3,-4,-5),8), fill: red.lighten(30%)),
-  cols(within: "body", 2, align: left, hooks: bar_pe),
-  cols(within: "body", 4, align: left, hooks: bar_ne),
-  cols(within: "body", 1, align: left, hooks: bar_te),
-  cols(within: "body", 0, align: left, hooks: bar_ue),
-  cols(within: "body", -3, align: left, hooks: bar_he),
+  cols(within: "body", 1,4,2,6, inset: (x: 0.04em)),
+
+  //cols(within: "body", 5, fill: green.lighten(30%)),
+  //cols(within: "body", 7, fill: green.lighten(30%)),
+  //cols(within: "body", 8, fill: green.lighten(30%)),
+  cells((span(2,-2),-4),(span(2,-2),-2),(span(2,-2),-1), fill:green.lighten(30%)),
+  cells((span(4, 30),-2), (-2,-2),fill: yellow.lighten(30%)),
+  cells((span(2,3),5),(span(-12,-3),5),(-14,(7,8)),((2,12,-4,-5,-6),8), fill: red.lighten(30%)),
+  //cols(within: "body", 2, align: left, hooks: bar_pe),
+  //cols(within: "body", 4, align: left, hooks: bar_ne),
+  //cols(within: "body", -3, align: left, hooks: bar_he),
+  cells((span(2,-2),2), align: left, hooks: bar_pe),
+  cells((span(2,-2),-5), align: left, hooks: bar_ne),
+  cells((span(2,-2),-3), align: left, hooks: bar_he),
+  cells((span(2,-4),0), align: left, hooks: bar_ue),
+  cells((span(2,-4),1), align: left, hooks: bar_te),
+  cells((span(-3,-2),0), align: center, fill: gradient.linear(gray,white)),
+
 
     // content
   table.header([Endurance Motor Load],[],[],[],[],[Heater Load],[],[],[],[Target Speed (rpm)],[],[Percentage (%)],[Duration (h)],[Number of cycles (n)],[Heater Status], [Heating Duration (h)],[Target temperature (°C)],[Water]),
   ..data,
 )
-]
+] <endurancemotorload>
 
+=== Limitations and Motivation for Further Acceleration
 
-== Objective
-The main objective of this thesis is to establish a reliable and efficient methodology for reducing test time during validation of complex assemblies. In our case,  the endurance profile for the Thermomix#super[#sym.trademark.registered] TM7 takes around 800 hours of testing time.
+The endurance profile described above integrates mechanical, thermal, and actuator loads into a unified framework that closely represents real‑world operating conditions. The resulting parameters used for testing are summarised in @averagemotorload and @endurancemotorload. @averagemotorload lists average motor loads obtained from field usage data, while @endurancemotorload presents the endurance motor loads and heater loads used during qualification @Vorwerk2025HALT. These datasets form the quantitative foundation for the endurance test and ensure that the laboratory campaign maintains a realistic balance between mechanical and thermal exposure.
 
-By leveraging the Fatigue Damage Spectrum (FDS) as the link between measured time histories of different modes of the test subject and laboratory test specifications, the study aims to generate equivalent and accelerated Power Spectral Densities (PSDs) that reproduce real operational fatigue damage within a reduced test duration. The methodology will be applied to the main PCBA of Thermomix#super[#sym.trademark.registered] TM7 (further named as the backend) as a representative case study validated through experimental vibration testing and response spectrum criteria following the the works of Christian Lalanne on Specification Development @lalanne2010mechanicalvol and MIL-STD-810G @nagle2010test for test tailoring and test-time compression.
+Despite this careful design, several limitations remain. Even with the 800‑hour acceleration, the test campaign is still extremely time‑consuming and resource‑demanding once the mandatory pauses, handling time, and supervision are considered. The mechanical and thermal loads, while statistically representative, are simplified models that do not fully capture transient variations, coupled vibrational effects, or the influence of nonlinear system responses. Furthermore, since the profile relies on a prescribed schedule rather than a continuously varying mission history, certain dynamic interactions between components may not be exercised to the same extent as in the field. These constraints underline the need for advanced methods that can achieve further acceleration without compromising representativeness. In particular, approaches based on vibration fatigue equivalence, mission synthesis, and Power Spectral Density (PSD) or Fatigue Damage Spectrum (FDS) methodologies offer the potential to replace long endurance runs with analytically and experimentally validated accelerated tests. Such approaches aim to condense thousands of operational hours into manageable test durations while preserving the cumulative damage and dynamic characteristics of real‑world operation.
+
+= Objective
+The main objective of this thesis is to establish a reliable and efficient methodology to reduce validation test time for complex assemblies while preserving equivalent severity. For Thermomix#super[#sym.trademark.registered] TM7, the current endurance profile lasts about 800 hours.
+
+The approach uses the Fatigue Damage Spectrum (FDS) as the equivalence metric between measured time histories and laboratory specifications to synthesise accelerated random vibration PSDs that deliver field‑equivalent cumulative fatigue damage in a shorter duration. The method is applied to the Thermomix#super[#sym.trademark.registered] TM7 main PCBA ("backend") and validated through experimental vibration testing and response‑spectrum checks (SRS/ERS) to preserve critical dynamic responses. The work follows Lalanne’s specification development framework @lalanne2010mechanicalvol and MIL‑STD‑810G guidance @nagle2010test on test tailoring and test‑time compression. Deliverables include an accelerated PSD specification for the backend and a documented procedure suitable for extension to the full device.
+
+== Scope of this Thesis
+
+This thesis develops and validates a methodology for accelerating vibration endurance tests for complex assemblies, specifically for household appliances such as the Thermomix#super[#sym.trademark.registered] TM7. To ensure depth and rigor within the available timeframe for this master's thesis, the method is implemented on a single representative subassembly, the main PCBA "backend". All steps of the methodology, including data processing, spectrum synthesis, and validation, are executed on this component to produce a complete, reproducible workflow that can later be applied to the full device.
+
+The endurance profile at Vorwerk couples mechanical (motor‑induced vibration) and thermal (heater) loads @Vorwerk2025HALT. In this work, the scope is limited to mechanical vibration. Thermal loads are discussed where relevant for context but are not modeled or accelerated.
 
 = Accelerated testing
 Accelerated testing aims to reduce test duration while preserving the same failure mechanisms as in service. Various methodologies exist, ranging from classical endurance approaches to modern vibration-based spectral methods.
@@ -314,8 +365,41 @@ In Vorwerk, testing time takes up a considerable amount of resources and creates
 = Theoretical Background
 
 == Mission Synthesis
-=== Origins and Historical Development
-Mission Synthesis referes to the methodology of tailoring vibration tests based on actual service (mission) environments, ensuring lab tests produce equivalent damage to real-world usage. The concept emerged in the mid-20th century as engineers sought more realistic test criteria than generic benchmarks. As early as the 1950s, aerospace data were collected from aircraft flights and used to derive vibration test standards
+
+The concept of mission synthesis originates from the need to reproduce the fatigue damage experienced by structures in real operational environments within shorter laboratory tests. After World War II, engineers in aerospace and defense realised that many standardised tests defined by conservative envelopes either undertested or overtested components. Early studies on fatigue, such as Basquin’s stress-life relationship (1910) @oh1910exponential or Miner’s linear cumulative damage hypothesis (1945), provided a mathematical foundation to link cyclic loading with fatigue life @miner1945cumulative.
+
+== Test Tailoring Procedure
+
+Lalanne @lalanne2010mechanicalvol defines _test tailoring_ as the structured process of creating test specifications directly from a product's life cycle profile and its real environment data, rather than from fixed standard envelopes. This approach is consistent with modern standards such as GAM.EG13 and MIL-STD-810F/G, and STANAG 4370 (AECTP 400), which all require that mechanical and climatic tests reflect measured service conditions rather than arbitrary limits.
+
+#align(center)[
+#figure(
+box(stroke: 1pt + black, inset: 25pt, radius: 3pt)[
+  #image("../../Images/general_tailoring_procedure.svg", width: 100mm)
+],
+caption: [General Tailoring Procedure @lalanne2010mechanicalvol],
+) <general_tailoring_procedure>
+] 
+
+According to Lalanne, tailoring consists of four principal stages,
+
++ Analysis of the life cycle profile -- Identify and divide the product's operational life into "situations", each representing a distinct environment (e.g., storage, transport, flight, operation). Each situation is further broken into events of sub-situations (e.g., take-off, cruise, landing), characterised qualitatively by factors such as vibration type, shock, temperature, acoustics.
++ Collection of real environment data -- Quantify each situation using measured time histories of PSDs. Parameters include vibration amplitudes, temperature ranges, and durations.
++ Synopsis of data -- The collected data from all events within a situation are condensed into representative spectra,
+  - Compute Shock Response Spectra (SRS) for shock events.
+  - Compute Extreme Response Spectra (ERS) and Fatigue Damage Spectra (FDS) for vibration events.
+  - Determine statistical descriptors such as the mean, standard deviation, and variation coefficient for each frequency band.
+  - Combine the results - for shocks, by enveloping all SRS curves anf for vibrations, by summing FDS curves and enveloping ERS curves. 
+  - The result of this stage is one representative set of spectra per situation - an SRS, an ERS, and an FDS.
++ Establishment of the test program -- From the composite FDS of the life profile, generate a test spectrum that reproduces the same cumulative fatigue damage in a shorter, laboratory-controlled time. Apply test factors that account for sample size, confidence level, and the probability of failure.
+
+This procedure ensures that the resulting test is representative, traceable, efficiently accelerated and severe enough to reproduce service damage without introducing unrealistic loads.
+
+== Synopsis of a situation
+
+The synopsis step transforms raw field data from each situation to statistically validated spectra. Lalanne @lalanne2010mechanicalvol distinguishes between stationary and non-stationary signals,
+- For stationary random vibrations, PSDs are calculated from each measurement, from which ERS and FDS curves are derived. Statistical descriptors (mean, standard deviation, variation coefficient $V_e$) are then computed.
+- For non-stationary signals (where RMS or spectral content varies with time), ERS and FDS are calculated directly from the time domain data instead of PSDs.
 
 == Fatigue Damage Spectrum (FDS)
 
@@ -385,9 +469,6 @@ We check peak response consistency by comparing the ERS of each accelerated prof
 [Add the verification of time reduction images]
 
 = Methodology
-
-== Research Design
-#lorem(150) 
 
 == Data Acquisition
 
