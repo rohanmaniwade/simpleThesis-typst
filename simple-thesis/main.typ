@@ -42,7 +42,11 @@
     N - Number of cycles to failure \
     #sym.zeta - Damping factor \
     #sym.sigma - Stress \
-    b - Parameter b of basquin relationship N #sym.sigma#super[b] = C
+    b - Parameter b of basquin relationship N #sym.sigma#super[b] = C \
+    PCB - Printed Circuit Board \
+    IGBT - Insulated-Gate Bipolar Transistor \
+    MOSFET - Metal-Oxide-Semiconductor Field-Effect Transistor \
+    TRIAC - Three-Electrode Semiconductor
 
   ],
   abstract: [
@@ -71,7 +75,8 @@ This thesis formulates a methodology to derive an accelerated test profile that 
 == Thermomix#super[#sym.trademark.registered] TM7
 #align(center)[
   #figure(
-    image("../../Images/Thermomix_TM7_Product_Photo_MainDeviceSide-scaled.jpeg", width: 120mm),
+    [
+    #image("../../Images/TM7_wo_background.jpg", width: 100mm)],
     caption: [Thermomix#super[#sym.trademark.registered] TM7 @thermomix_tm7_image],
   ) <thermomix>
 ]
@@ -86,9 +91,21 @@ Key features and specifications,
 - Heating power: 1000W
 - Motor power: 500W @vorwerk_tm7
 
-== Backend
+== Backend PCB
 
-The backend is the heart of Thermomix#super(sym.trademark.registered). It is the Printed Circuit Board (PCB) that controls the functioning of the device. 
+#align(center)[
+  #figure(
+    box(stroke: 0.5pt+black)[
+    #image("../../Images/Backend.jpg",width: 120mm)],
+    caption: [Backend PCB],
+  ) <backend>
+]
+
+The backend PCB is the central power and control module of Thermomix#super[#sym.trademark.registered] TM7. It handles mains voltage input, performs power factor correction and DC conversion, controls the motor and heater through embedded microcontrollers, and manages all sensor and actuator interfaces @CoSyBackEndPCB2025. The board brings together high voltage switching devices (IGBTs, MOSFETs, TRIACs), multiple microcontrollers for real time control and communication, and various passive components such as capacitors, inductors, and resistors that handle filtering, regulation, and signal conditioning.
+
+The backend is a multilayer FR4 assembly measuring 220 × 165.5 mm and 1.6 mm thick. Its layout balances competing needs: high current traces and large power components generate concentrated heat that must be managed, while sensitive analog and digital circuits need careful grounding and EMI suppression. This design complexity makes the backend a good representative of modern mixed signal power electronics assemblies found in household appliances.
+
+The backend plays a critical role in system reliability. Motor speed commands, heater regulation, and safety interlocks all depend on it working continuously. Solder joint fatigue, capacitor degradation, or any interconnect failure can cause functional loss. The board experiences mechanical vibration from motor imbalance and blade interaction with liquid, as well as thermal cycling from heater operation, which makes it an ideal test specimen for validating accelerated vibration methods. Its internal resonances, mass distribution, and mounting constraints represent the kinds of complex boundary conditions encountered in real product qualification. This means findings from testing this component can be directly applied to other assemblies within the TM7 and similar appliances.
 
 == Endurance profile for Thermomix#super[#sym.trademark.registered] TM7
 Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.trademark.registered] TM7 based on usage patterns observed in earlier product generations @Vorwerk2025HALT. In normal household use, the appliance experiences a characteristic distribution of motor speeds and heating temperatures over a lifetime of roughly 4,000 hours. To ensure that laboratory testing remains representative of real operation, the qualification profile was designed to reproduce this same distribution.
@@ -203,7 +220,7 @@ In certain test segments, the bowl is intentionally left without water so that t
 
 Each endurance cycle consists of 20 minutes of operation followed by a 4-minute pause. During the pause, the actuator completes 20 full movements. Three consecutive cycles form one cycle block, representing approximately one hour of total operation.
 
-For profiles that involve heating, 1.5 litres of water are added to the bowl at the start of each block. This structured repetition of load, rest, and actuation creates a controlled and repeatable simulation of household use, allowing consistent evaluation of long-term durability.
+For profiles that involve heating in the standard endurance program, the bowl is typically filled with 1.5 litres at the start of each block to compensate for evaporation and spillage through the lid opening, yielding about 1.0 litre working volume. In this thesis, heating and evaporation are not modelled, and all tests are conducted with 1.0 litre of water. This structured repetition of load, rest, and actuation creates a controlled and repeatable simulation of household use, allowing consistent evaluation of long-term durability.
 
 === Water Evaporation and Energy Considerations
 
@@ -211,6 +228,7 @@ The thermal energy required to evaporate one litre of water is about 2.25 megajo
 
 In certain configurations, the bowl remains empty and no heating target is applied. These stages are designed to achieve the maximum number of motor revolutions in the given period, placing additional stress on the bearings and rotating components.
 
+In this thesis, heating and evaporation are not modelled, and therefore, the preceding discussion is provided for context only. All measurements are conducted with 1.0 litre of water in the bowl.
 
 #let data = from-csv(delimiter: ",", "
 1111000000,-8800,4.00,32,16896000,0,0,0,0
@@ -472,15 +490,82 @@ We check peak response consistency by comparing the ERS of each accelerated prof
 
 == Data Acquisition
 
-=== Vibration Data Acquisition
-We begin by measuring vibration at the Thermomix backend printed‑circuit board (PCB). These measurements anchor the accelerated PSDs to real operational responses. For each representative operating mode in the endurance profile (motor speed and thermal state), we record time histories that capture the structural input the backend experiences in service.
+The first step of the test tailoring methodology is data acquisition. In this step, situations of differing severities are categorised and recorded. These situations, that the product undergoes, can be either in series or parallel, depending on the event.
+
+Thermomix#super(sym.trademark.registered) TM7 has differing knife rotational speeds, spanning from 40 rpm to 10,000 rpm, both in clockwise and counter-clockwise directions. There is also a dough mode as a part of the endurance profile where the knife alternates between a rotational speed of 600 rpm in CW and CCW. The rest of the rotational speeds and their contribution to the endurance load profile are mentioned in @averagemotorload and @endurancemotorload. 
+
+=== Modal Analysis of the Backend PCB
+
+Modal analysis reveals the dynamic behaviour of a component by identifying its natural frequencies, damping ratios, and corresponding mode shapes. These parameters govern how the structure responds to excitation and how fatigue accumulates over time.
+
+For this reason, modal anaysis was performed on the Thermomix#super(sym.trademark.registered) TM7 backend PCB before vibration measurements were taken. The results were later used to guide accelerometer placement and to define the frequency range for subsequent fatigue analysis.
+
+A combination of experimental modal analysis (Impulse Hammer Test) and finite element modal analysis (FEM) in ANSYS workbench was used to obtain a complete description of the board's modal characteristics.
+
+=== Experimental Modal Analysis (Impulse Hammer Test)
+
+The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which served both as the acquisition and analysis platform.
+- The backend PCB was mounted on a 
+
+=== Modal Analysis in ANSYS Workbench
+
+#align(
+  figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/Backend_CAD_file.png", width: 150mm)
+    ], caption: "Backend PCB CAD model"
+  ) 
+)<backend_cad_model>
+
+
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_1_56.368Hz.png")]
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_2_98.955Hz.png")]
+#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_3_116.75Hz.png")]
+#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_4_130.93Hz.png")]
+#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_5_170.77Hz.png")]
+#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_6_194.35Hz.png")]
+
+  #grid(columns: 2, inset: 0.5em,
+    figure(img1, caption: [Mode 1 - 56.368 Hz]),
+    figure(img2, caption: [Mode 2 - 98.955 Hz]),
+    figure(img3, caption: [Mode 3 - 116.75 Hz]),
+    figure(img4, caption: [Mode 4 - 130.93 Hz]),
+    figure(img5, caption: [Mode 5 - 170.77 Hz]),
+    figure(img6, caption: [Mode 6 - 194.35 Hz]),
+  )
 
 === Accelerometer Placement
+
+#align(
+  figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/accelerometer_placement.jpg", width: 150mm)
+    ], caption: "Accelerometer Placement on the Backend PCB"
+  ) 
+)<accelerometer_placement>
+
+
+
 We instrument the backend PCB at dynamically critical points. Candidate locations were selected through a modal analysis performed in ANSYS and verified experimentally with an impulse‑hammer test. Based on the resulting mode shapes, we placed accelerometers near antinodes (regions of maximum deformation) while respecting packaging, cable routing, and mass‑loading constraints. This ensures the measured signals are sensitive to resonant amplification yet representative of in‑service response.
 
 To balance constraints with coverage, two mini‑triaxial accelerometers and one triaxial accelerometer were installed at locations that collectively capture the dominant bending and torsional responses of the board.
 
+=== Vibration Data Acquisition
+
+#align(
+  figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/data_acquisition_setup.jpg", width: 150mm)
+    ], caption: "Data acquisition of different motor rotation modes of TM7"
+  ) 
+)<data_acquisition_setup>
+
+We begin by measuring vibration at the Thermomix backend printed‑circuit board (PCB). These measurements anchor the accelerated PSDs to real operational responses. For each representative operating mode in the endurance profile (motor speed and thermal state), we record time histories that capture the structural input the backend experiences in service.
+
+
 === Squadriga - Frontend
+
+
 
 == Signal Processing Pipeline
 
@@ -499,18 +584,44 @@ Because three sensors record along three orthogonal axes, nine accelerated profi
 
 == Accelerated PSD Generation
 
+#lorem(200)
+
 == Time History Synthesis from PSD
+
+#lorem(200)
 
 == Validation Procedure
 
+#lorem(200)
+
 = Experimental Setup
-== Test Fixture for the Backend
+#lorem(200)
 
-== 
+== Test Fixture for the Backend PCB
 
+#lorem(200)
 
+== Modal Analysis of Test Fixture
+
+#lorem(200)
+
+== Shaker Table Tests
+
+#muchpdf(
+  read("..\..\Shaker_Tests\PCBTest_4_b9_LEFT_Z_1.5h\Control_b9_LEFT_Z_2000Hz_1.5h.pdf", encoding: none)
+)
+#muchpdf(
+  read("..\..\Shaker_Tests\PCBTest_4_b9_LEFT_Z_1.5h\Drive_b9_LEFT_Z_3200Hz_1.5h.pdf", encoding: none)
+)
+
+#muchpdf(
+  read("..\..\Shaker_Tests\PCBTest_2_b8_LEFT_Z_4h\Control_LEFT_Z_b8_2000Hz_4h.pdf", encoding: none)
+)
+#muchpdf(
+  read("..\..\Shaker_Tests\PCBTest_2_b8_LEFT_Z_4h\Drive_LEFT_Z_b8_3200Hz_4h.pdf", encoding: none)
+)
 = Results and Discussion
-== Finding 1
+== 
 #lorem(200)
 
 == Finding 2
