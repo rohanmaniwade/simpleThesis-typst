@@ -2,6 +2,7 @@
 #import "@preview/muchpdf:0.1.1": muchpdf
 #import "@preview/tblr:0.4.1": *
 #import "template.typ": thesis
+#import "@preview/subpar:0.2.2"
 #include "../title.typ"
 
 #muchpdf(
@@ -65,23 +66,27 @@
 
 = Introduction
 
-== Problem Statement
-Many engineered products operate in complex environments of loads over their service life. This can gradually lead to mechanical fatigue to the point of loss of function. To manage that risk, manufacturers validate and verify their products to meet a specified lifetime in the field. However, conventional endurance testing is lengthy and resource intensive, which makes it hard to iterate and slows down development.
+== Vorwerk
 
-The Thermomix#super[#sym.trademark.registered] TM7, a product of the Vorwerk Group, is affected by vibrational, thermal, and transportational loads that originate from within and outside the product. Inside the company, a combined vibration and thermal endurance profile is used to assure 4,000 field hours of service. Running this complete profile on a complex assembly takes considerable time and effort, which motivates a more efficient approach.
+Founded in 1883 in Wuppertal, Germany, Vorwerk is a family owned company that grew from carpet manufacturing into a global provider of premium household products and services @vorwerk_group_about. The group operates several brands and business units and is best known for a direct sales model that combines product expertise with personal consultation and community support. This approach relies on demonstrations, training, and genuine relationships with customers.
 
-This thesis formulates a methodology to derive an accelerated test profile that reproduces, in a laboratory setting, the fatigue damage and relevant operational loads observed in the field, while reducing test duration. The TM7 serves as the case study; the methodology is intended to generalise to other complex assemblies.
+Vorwerk’s portfolio centers on durable, high quality products that make daily life at home easier. Its divisions include Thermomix#super[#sym.trademark.registered], a multifunctional cooking system, and Kobold, a range of home cleaning systems. The company invests in research and development, strong supply chains, and after sales service to sustain product reliability and customer satisfaction over a long service life @vorwerk_group_about.
+
+As a family business, Vorwerk values collaboration, trust, and continuous improvement. Current priorities include innovation, digital services that complement hardware (for example, guided cooking and content for Thermomix#super[#sym.trademark.registered]), and responsible operations in quality, safety, and sustainability @vorwerk_group_about.
+
 
 == Thermomix#super[#sym.trademark.registered] TM7
 #align(center)[
   #figure(
     [
-    #image("../../Images/TM7_wo_background.jpg", width: 100mm)],
+    #image("../../Images/TM7_wo_background.jpg", width: 80mm)],
     caption: [Thermomix#super[#sym.trademark.registered] TM7 @thermomix_tm7_image],
   ) <thermomix>
 ]
 
-*Thermomix#super[#sym.trademark.registered] TM7* is the latest generation multifunctional cooking appliance by Vorwerk, designed to integrate numerous cooking, mixing, heating, and food-preparation capabilities into a single device.
+*Thermomix#super[#sym.trademark.registered]* is Vorwerk's flagship kitchen system and a leading example of its product and service philosophy @vorwerk_group_about. The latest generation, Thermomix#super[#sym.trademark.registered] TM7, as shown in @thermomix integrates the capabilities of many appliances into a single, compact platform, covering tasks such as chopping, blending, mixing, kneading, steaming, weighing, and precise temperature-controlled cooking. 
+
+The device pairs a touchscreen interface with guided, step-by-step workflows and connects to the Cookidoo#super[#sym.trademark.registered] digital recipe ecosystem, which provides a large, curated library of recipes plus meal planning and shopping-list tools. Thermomix#super[#sym.trademark.registered] is distributed through Vorwerk's direct sales network, where demonstrations and coaching help users get the most from the system. In this thesis, the TM7, more precisely the backend PCB, serves as the reference product context for the application of accelerated vibration testing.
 
 Key features and specifications,
 - Dimensions: 33.6cm #sym.times 25.3cm #sym.times 40.5cm
@@ -90,6 +95,15 @@ Key features and specifications,
 - Mixing bowl capacity: 2.2L
 - Heating power: 1000W
 - Motor power: 500W @vorwerk_tm7
+
+
+== Problem Statement
+Many engineered products operate in complex environments of loads over their service life. This can gradually lead to mechanical fatigue to the point of loss of function. To manage that risk, manufacturers validate and verify their products to meet a specified lifetime in the field. However, conventional endurance testing is lengthy and resource intensive, which makes it hard to iterate and slows down development.
+
+The Thermomix#super[#sym.trademark.registered] TM7, a product of the Vorwerk Group, is affected by vibrational, thermal, and transportational loads that originate from within and outside the product. Inside the company, a combined vibration and thermal endurance profile is used to assure 4,000 field hours of service. Running this complete profile on a complex assembly takes considerable time and effort, which motivates a more efficient approach.
+
+This thesis formulates a methodology to derive an accelerated test profile that reproduces, in a laboratory setting, the fatigue damage and relevant operational loads observed in the field, while reducing test duration. The TM7 serves as the case study; the methodology is intended to generalise to other complex assemblies.
+
 
 == Backend PCB
 
@@ -468,7 +482,7 @@ Acceleration form for a base‑excited SDOF is
 
 $ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $
 
-Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter @lalanne2010mechanicalvol. We adopt the maximax SRS convention, meaning the peak of peak values across events @lalanne2010mechanicalvol.
+Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter @lalanne2010mechanicalvol. The maximax SRS convention is adopted, meaning the peak of peak values across events @lalanne2010mechanicalvol.
 
 
 == Difference between Extreme Response Spectrum and Shock Response Spectrum
@@ -482,7 +496,7 @@ In this thesis ERS characterises peak response under random profiles. SRS provid
 
 == Response spectrum validation
 
-We check peak response consistency by comparing the ERS of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. We select a small damping ζ to match structural behaviour and we space frequency points on a logarithmic grid. This confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
+Peak response consistency is checked by comparing the ERS of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
 
 [Add the verification of time reduction images]
 
@@ -504,8 +518,26 @@ A combination of experimental modal analysis (Impulse Hammer Test) and finite el
 
 === Experimental Modal Analysis (Impulse Hammer Test)
 
+#align(
+  figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_9.png", width: 150mm)
+    ], caption: "Impulse Hammer Test for the Backend PCB"
+  ) 
+)<impulsehammer1>
+
 The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which served both as the acquisition and analysis platform.
-- The backend PCB was mounted on a 
+- The backend PCB was suspended on a string.
+- Three uni-axial accelerometers were glued at suitable locations and 26 measurement points were defined on the PCB on both top and bottom sides as depicted in [insert image reference]
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_3.png")]
+
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_2.png")]
+
+#subpar.grid(columns: 2, inset: 0.5em,
+    figure(img1, caption: [Measurement points (top)], supplement: none),
+    figure(img2, caption: [Measurement points (bottom)], supplement: none),
+  caption: [Measurement points for impulse hammer test (roving hammer)],
+)
 
 === Modal Analysis in ANSYS Workbench
 
@@ -525,30 +557,33 @@ The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which 
 #let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_5_170.77Hz.png")]
 #let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_6_194.35Hz.png")]
 
-  #grid(columns: 2, inset: 0.5em,
-    figure(img1, caption: [Mode 1 - 56.368 Hz]),
-    figure(img2, caption: [Mode 2 - 98.955 Hz]),
-    figure(img3, caption: [Mode 3 - 116.75 Hz]),
-    figure(img4, caption: [Mode 4 - 130.93 Hz]),
-    figure(img5, caption: [Mode 5 - 170.77 Hz]),
-    figure(img6, caption: [Mode 6 - 194.35 Hz]),
-  )
-
+  
+    #subpar.grid(columns: 2, inset: 0.5em,
+    figure(img1, caption: [Mode 1 - 56.368 Hz], supplement: none),
+    figure(img2, caption: [Mode 2 - 98.955 Hz], supplement: none),
+    figure(img3, caption: [Mode 3 - 116.75 Hz], supplement: none),
+    figure(img4, caption: [Mode 4 - 130.93 Hz], supplement: none),
+    figure(img5, caption: [Mode 5 - 170.77 Hz], supplement: none),
+    figure(img6, caption: [Mode 6 - 194.35 Hz], supplement: none),
+    caption: "Backend PCB mode shapes with constraint",
+  )<modalshapeswithconstraint>
 === Accelerometer Placement
 
-#align(
-  figure(
+#figure(
     box(stroke: 1pt+black)[
-      #image("../../Images/accelerometer_placement.jpg", width: 150mm)
+      #image("../../Images/accelerometer_placement.jpg", width: 120mm)
     ], caption: "Accelerometer Placement on the Backend PCB"
-  ) 
-)<accelerometer_placement>
+  )<accelerometer_placement>
 
 
 
-We instrument the backend PCB at dynamically critical points. Candidate locations were selected through a modal analysis performed in ANSYS and verified experimentally with an impulse‑hammer test. Based on the resulting mode shapes, we placed accelerometers near antinodes (regions of maximum deformation) while respecting packaging, cable routing, and mass‑loading constraints. This ensures the measured signals are sensitive to resonant amplification yet representative of in‑service response.
+Instrumentation of the backend PCB focused on dynamically critical points. Mode shapes from ANSYS, together with impulse hammer measurements, were interpreted to locate antinodes where the response is strongest. Sensors were positioned near these regions to improve signal to noise and avoid nodal lines where the motion is small. Practical constraints such as component clearance, adhesive pads, and cable routing were respected so that the installation remained representative of normal assembly conditions @ci_pcb_modal_2020.
 
-To balance constraints with coverage, two mini‑triaxial accelerometers and one triaxial accelerometer were installed at locations that collectively capture the dominant bending and torsional responses of the board.
+To capture different aspects of the dynamics with a small channel count, sensors were distributed across areas with distinct modal participation so that their combined responses separated bending and torsion. In the optimal sensor placement literature this independence of information is formalised with information based criteria; here a pragmatic version of the same idea was followed and verified with standard checks such as coherence and Auto MAC to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020.
+
+Attention was paid to the influence of the test itself. Light sensors with short leads were used to limit mass loading on the lightweight board, and the PCB was suspended during hammer tests to approximate free free boundary conditions. The resulting frequency response functions did not show mass loading artefacts, which indicates that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
+
+Finally, placement was linked to the reliability questions that motivated this study. Solder joint fatigue is driven by relative motion and local stress near components, so measuring at component dense regions where the main bending and torsion shapes develop helps connect dynamics to durability. This view is consistent with results showing that increasing board stiffness shifts modes and can reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two mini triaxial accelerometers and one triaxial accelerometer were installed at locations that together track the dominant responses of the board. The final positions are shown in @accelerometer_placement.
 
 === Vibration Data Acquisition
 
@@ -560,7 +595,7 @@ To balance constraints with coverage, two mini‑triaxial accelerometers and one
   ) 
 )<data_acquisition_setup>
 
-We begin by measuring vibration at the Thermomix backend printed‑circuit board (PCB). These measurements anchor the accelerated PSDs to real operational responses. For each representative operating mode in the endurance profile (motor speed and thermal state), we record time histories that capture the structural input the backend experiences in service.
+Vibration at the Thermomix backend printed‑circuit board (PCB) was measured. These measurements anchor the accelerated PSDs to real operational responses. For each representative operating mode in the endurance profile (motor speed and thermal state), time histories were recorded that capture the structural input the backend experiences in service.
 
 
 === Squadriga - Frontend
@@ -569,7 +604,7 @@ We begin by measuring vibration at the Thermomix backend printed‑circuit board
 
 == Signal Processing Pipeline
 
-With time histories collected for each operating mode of the Thermomix#super[#sym.trademark.registered], we apply Lalanne’s specification to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit is used for signal processing, test synthesis, and verification.
+With time histories collected for each operating mode of the Thermomix#super[#sym.trademark.registered], Lalanne’s specification was applied to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit was used for signal processing, test synthesis, and verification.
 
 Because three sensors record along three orthogonal axes, nine accelerated profiles are produced (one per sensor‑axis channel). The pipeline proceeds as follows:
 
