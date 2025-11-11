@@ -693,7 +693,7 @@ To separate bending and torsion with a small channel count, sensors were distrib
 
 Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the PCB was suspended during hammer tests to approximate free free boundary conditions. The resulting frequency response functions did not show mass‑loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
 
-Placement was also aligned with reliability. Solder‑joint fatigue correlates with relative displacement and local stress near components, so measuring in component‑dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two miniature triaxial accelerometers and one triaxial accelerometer were installed at antinodes of the first bending mode that persist across both boundary conditions. The final positions are shown in @accelerometer_placement.
+Placement was also aligned with reliability. Solder‑joint fatigue correlates with relative displacement and local stress near components, so measuring in component‑dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two miniature triaxial accelerometers and one triaxial accelerometer were installed at antinodes of the first bending mode that persist across both boundary conditions.
 
 #figure(
     box(stroke: 1pt+black)[
@@ -714,8 +714,9 @@ The sensor placement was as follows,
 
 - PCB_TOP was bonded on top of the high voltage electrolytic capacitor designated CAP‑E in the BOM (270 µF, 450 V, ±20%, 85 °C, 30×35 mm) @CoSyBackEndPCB2025 to sample the response directly on a central component.
 
--A third triaxial sensor, PCB_CENTER was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading.
+- PCB_CENTER, A third triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading.
 
+The sensor placements are shown in @accelerometer_placement.
 #figure(
     box(stroke: 1pt+black)[
       #image("../../Images/accelerometer_placement.jpg", width: 120mm)
@@ -724,27 +725,25 @@ The sensor placement was as follows,
 
 === Vibration Data Acquisition
 
-#figure(
-    box(stroke: 1pt+black)[
-      #image("../../Images/data_acquisition_setup.jpg", width: 150mm)
-    ], caption: "Data acquisition of different motor rotation modes of TM7"
-  )<data_acquisition_setup>
+With the sensors positioned, vibration data was collected for all operating conditions in the endurance profile. The backend PCB was kept in its normal assembly to maintain realistic vibration coupling with the rest of the device.
 
-#figure(
-    box(stroke: 1pt+black)[
-      #image("../../Images/data_acquisition_setup.jpg", width: 150mm)
-    ], caption: "Data acquisition of different motor rotation modes of TM7"
-  )<data_acquisition_setup>
+Data collection used two SQuadriga units connected together to handle all nine measurement channels (three sensors × three axes each). The first unit connected to the laptop in "Control" mode, while the second acted as an extension in "Module" mode. HEAD acoustics ArtemiS Suite recorded the vibrations, capturing all channels simultaneously to preserve timing relationships.
 
+For each motor speed from 40 to 10,000 rpm in clockwise and counter-clockwise directions, one‑minute recordings captured the vibration patterns during steady operation. The bowl contained 1000 grams of water throughout testing, matching the endurance test setup. This water load creates realistic blade interactions and damping that affect how the structure vibrates.
 
+Three shock events were recorded to set reference limits for validating the accelerated test profiles later. These events represent severe operating conditions that create different types of vibration:
 
-=== Squadriga - Frontend
+- Pizza dough kneading: 30 seconds in kneading mode using the "Pizzateig" recipe from Cookidoo#super[#sym.trademark.registered]. In this mode, the blade alternates between clockwise and counter‑clockwise rotation with one‑second stops between direction changes. This creates strong, low‑frequency forces when the blade encounters dough resistance.
+- Ice and strawberry crushing: 200 grams ice and 500 grams frozen strawberries processed for 30 seconds at Speed 7, based on the "Strawberry Margarita" recipe. This produces sharp impact forces across many frequencies as the blade hits frozen pieces.
+- Cheese block blending: Two 200‑gram Grana Padano blocks processed for 30 seconds in "Blend" mode at Speed 8, from the "Rosmarin‑Parmesan Waffeln" recipe. This generates high‑frequency vibrations from blade strikes on hard cheese.
+
+These recordings define the life cycle of the device by capturing the full range of operational vibration environments. They form the basis for calculating fatigue damage and deriving accelerated test profiles. The shock events are used to ensure that accelerated test conditions stay within realistic limits.
 
 
 
 == Signal Processing Pipeline (working title)
 
-With time histories collected for each operating mode of the Thermomix#super[#sym.trademark.registered], Lalanne’s specification was applied to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit was used for signal processing, test synthesis, and verification.
+With time histories collected for each operating mode of Thermomix#super[#sym.trademark.registered] TM7, Lalanne’s specification was applied to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit @vibeaccelkit2025 used for signal processing, test synthesis, and verification.
 
 Because three sensors record along three orthogonal axes, nine accelerated profiles are produced (one per sensor‑axis channel). The pipeline proceeds as follows:
 
