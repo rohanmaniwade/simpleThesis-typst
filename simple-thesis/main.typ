@@ -63,6 +63,7 @@
 )
 
 #show figure.where(kind: table): set block(breakable: true, sticky: true)
+#set math.equation(numbering: "(1)")
 
 = Introduction
 
@@ -364,10 +365,10 @@ This thesis develops and validates a methodology for accelerating vibration endu
 
 The endurance profile at Vorwerk couples mechanical (motor‑induced vibration) and thermal (heater) loads @Vorwerk2025HALT. In this work, the scope is limited to mechanical vibration. Thermal loads are discussed where relevant for context but are not modeled or accelerated.
 
-= Accelerated testing
+= Accelerated Testing
 Accelerated testing aims to reduce test duration while preserving the same failure mechanisms as in service. Various methodologies exist, ranging from classical endurance approaches to modern vibration-based spectral methods.
 
-== Literature Review
+== State of the Art
 Accelerated testing has evolved through several methodological streams that differ by failure mechanism focus (statistical life modelling, stress–life acceleration, random vibration damage equivalence, resonance‑based reduction, and spectrum tailoring). The principal published contributions are grouped below, with authors named consistently and years supplied for clarity. For multi‑author works (three or more authors) “et al.” is used uniformly after the first author.
 
 === Statistical accelerated life models
@@ -390,7 +391,7 @@ Lalanne (2010) @lalanne2010mechanicalvol formalised a specification development 
 
 === Gap and motivation for this work
 
-In Vorwerk, testing time takes up a considerable amount of resources and creates a bottleneck hinder
+In Vorwerk, testing time takes up a considerable amount of resources and creates a bottleneck hinderance. 
 
 
 
@@ -404,14 +405,14 @@ The concept of mission synthesis originates from the need to reproduce the fatig
 
 Lalanne @lalanne2010mechanicalvol defines _test tailoring_ as the structured process of creating test specifications directly from a product's life cycle profile and its real environment data, rather than from fixed standard envelopes. This approach is consistent with modern standards such as GAM.EG13 and MIL-STD-810F/G, and STANAG 4370 (AECTP 400), which all require that mechanical and climatic tests reflect measured service conditions rather than arbitrary limits.
 
-#align(center)[
+
 #figure(
 box(stroke: 1pt + black, inset: 25pt, radius: 3pt)[
   #image("../../Images/general_tailoring_procedure.svg", width: 100mm)
 ],
 caption: [General Tailoring Procedure @lalanne2010mechanicalvol],
 ) <general_tailoring_procedure>
-] 
+
 
 According to Lalanne, tailoring consists of four principal stages,
 
@@ -526,18 +527,21 @@ A combination of experimental modal analysis (Impulse Hammer Test) and finite el
   ) 
 )<impulsehammer1>
 
-The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which served both as the acquisition and analysis platform.
+The impulse hammer test was performed using HEAD acoustics ArtemiS Suite, which served both as the acquisition and analysis platform.
 - The backend PCB was suspended on a string.
-- Three uni-axial accelerometers were glued at suitable locations and 26 measurement points were defined on the PCB on both top and bottom sides as depicted in [insert image reference]
+- Three uni-axial accelerometers were glued at suitable locations and 26 measurement points were defined on the PCB on both top and bottom sides as depicted in @measurementpointstop and @measurementpointsbottom
+
+
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_3.png")]
 
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_2.png")]
 
 #subpar.grid(columns: 2, inset: 0.5em,
-    figure(img1, caption: [Measurement points (top)], supplement: none),
-    figure(img2, caption: [Measurement points (bottom)], supplement: none),
+    figure(img1, caption: [Measurement points - top]),<measurementpointstop>,
+    figure(img2, caption: [Measurement points - bottom]),<measurementpointsbottom>,
   caption: [Measurement points for impulse hammer test (roving hammer)],
 )
+
 
 === Modal Analysis in ANSYS Workbench
 
@@ -549,6 +553,30 @@ The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which 
   ) 
 )<backend_cad_model>
 
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_1.png")]
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode2_1.png")]
+#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode3_4.png")]
+#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode4_4.png")]
+#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode5_4.png")]
+#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode6_4.png")]
+
+  
+    #subpar.grid(columns: 2, inset: 0.5em,
+    figure(img1, caption: [Mode 1 - 66.575 Hz]),<modalshapeswoconstraint1>,
+    figure(img2, caption: [Mode 2 - 84.124 Hz]),<modalshapeswoconstraint2>,
+    figure(img3, caption: [Mode 3 - 114.97 Hz]),<modalshapeswoconstraint3>,
+    figure(img4, caption: [Mode 4 - 148.6 Hz]),<modalshapeswoconstraint4>,
+    figure(img5, caption: [Mode 5 - 172.24 Hz]),<modalshapeswoconstraint5>,
+    figure(img6, caption: [Mode 6 - 179.34 Hz]),<modalshapeswoconstraint6>,
+    caption: "Backend PCB mode shapes without constraint",
+  )
+
+#figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/constraints.png", width: 120mm)
+    ], caption: "Mounting of backend in TM7"
+  )<fixingpointsofbackend>
+
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_1_56.368Hz.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_2_98.955Hz.png")]
@@ -559,15 +587,134 @@ The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which 
 
   
     #subpar.grid(columns: 2, inset: 0.5em,
-    figure(img1, caption: [Mode 1 - 56.368 Hz], supplement: none),
-    figure(img2, caption: [Mode 2 - 98.955 Hz], supplement: none),
-    figure(img3, caption: [Mode 3 - 116.75 Hz], supplement: none),
-    figure(img4, caption: [Mode 4 - 130.93 Hz], supplement: none),
-    figure(img5, caption: [Mode 5 - 170.77 Hz], supplement: none),
-    figure(img6, caption: [Mode 6 - 194.35 Hz], supplement: none),
+    figure(img1, caption: [Mode 1 - 56.368 Hz]),<modalshapeswithconstraint1>,
+    figure(img2, caption: [Mode 2 - 98.955 Hz]),<modalshapeswithconstraint2>,
+    figure(img3, caption: [Mode 3 - 116.75 Hz]),<modalshapeswithconstraint3>,
+    figure(img4, caption: [Mode 4 - 130.93 Hz]),<modalshapeswithconstraint4>,
+    figure(img5, caption: [Mode 5 - 170.77 Hz],),<modalshapeswithconstraint5>,
+    figure(img6, caption: [Mode 6 - 194.35 Hz]),<modalshapeswithconstraint6>,
     caption: "Backend PCB mode shapes with constraint",
-  )<modalshapeswithconstraint>
+  )
+
+=== Modal Correlation Between Simulation and Experiment
+
+The comparison between the experimental (impact hammer test) and numerical (ANSYS Modal) modal frequencies revealed a systematic deviation that increased with frequency as shown in @modescomparison. The FE model over-predicted the lower modes and increasingly under-predicted the higher modes.
+
+#figure(
+  box(stroke: 1pt+black, )[
+    #image("../../Images/ANSYS_backendmodal_screenshots/frequencycomparison.png", width: 150mm)
+  ], caption: "Frequency Comparison - Impact Hammer Test vs ANSYS Modal",
+)<modescomparison>
+
+
+To compensate for this systematic drift, a frequency-dependent scaling was applied directly to the simulated frequencies.
+For each mode, the ratio between the experimental and simulated frequency was calculated by,
+
+$ r_i = f_i^"IHT" / f_i^"ANSYS" $
+
+The ratios showed a clear upward trend with frequency, as shown in @ratiovsfrequency. A linear relationship between the scaling factor and frequency was defined to progressively adjust each simulated mode. In practical implementation, the relationship took the form
+$ s(f) = a + b · f $
+
+where $a=0.6914$, $b=0.0011$, and $s(f)$ is the incremental scaling factor, as obtained from the linear trendline of the ratio plot.
+
+#figure(
+  box(stroke: 1pt+black, )[
+    #image("../../Images/ANSYS_backendmodal_screenshots/ratiovsfrequency.png", width: 150mm)
+  ], caption: "Ratio vs Frequency",
+) <ratiovsfrequency>
+
+The scaled frequency for each mode was then calculated as
+$ f_i^"scaled" = s(f_i^"ANSYS") · f_i^"ANSYS" $
+
+#figure(
+  box(stroke: 1pt+black, )[
+    #image("../../Images/ANSYS_backendmodal_screenshots/frequencycomparisonafterscaling.png", width: 150mm)
+  ], caption: "Frequency Comparison After Scaling",
+)<scaledfrequencies>
+
+This procedure preserves the general distribution of modal frequencies while compensating for the frequency-dependent deviation observed experimentally.
+
+The scaled frequencies exhibit substantially improved agreement with the test data across the entire range, as illustrated in @scaledfrequencies.
+
+#let data = from-csv(delimiter: ",", "
+1,48.10,66.58,0.72,0.76,50.91,-27.75,-5.51
+2,72.90,84.12,0.87,0.78,65.95,-13.34,10.54
+3,79.80,114.97,0.69,0.82,94.03,-30.59,-15.13
+4,121.10,148.60,0.81,0.85,127.03,-18.51,-4.67
+5,145.00,172.24,0.84,0.88,151.72,-15.82,-4.43
+6,197.70,179.34,1.10,0.89,159.37,10.24,24.05
+7,253.20,219.88,1.15,0.93,205.21,15.15,23.39
+8,270.00,240.04,1.12,0.96,229.34,12.48,17.73
+9,295.60,292.27,1.01,1.01,296.04,1.14,-0.15
+10,324.00,319.40,1.01,1.04,333.05,1.44,-2.72
+11,330.70,328.68,1.01,1.05,346.08,0.61,-4.44
+12,331.00,361.29,0.92,1.09,393.38,-8.38,-15.86
+13,436.10,397.08,1.10,1.13,447.98,9.83,-2.65
+14,443.10,405.62,1.09,1.14,461.43,9.24,-3.97
+15,528.90,434.78,1.22,1.17,508.54,21.65,4.00
+16,674.50,553.73,1.22,1.30,720.13,21.81,-6.34
+17,805.20,641.49,1.26,1.40,896.19,25.52,-10.15
+18,872.00,681.41,1.28,1.44,981.88,27.97,-11.19
+19,1042.40,695.19,1.50,1.46,1012.27,49.94,2.98
+20,1135.80,706.25,1.61,1.47,1036.97,60.82,9.53
+21,1144.30,721.60,1.59,1.49,1071.69,58.58,6.78
+22,1264.50,762.48,1.66,1.53,1166.69,65.84,8.38
+23,1266.10,800.34,1.58,1.57,1257.95,58.20,0.65
+24,1442.90,861.70,1.67,1.64,1412.56,67.45,2.15
+25,1576.00,892.56,1.77,1.67,1493.45,76.57,5.53
+26,1690.40,925.86,1.83,1.71,1583.08,82.58,6.78
+27,1692.80,969.10,1.75,1.76,1703.11,74.68,-0.61
+28,1911.00,1043.60,1.83,1.84,1919.56,83.12,-0.45
+29,2032.00,1052.90,1.93,1.85,1947.43,92.99,4.34
+")
+
+#figure(kind: table, caption: [Comparison of experimental, simulated, and scaled modal frequencies])[
+  #tblr(columns: 8,
+  stroke: 0.05em,
+  align: center+horizon,
+  // formatting directives
+  rows(within: "header", auto, fill: aqua.lighten(60%), hooks: strong),
+  // content
+  table.header([Mode No.],[$f_"IHT"$ (Hz)],[$f_"ANSYS"$ (Hz)],[ Ratio $r_i$],[Scale $s(f_i)$],[$f_i^"scaled"$],[Error before (%)],[Error after (%)]),
+  ..data
+)
+]<frequencycomparison>
+
+
+Applying the frequency‑dependent linear scaling reduced the mean absolute frequency error from approximately 35.9% to 7.4% across 29 modes (≈79% relative reduction). The worst‑case error decreased from 93.0% to 24.1%. Improvements were most pronounced for higher modes, where the unscaled deviations were largest. A small deterioration was observed in a few low‑order modes (e.g., Modes 6–8), which reflects the bias of a single global linear fit.
+
+
+
 === Accelerometer Placement
+
+Accelerometer placement was driven by mode shapes from ANSYS together with the impulse‑hammer modal test. Two boundary conditions were reviewed: free free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
+
+To separate bending and torsion with a small channel count, sensors were distributed to regions with distinct modal participation. This follows information‑based optimal sensor placement principles; independence was checked pragmatically with coherence and Auto‑MAC to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020.
+
+Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the PCB was suspended during hammer tests to approximate free free boundary conditions. The resulting frequency response functions did not show mass‑loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
+
+Placement was also aligned with reliability. Solder‑joint fatigue correlates with relative displacement and local stress near components, so measuring in component‑dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two miniature triaxial accelerometers and one triaxial accelerometer were installed at antinodes of the first bending mode that persist across both boundary conditions. The final positions are shown in @accelerometer_placement.
+
+#figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_2.png", width: 150mm)
+    ], caption: "Mode 1 (without constraints)"
+  )<mode1wconstraints>
+
+#figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/mode1_4.png", width: 150mm)
+    ], caption: "Mode 1 (with constraints)"
+  )<mode1woconstraints>
+
+
+The sensor placement was as follows,
+
+- PCB_LEFT was placed at the left‑front edge where Mode 1 shows an out‑of‑plane antinode and high curvature
+
+- PCB_TOP was bonded on top of the high voltage electrolytic capacitor designated CAP‑E in the BOM (270 µF, 450 V, ±20%, 85 °C, 30×35 mm) @CoSyBackEndPCB2025 to sample the response directly on a central component.
+
+-A third triaxial sensor, PCB_CENTER was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading.
 
 #figure(
     box(stroke: 1pt+black)[
@@ -575,34 +722,27 @@ The Impulse Hammer Test was performed using HEAD acoustics ArtemiS Suite, which 
     ], caption: "Accelerometer Placement on the Backend PCB"
   )<accelerometer_placement>
 
-
-
-Instrumentation of the backend PCB focused on dynamically critical points. Mode shapes from ANSYS, together with impulse hammer measurements, were interpreted to locate antinodes where the response is strongest. Sensors were positioned near these regions to improve signal to noise and avoid nodal lines where the motion is small. Practical constraints such as component clearance, adhesive pads, and cable routing were respected so that the installation remained representative of normal assembly conditions @ci_pcb_modal_2020.
-
-To capture different aspects of the dynamics with a small channel count, sensors were distributed across areas with distinct modal participation so that their combined responses separated bending and torsion. In the optimal sensor placement literature this independence of information is formalised with information based criteria; here a pragmatic version of the same idea was followed and verified with standard checks such as coherence and Auto MAC to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020.
-
-Attention was paid to the influence of the test itself. Light sensors with short leads were used to limit mass loading on the lightweight board, and the PCB was suspended during hammer tests to approximate free free boundary conditions. The resulting frequency response functions did not show mass loading artefacts, which indicates that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
-
-Finally, placement was linked to the reliability questions that motivated this study. Solder joint fatigue is driven by relative motion and local stress near components, so measuring at component dense regions where the main bending and torsion shapes develop helps connect dynamics to durability. This view is consistent with results showing that increasing board stiffness shifts modes and can reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two mini triaxial accelerometers and one triaxial accelerometer were installed at locations that together track the dominant responses of the board. The final positions are shown in @accelerometer_placement.
-
 === Vibration Data Acquisition
 
-#align(
-  figure(
+#figure(
     box(stroke: 1pt+black)[
       #image("../../Images/data_acquisition_setup.jpg", width: 150mm)
     ], caption: "Data acquisition of different motor rotation modes of TM7"
-  ) 
-)<data_acquisition_setup>
+  )<data_acquisition_setup>
 
-Vibration at the Thermomix backend printed‑circuit board (PCB) was measured. These measurements anchor the accelerated PSDs to real operational responses. For each representative operating mode in the endurance profile (motor speed and thermal state), time histories were recorded that capture the structural input the backend experiences in service.
+#figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/data_acquisition_setup.jpg", width: 150mm)
+    ], caption: "Data acquisition of different motor rotation modes of TM7"
+  )<data_acquisition_setup>
+
 
 
 === Squadriga - Frontend
 
 
 
-== Signal Processing Pipeline
+== Signal Processing Pipeline (working title)
 
 With time histories collected for each operating mode of the Thermomix#super[#sym.trademark.registered], Lalanne’s specification was applied to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit was used for signal processing, test synthesis, and verification.
 
