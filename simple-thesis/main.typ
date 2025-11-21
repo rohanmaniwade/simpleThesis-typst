@@ -498,10 +498,6 @@ $ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $
 
 Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter. The maximax SRS convention is adopted, meaning the peak of peak values across events @lalanne2010mechanicalvol.
 
-=== Synopsis of all life profile situations
-
-+ _Parallel situations_
-
 === Difference between Extreme Response Spectrum and Shock Response Spectrum
 ERS and SRS use the same mathematical device, a bank of linear SDOF oscillators at a chosen damping ratio ζ, equivalently a quality factor $Q ≈ (2 ζ)^(-1)$, to report a peak response versus natural frequency. They differ mainly in the type of input they target and in how the peak is interpreted.
 
@@ -556,21 +552,29 @@ Poorly controlled time reduction can create artificial problems that do not exis
 
 
 
-=== Response spectrum validation
+=== Response spectrum validation <responsespectrumvalidation>
 
-Peak response consistency is checked by comparing the ERS of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
+Peak response consistency is checked by comparing the MRS (Maximum Response Spectrum), also known as ERS (Extreme Response Spectrum), of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
 
-[Add the verification of time reduction images]
+#figure(
+    box(stroke: 1pt+black)[
+      #image("../../Images/srsvsersvalidationdiagram.png", width: 130mm)
+    ], caption: [Criteria for Acceptance of Accelerated Vibration Tests @SiemensMissionSynthesis]
+  )
 
-= Methodology
+Two outcomes are possible when validating the accelerated profile,
 
-== Data Acquisition
+- If the ERS of the accelerated test remains below the SRS of the reference shock event, the test is within acceptable severity limits and can proceed at the specified duration. The accelerated profile does not introduce peak responses beyond what the component would experience in the field.
+
+- If the ERS of the accelerated test exceeds the SRS of the reference shock event, the test may introduce unrealistic peak loads that would not occur during normal operation. In this case, the test duration must be increased to reduce the PSD amplitude, bringing the peak responses back within the envelope defined by the field shock events.
+
+= Data Acquisition
 
 The first step of the test tailoring methodology is data acquisition. In this step, situations of differing severities are categorised and recorded. These situations that the product undergoes can occur either in series or in parallel, depending on the operational scenario.
 
 Thermomix#super(sym.trademark.registered) TM7 operates across multiple knife rotational speeds, spanning from 40 rpm to 10,000 rpm in both clockwise and counter-clockwise directions. The endurance profile also includes a dough mode where the knife alternates between 600 rpm in CW and CCW. The complete set of rotational speeds and their contribution to the endurance load profile are detailed in @averagemotorload and @endurancemotorload. Since the endurance profile represents the device lifetime, all speed modes with their defined operational hours occur in series rather than parallelly.  
 
-=== Modal Analysis of the Backend PCB
+== Modal Analysis of the Backend PCB
 
 Modal analysis reveals the dynamic behaviour of a component by identifying its natural frequencies, damping ratios, and corresponding mode shapes. These parameters govern how the structure responds to excitation and how fatigue accumulates over time.
 
@@ -582,8 +586,8 @@ A combination of experimental modal analysis (Impulse Hammer Test) and finite el
 
 #align(
   figure(
-    box(stroke: 1pt+black)[
-      #image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_9.png", width: 150mm)
+    box(stroke: 1pt+black, inset: 1mm)[
+      #image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_9.png", width: 100mm)
     ], caption: "Impulse Hammer Test for the Backend PCB"
   ) 
 )<impulsehammer1>
@@ -606,13 +610,15 @@ The impulse hammer test was performed using HEAD acoustics ArtemiS Suite, which 
 
 === Modal Analysis in ANSYS Workbench
 
-#align(
-  figure(
+To complement the experimental modal analysis and provide a predictive tool for design modifications, a finite element modal analysis was performed in ANSYS Workbench. The CAD model of the backend PCB, shown in @backendcadmodel, was imported and meshed with appropriate element types to represent the multilayer FR4 substrate and the mounted components.
+
+#figure(
     box(stroke: 1pt+black)[
       #image("../../Images/Backend_CAD_file.png", width: 150mm)
     ], caption: "Backend PCB CAD model"
-  ) 
-)<backend_cad_model>
+  )<backendcadmodel>
+
+The analysis was conducted under two boundary conditions to understand how mounting affects the modal behavior. First, a free free analysis was performed with no constraints applied, representing the suspended configuration used during the impulse hammer test. The resulting mode shapes and frequencies for the first six modes are presented in @modalshapeswoconstraint1 through @modalshapeswoconstraint6.
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_1.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode2_1.png")]
@@ -634,11 +640,13 @@ The impulse hammer test was performed using HEAD acoustics ArtemiS Suite, which 
 
 #figure(
     box(stroke: 1pt+black)[
-      #image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/constraints.png", width: 120mm)
+      #image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/constraints.png", width: 100mm)
     ], caption: "Mounting of backend in TM7"
   )<fixingpointsofbackend>
 
+Second, a constrained analysis was performed with fixed supports applied at the four mounting locations where the backend is bolted to the TM7 chassis, as illustrated in @fixingpointsofbackend. This configuration represents the operational mounting condition and produces mode shapes shown in @modalshapeswithconstraint1 through @modalshapeswithconstraint6.
 
+The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions.
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_1_56.368Hz.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_2_98.955Hz.png")]
 #let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_3_116.75Hz.png")]
@@ -746,7 +754,7 @@ Applying the frequency‑dependent linear scaling reduced the mean absolute freq
 
 
 
-=== Accelerometer Placement
+== Accelerometer Placement
 
 Accelerometer placement was driven by mode shapes from ANSYS together with the impulse‑hammer modal test. Two boundary conditions were reviewed: free free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
 
@@ -781,12 +789,12 @@ The sensor placements are shown in @accelerometerplacement .
 
 #figure(
 box(stroke: 1pt + black)[
-  #image("../../Images/acc_placement_w_axis.svg")
+  #image("../../Images/acc_placement_w_axis.svg", width: 100mm)
 ],
-caption: [Accelerometer Placement on backend PCB],
+caption: [Accelerometer Placement on Backend PCB],
 )<accelerometerplacement>
 
-=== Vibration Data Acquisition
+== Vibration Data Acquisition
 
 With the sensors positioned, vibration data was collected for all operating conditions in the endurance profile. The backend PCB was kept in its normal assembly to maintain realistic vibration coupling with the rest of the device.
 
@@ -797,18 +805,15 @@ For each motor speed from 40 to 10,000 rpm in clockwise and counter-clockwise di
 
 In addition to these recordings, a "dough mode" was also recorded which is mentioned in the endurance profile in @endurancemotorload. For this mode, instead of 1000 gms of water, 800 grams of pizza dough was used. The dough was kneaded for 30 seconds using the "Pizzateig" recipe from Cookidoo#super(sym.trademark.registered) @cookidoo_pizzateig_recipe. In this mode, the blade alternates between clockwise and counter-clockwise rotations with one-second stops between direction changes. This creates strong, low frequency forces when the blade encounters dough resistance.
 
-Two shock events were recorded to set reference limits for validating the accelerated test profiles later. These events represent severe operating conditions that create different types of vibration:
+One shock event was recorded to set reference limits for validating the accelerated test profiles later. This event represents a severe operating condition that creates transient impact loads:
 
-- Ice and strawberry crushing: 200 grams ice and 500 grams frozen strawberries processed for 30 seconds at Speed 7, based on the "Strawberry Margarita" recipe. This produces sharp impact forces across many frequencies as the blade hits frozen pieces.
 - Cheese block blending: Two 200‑gram Grana Padano blocks processed for 30 seconds in "Blend" mode at Speed 8, from the "Rosmarin‑Parmesan Waffeln" recipe. This generates high‑frequency vibrations from blade strikes on hard cheese.
 
-[INSERT SHOCK EVENT IMAGES]
-
-These recordings define the life cycle of the device by capturing the full range of operational vibration environments. They form the basis for calculating fatigue damage and deriving accelerated test profiles. The shock events are used to ensure that accelerated test conditions stay within realistic limits.
+These recordings define the life cycle of the device by capturing the full range of operational vibration environments. They form the basis for calculating fatigue damage and deriving accelerated test profiles. The shock event is used to ensure that accelerated test conditions stay within realistic limits.
 
 
 
-== Signal Processing and Spectral Synthesis
+= Signal Processing and Spectral Synthesis
 
 Because three sensors record along three orthogonal axes, nine accelerated profiles are produced (one per sensor‑axis channel). The code was written to do the following,
 
@@ -822,7 +827,7 @@ Because three sensors record along three orthogonal axes, nine accelerated profi
 
 The Python libary VibeAccelKit @vibeaccelkit2025 was used for the computation and signal processing.
 
-=== Introduction to VibeAccelKit
+== Introduction to VibeAccelKit
 
 VibeAccelKit @vibeaccelkit2025 is a Python-based toolkit developed as part ot this thesis work to implement and automate the complete workflow for vibration test tailoring, mission synthesis, and test acceleration. The library integrates established damage equivalence methodologies, particularly the Fatigue Damage Spectrum method and FDS-to-PSD conversion method @lalanne2010mechanicalvol @mcneill2008implementing into a cohesive, reproducible framework suitable for both research and industrial application.
 
@@ -842,14 +847,14 @@ VibeAccelKit represents a practical implementation of vibration test acceleratio
 With time histories collected for each operating mode of Thermomix#super[#sym.trademark.registered] TM7, Lalanne’s specification was applied to derive accelerated PSDs that are damage‑equivalent to the field profile while compressing duration. The Python library VibeAccelKit @vibeaccelkit2025 used for signal processing, test synthesis, and verification.
 
 
-=== Data Import and Preprocessing
+== Data Import and Preprocessing
 
 The recorded vibration time histories for all speed modes were imported as `.csv` files for processing. ArtemiS Suite natively records measurements in `.hdf` format, which was converted to `.csv` within the software before export. Each `.csv` file contains time history data for all nine channels, corresponding to the three accelerometers measuring along their respective X, Y, and Z axes.
 
 #figure(
   box(stroke: 1pt+black)[
     #muchpdf(
-      read("../../Images/Plots/time_history_CENTER_Z_cropped.pdf", encoding: none)
+      read("../../Images/Plots/time_history_CENTER_Z_cropped.pdf", encoding: none), width: 150mm,
     )
   ],
   caption: "Time history signal for PCB_CENTER Z-axis"
@@ -867,7 +872,7 @@ $ x_(R M S)= sqrt(integral^infinity_0 S_(x x)(f)d f) $ <rmspsdcalculation>
 
 where $S_(x x)(f)$ is the power spectral density. VibeAccelKit implements using the trapezoidal rule for improved accuracy over discrete frequency grids.
 
-=== Power Spectral Density estimation
+== Power Spectral Density estimation
 
 The PSD characterises the frequency content and intensity of random vibration signals @BendatPiersol2010 @Newland2012. VibeAccelKit implements Welch's method @Welch1967 for robust PSD estimation from time histories,
 
@@ -892,7 +897,7 @@ MIL-STD-810 random vibration profiles for electronics typically span 20-2000 Hz.
 
 @PSDinspect presents the power spectral densities computed from 1-minute recordings for all motor speeds at sensor PCB_CENTER along the Z axis. Each colored trace corresponds to a different operating speed, spanning the frequency range from 0 to 2000 Hz. The spectral shapes vary noticeably across operating conditions. At lower speeds, energy concentrates in narrow peaks around blade pass frequencies and their harmonics. As speed increases, the vibration energy spreads more broadly across the spectrum, reflecting the more complex excitation from faster blade motion and fluid interaction. Elevated spectral content appears consistently between 50 and 200 Hz across multiple modes, coinciding with the first few structural resonances identified during modal analysis. This concentration of energy near natural frequencies indicates resonant amplification, which directly influences fatigue accumulation. The PSDs form the input for fatigue damage spectrum calculations, where the spectral energy at each frequency is weighted according to how effectively that frequency excites structural oscillators across a range of natural frequencies.
 
-=== Fatigue Damage Spectrum calculation
+== Fatigue Damage Spectrum calculation
 
 The FDS quantifies cumulative fatigue damage as a function of natural frequency for a population of single-degree-of-freedom (SDOF) oscillators subjected to base excitation @lalanne2010mechanicalvol. VibeAccelKit implements two complementary appraoches. 
 
@@ -924,6 +929,8 @@ $ dot(D)_(R i c e) = v_p sigma^b integral^infinity_0 u^b q(u)d u $
 
 where the probability density function $q(u)$ depends on the irregularity factor $y= m_2/sqrt(m_o m_4)$ The total FDS is then $D=dot(D).T$
 
+=== Composite Fatigue Damage Spectrum
+
 Finally, FDSs of multiple mission profiles are combined using time-weighted summation giving us the composite FDS @MILSTD810H_2019 @lalanne2010mechanicalvol,
 
 $ F D S_(c o m p)(f) = sum^N_(j=1) F D S_j (f). T_j/T_(t o t a l) $ <seriesfds>
@@ -942,22 +949,121 @@ $ F D S_(e n v) (f)=max_j [F D S_j (f)] $ <parallelfds>
   caption: [Composite FDS of all motor speeds for PCB_CENTER Z-axis ($b=9$, $zeta=0.05$)]
 )<compositefdsb9centerz>
 
-The FDS methodology has an important mathematical property: when the same fatigue exponent $b$ and damping ratio $zeta$ are used consistently for both the forward calculation (PSD to FDS) and inverse transformation (FDS back to PSD), these values cancel out in the final accelerated profile.Accurate material specific values should be used when available from testing or supplier data. When such data is unavailable, established default values provide reasonable approximations. Following Lalanne's recommendations for electronic assemblies, calculations were performed with $b = 8$ and $b = 9$ (typical for solder joints) and $zeta = 0.05$ (Q = 10, representing lightly damped PCB behavior) @lalanne2010mechanicalvol @LalanneSummary. Both exponent values were evaluated to examine their influence on the resulting test specifications.
+The FDS methodology has an important mathematical property: when the same fatigue exponent $b$ and damping ratio $zeta$ are used consistently for both the forward calculation (PSD to FDS) and inverse transformation (FDS back to PSD), these values cancel out in the final accelerated profile. Accurate material specific values should be used when available from testing or supplier data. When such data is unavailable, established default values provide reasonable approximations. Following Lalanne's recommendations for electronic assemblies, calculations were performed with $b = 8$ and $b = 9$ (typical for solder joints) and $zeta = 0.05$ (Q = 10, representing lightly damped PCB behavior) @lalanne2010mechanicalvol @LalanneSummary. Both exponent values were evaluated to examine their influence on the resulting test specifications.
 
 The frequency-domain approach was chosen for computational efficiency. While time-domain and frequency-domain methods produce equivalent results for stationary Gaussian vibration, the frequency-domain calculation runs substantially faster when processing multiple channels across many operating modes. Preliminary comparisons confirmed negligible differences between the two approaches, validating the frequency-domain method for this application.
 
 @compositefdsb9centerz shows the FDS for each motor speed at sensor PCB_CENTER Z-axis from 0 to 2000 Hz, computed with $b = 9$ and $zeta = 0.05$. Each colored trace represents one operating speed, revealing how that mode contributes to damage at different natural frequencies. The bold composite FDS, calculated by time-weighted summation per @seriesfds, sums up all individual contributions. This composite represents the total accumulated fatigue damage over the complete endurance profile and directly determines the accelerated test specification.
 
+== FDS to PSD inversion 
+
+The FDS to PSD inversion is a critical step in developing accelerated vibration test specifications from field data. After the composite FDS is calculated that bounds all measured vibration environments, this method converts it into a PSD profile that can be programmed into vibration testing equipment. The equivalent PSD is derived from the composite FDS using Lalanne’s analytical relationship @lalanne2010mechanicalvol,
+
+$ P S D_(e q) (f)= (8 pi f)/Q [(F D S_(c o m p) (f))/f.T_(e q). Gamma(1+b/2)]^(1/b) $ <fdstopsdinit>
+
+where $ Q=1/(2 zeta) $ is the quality factor, $Gamma$ is the gamma function, and $T_(e q)$ is the equivalent test duration. This inversion assumes narrow-band response (Rayleigh damage model) and provides a lower-bound PSD estimate.
+
+=== Implementation of an Iterative Method
+While the Lalanne formula provides an excellent initial estimate, it assumes narrow-band response. In practice, structural vibration may have broad-band characteristics. Therefore, an iterative refinement process is employed.
+
++ Initial Estimate: Apply Lalanne formula to obtain $P S D_(i n i t)$.
++ Forward Calculation: Compute the FDS that the current PSD would produce using a mode sophisticated model (Rice's method with bandwidth correction) @Rice1944 @Rice1945.
++ Error Assessment: Compare computed FDS to target composite FDS
++ Multiplicative Correction: Update PSD using @lalanne2010mechanicalvol,$ c o r r = ((F D S_(t a r g e t))/(F D S_(c u r r e n t)))^(2/b) $ <corr>
++ Under-relaxation: Apply damping factor ($alpha=0.9$) to prevent oscillation @Press2007.
++ Gain Limiting: Constrain corrections between 0.5 and 2.0 per iteration  @NASAHDBK7005.
++ Convergence Check: Stop when FDS error $<0.1 d B$ @Steinberg2000.
+
+The correction exponent $2/b$ is derived from the relationship: since damaging scales as $P S D^(b/2)$, correcting an FDS error by factor $R$ requires adjusting PSD by $R^(2/b)$.
 
 
-=== Mission Profile Synthesis
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/psd_init_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [Initial equivalent PSD derived from Lalanne's formula for PCB_CENTER Z-axis ($b=9$, $zeta=0.05$, $T_(e q)=924$ hours)]
+)<psdinit>
 
-=== Accelerated Profile generation
+@psdinit shows the initial equivalent PSD obtained by directly applying Lalanne's analytical inversion formula per @fdstopsdinit to the composite FDS. This initial estimate assumes narrow-band Rayleigh response characteristics and provides the starting point for the iterative refinement process. While this analytical solution offers a computationally efficient first approximation, the assumption of narrow-band behavior may not fully capture the broadband nature of the actual structural response.
 
-=== Response Spectrum Validation
-#lorem(200)
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/psd_match_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [Comparison of initial and converged equivalent PSDs for PCB_CENTER Z-axis]
+)<psdmatch>
 
-== Validation Procedure
+The iterative refinement process adjusts the initial PSD to account for broadband response characteristics using Rice's more general damage formulation. @psdmatch compares the initial PSD from Lalanne's formula with the converged PSD after iterative correction. At each iteration, the multiplicative correction factor from @corr is applied frequency-by-frequency to adjust the PSD based on the ratio of target to computed FDS values. The refined profile shows localized adjustments, particularly in frequency regions where the narrow-band assumption deviates from the actual broadband damage accumulation. Under-relaxation and gain limiting ensure stable convergence without oscillation.
+
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/fds_match_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [Target composite FDS and recomputed FDS from converged equivalent PSD for PCB_CENTER Z-axis]
+)<fdsmatch>
+
+@fdsmatch validates the inversion process by comparing the target composite FDS with the FDS recomputed from the final converged PSD using Rice's broadband damage model. The close agreement between the two curves confirms that the iterative method successfully produces an equivalent PSD that reproduces the desired fatigue damage spectrum. The convergence criterion of less than 0.1 dB error ensures that the resulting test specification will deliver fatigue damage equivalent to the field profile across the entire frequency range of interest.
+
+=== PSD Envelope Smoothing Method
+
+The iteratively matched PSD contains sharp peaks and deep notches that challenge practical shaker reproduction, as seen in @psdmatch. Electrodynamic shakers have inherent limitations in control loop bandwidth, actuator response, and fixture dynamics that make it difficult to accurately follow such irregular spectra.
+
+To address this, a log frequency peak follower envelope is applied. This approach tracks the dominant resonant peaks while limiting the spectral decay between adjacent peaks to 1 dB per octave. The envelope is enforced to remain conservative at all frequencies, ensuring that $P S D_(e n v)(f) >= P S D_(m a t c h e d)(f)$ everywhere. This preserves the critical resonant content driving fatigue damage while eliminating the sharp drops and narrow notches that shakers cannot reliably control. The result is a smoothed specification that maintains test severity and remains executable in the laboratory.
+
+== Accelerated Profile Generation 
+
+Once the equivalent PSD is established, accelerated test profiles are generated by scaling this baseline spectrum according to the target test duration. The scaling relationship follows @timecompression and maintains fatigue damage equivalence while compressing the test from the equivalent duration $T_(e q)$ down to the accelerated duration $T_(a c c)$. As the test duration decreases, the PSD amplitude increases according to @timereductionacc, raising the RMS level to deliver the same cumulative damage in less time.
+
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/acc_psds_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [Accelerated PSD profiles for PCB_CENTER Z-axis ($b=9$, $zeta=0.05$)]
+)<acceleratedpsds>
+
+@acceleratedpsds presents the equivalent PSD corresponding to the full 924-hour endurance profile along with a series of accelerated profiles spanning 1, 1.5, 2, 4, 5, 10, 20, 50, and 100 hours. Each accelerated curve represents the same fatigue damage as the baseline but compressed into a shorter duration. Shorter test times require higher spectral amplitudes to maintain damage equivalence, illustrating the trade-off between test efficiency and severity. This complete set of accelerated profiles was generated for both $b = 8$ and $b = 9$ across all three sensors (PCB_LEFT, PCB_CENTER, PCB_TOP) and all three axes (X, Y, Z), yielding nine independent test specifications to evaluate the influence of the fatigue exponent and capture the full vibrational behavior of the backend PCB.
+
+== Response Spectrum Validation
+
+Although the accelerated profiles are designed to match cumulative fatigue damage, they must also be validated to ensure they do not introduce unrealistic peak responses that exceed the severest transient events encountered in the field. This validation is performed by computing the Extreme Response Spectrum (ERS) of each accelerated PSD and comparing it against the Shock Response Spectrum (SRS) envelope of the reference shock events.
+
+The validation follows the procedure described in @responsespectrumvalidation. For each accelerated profile, the ERS is calculated at a damping ratio of 0.05, which corresponds to a quality factor of 10, across the frequency range of interest. This ERS represents the expected maximum response of single degree of freedom systems when subjected to the random vibration profile for the specified duration.
+
+The reference SRS envelope is constructed from the shock event recorded during data acquisition, which is cheese block blending. This event represents the most severe transient load the backend experiences during operation. The SRS is computed using the maximax convention, taking the peak absolute acceleration response at the same damping ratio and frequency grid as the ERS calculation.
+
+
+
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/granapadanopsd_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [PSDs of Shock Event - Blending of 400 grams of Grana Padano]
+)
+
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/srsenvelopeofcheese_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [Shock Response Spectrum Envelope of Blending of Grana Padano]
+)
+
+
+
+If the ERS of an accelerated profile remains below the SRS envelope across all frequencies, the profile is validated and can proceed to laboratory testing. If the ERS exceeds the SRS at any frequency, the test duration must be increased to reduce the spectral amplitude, thereby lowering the peak responses while maintaining fatigue damage equivalence. This iterative adjustment ensures that the accelerated test remains representative of field conditions without introducing artificial failure modes.
+
+= Validation Procedure
 
 #lorem(200)
 
