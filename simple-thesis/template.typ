@@ -98,7 +98,7 @@
   //]
   // Acronyms
   page[
-    #heading(level: 1, "Acronyms")
+    #heading(level: 1, "List of Symbols")
     #acronyms
   ]
   // Abstract
@@ -174,6 +174,8 @@
   
   // Apply numbered headings to main content
   set heading(numbering: "1.1")
+  
+
   
   // Show the main content
   body
