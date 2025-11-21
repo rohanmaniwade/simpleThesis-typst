@@ -40,14 +40,70 @@
     [Publication 2. Authors. "Title." *Venue*, Location, Date.],
   ),
   acronyms: [
-    N - Number of cycles to failure \
-    #sym.zeta - Damping factor \
+    *Mathematical Symbols* \
+    #sym.zeta - Damping ratio \
     #sym.sigma - Stress \
-    b - Parameter b of basquin relationship N #sym.sigma#super[b] = C \
+    #sym.sigma#sub[a] - Stress amplitude \
+    #sym.sigma'#sub[f] - Fatigue strength coefficient \
+    b - Basquin exponent (fatigue parameter) \
+    C - Material constant in Basquin's law \
+    D - Cumulative fatigue damage \
+    f - Frequency \
+    f#sub[0] - Natural frequency \
+    Q - Quality factor \
+    K - Stiffness constant relating stress to displacement \
+    N - Number of cycles to failure \
+    N#sub[f] - Cycles to failure at given stress \
+    N#sub[i] - Number of cycles at stress level i \
+    n#sub[i] - Number of applied cycles at stress level i \
+    m - Number of stress levels \
+    z - Relative displacement \
+    z#sub[p] - Peak relative displacement \
+    z#sub[p,i] - Peak displacement amplitude at level i \
+    T#sub[field] - Field operation duration \
+    T#sub[test] - Laboratory test duration \
+    T#sub[acc] - Accelerated test duration \
+    T#sub[eq] - Equivalent test duration \
+    G#sub[test] - PSD level in test \
+    G#sub[field] - PSD level in field \
+    #sym.alpha - Under-relaxation factor \
+    H - SDOF transfer function \
+    S#sub[aa] - Acceleration power spectral density \
+    $dot.double(x)$#sub[rms] - RMS acceleration \
+    k - Peak factor (Vanmarcke model) \
+    #sym.gamma - Euler-Mascheroni constant \
+    #sym.Gamma - Gamma function \
+    #sym.epsilon - Irregularity factor (bandwidth correction) \
+    #sym.nu#sub[0] - Mean zero-crossing rate \
+    #sym.nu#sub[p] - Mean peak rate \
+    m#sub[0], m#sub[2], m#sub[4] - Spectral moments \
+    #sym.sigma#sub[rms] - RMS stress \
+    r#sub[i] - Frequency ratio (experimental to simulated) \
+    s(f) - Frequency-dependent scaling factor \
+    a - Linear scaling coefficient \
+    C - Time compression factor \
+    \ 
+    *Acronyms* \
     PCB - Printed Circuit Board \
+    PSD - Power Spectral Density \
+    FDS - Fatigue Damage Spectrum \
+    ERS - Extreme Response Spectrum \
+    SRS - Shock Response Spectrum \
+    MRS - Maximum Response Spectrum \
+    SDOF - Single Degree of Freedom \
+    RMS - Root Mean Square \
+    CAD - Computer-Aided Design \
+    FEM - Finite Element Method \
+    IHT - Impulse Hammer Test \
     IGBT - Insulated-Gate Bipolar Transistor \
     MOSFET - Metal-Oxide-Semiconductor Field-Effect Transistor \
-    TRIAC - Three-Electrode Semiconductor
+    TRIAC - Triode for Alternating Current \
+    IPL - Inverse Power Law \
+    IIPL - Improved Inverse Power Law \
+    EMI - Electromagnetic Interference \
+    BOM - Bill of Materials \
+    CW - Clockwise \
+    CCW - Counter-Clockwise
 
   ],
   abstract: [
@@ -609,6 +665,7 @@ The impulse hammer test was performed using HEAD acoustics ArtemiS Suite, which 
 
 
 === Modal Analysis in ANSYS Workbench
+[YOU STILL NEED TO WRITE THIS PROPERLY]
 
 To complement the experimental modal analysis and provide a predictive tool for design modifications, a finite element modal analysis was performed in ANSYS Workbench. The CAD model of the backend PCB, shown in @backendcadmodel, was imported and meshed with appropriate element types to represent the multilayer FR4 substrate and the mounted components.
 
@@ -872,7 +929,7 @@ $ x_(R M S)= sqrt(integral^infinity_0 S_(x x)(f)d f) $ <rmspsdcalculation>
 
 where $S_(x x)(f)$ is the power spectral density. VibeAccelKit implements using the trapezoidal rule for improved accuracy over discrete frequency grids.
 
-== Power Spectral Density estimation
+== Power Spectral Density Estimation
 
 The PSD characterises the frequency content and intensity of random vibration signals @BendatPiersol2010 @Newland2012. VibeAccelKit implements Welch's method @Welch1967 for robust PSD estimation from time histories,
 
@@ -1041,11 +1098,37 @@ The SRS represents the maximum absolute acceleration response of an SDOF oscilla
 
 === Extreme Response Spectrum Calculation
 
-The calculation of ERS is explained in @ers. However, for a stationary random Gaussian vibration signal defined by a PSD $S_(a a)(f)$, the ERS at natural frequency $f_0$ is given by,
+The Extreme Response Spectrum (ERS) is used to estimate the expected peak absolute acceleration response of a family of base-excited SDOF oscillators subjected to stationary random vibration. The calculation of ERS in time domain is explained in @ers. However, for stationary Gaussian random signals, the ERS can be computed from PSDs.
 
-$ E R S(f_0)= T_(a c c) integral^infinity_0 |H(f,f_0)|^2 S_(a a)(f)d f $
+For each oscillator with natural frequency $f_0$ and damping $zeta$, the absolute acceleration function is @Newland2012 @Steinberg2000,
 
-where, $H(f,f_0)$ is the SDOF transfer function for base excitation, and $T_(a c c)$ is the duration of the accelerated test. This definition follows directly from response PSD theory and Parseval @BendatPiersol2010 and is consistent with standard practice in vibration fatigue assessment.
+$ |H_a(f,f_0)|^2 = (w_0^4+(2 zeta w_0 w)^2) /((w_0^2-w^2)^2+(2 zeta w_0w)^2) $
+
+and the response PSD is,
+
+$ S_(y y)(f,f_0)=|H_a|^2 S_(x x)(f) $
+
+Spectral moments @BendatPiersol2010 @Newland2012,
+
+$ m_n = integral^infinity_0 (2 pi f)^n S_(y y)(f,f_0)d f $
+
+give the RMS response $sigma_y=sqrt(m_0)$
+
+The expected peak is obtained using Vanmarcke'S peak-factor model @vanmarcke1972_spectralmoments,
+
+$ k=sqrt(2 ln(v_0 T))+(gamma Epsilon - ln(ln(v_o T)))/(sqrt(2ln(v_0 T))), v_0=1/2pi sqrt(m_2/m_0) $
+
+A bandwidth correction using the irregularity factor,
+
+$ epsilon = 1 - m^2_2/(m_0 m_4) $
+
+prevents unrealistically high peaks for narrowband responses @cartwright1956_maxima @davenport1964_gustloading.
+
+The final ERS is as follows,
+
+$ E R S(f_0)= k(f_0,T)sigma_y(f_0) $
+
+ERS is used to validate accelerated PSD profiles against shock limits, consistent with vibration fatigue guidance in @lalanne2010mechanicalvol.
 
 === Validation Criterion 
 
@@ -1075,7 +1158,17 @@ The reference SRS envelope is constructed from the shock event recorded during d
 
 If the ERS of an accelerated profile remains below the SRS envelope across all frequencies, the profile is validated and can proceed to laboratory testing. If the ERS exceeds the SRS at any frequency, the test duration must be increased to reduce the spectral amplitude, thereby lowering the peak responses while maintaining fatigue damage equivalence. This iterative adjustment ensures that the accelerated test remains representative of field conditions without introducing artificial failure modes.
 
-= Validation Procedure
+#figure(
+  box(stroke: 1pt+black)[
+    #muchpdf(
+      read("../../Images/Plots/srsvsersvalidation_cropped.pdf", encoding: none)
+    )
+  ],
+  caption: [SRS vs ERS Validation for PCB_CENTER Z-axis]
+)<srsvserscenterzaxis>
+
+@srsvserscenterzaxis demonstrates that all accelerated profiles for the PCB_CENTER sensor in the Z-axis, including the most severe 1 hour profile, remain below the SRS envelope across the entire frequency range. This confirms that none of these profiles introduce peak responses exceeding the reference shock event, validating them for laboratory testing without the need for duration adjustment.
+
 
 = Experimental Setup
 
