@@ -448,7 +448,7 @@ According to Lalanne, tailoring consists of four principal stages,
 
 This procedure ensures that the resulting test is representative, traceable, efficiently accelerated and severe enough to reproduce service damage without introducing unrealistic loads.
 
-=== Fatigue Damage Spectrum (FDS)
+=== Fatigue Damage Spectrum (FDS) <fds>
 
 *Fatigue Damage Spectrum (FDS)* describes how a single‑degree‑of‑freedom (SDOF) linear system accumulates fatigue damage under a given vibration input as a function of its natural frequency f#sub[0] and an assumed damping ratio #sym.zeta.
 
@@ -475,7 +475,7 @@ The FDS may be computed from either a time history or a PSD representation, prov
 
 In this work, one‑minute time history segments are sampled, converted to PSD form, and aggregated to estimate cumulative damage over the full operating duration.
 
-=== Extreme Response Spectrum (ERS)
+=== Extreme Response Spectrum (ERS) <ers>
 The Extreme Response Spectrum gives, for each natural frequency $f_0$ at damping ζ, the maximum relative displacement response of an equivalent linear SDOF system driven by the input @lalanne2010mechanicalvol.
 
 ERS in displacement form is
@@ -488,15 +488,15 @@ $ E R S _ a (f_0, ζ) = (2pi f_0)^2 max_t | z(t; f_0, ζ) | $
 
 In practice, ERS is computed by filtering the input through a bank of linear SDOF systems across $f_0$ at the chosen damping and then taking the per‑filter maximum of the relative displacement or the corresponding acceleration. ERS assumes linearity and a specified damping ratio. Unlike FDS, it summarises peak response rather than accumulated damage @lalanne2010mechanicalvol.
 
-=== Shock Response Spectrum (SRS)
+=== Shock Response Spectrum (SRS) <srs>
 
-The Shock Response Spectrum characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base‑excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo‑velocity forms that are useful for damage correlation and historical limits @lalanne2010mechanicalvol.
+The Shock Response Spectrum characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base‑excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo‑velocity forms that are useful for damage correlation and historical limits @lalanne2014_mechanical_shock.
 
 Acceleration form for a base‑excited SDOF is
 
-$ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $
+$ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $ <shockresponsespectrumcalc>
 
-Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter. The maximax SRS convention is adopted, meaning the peak of peak values across events @lalanne2010mechanicalvol.
+Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter.
 
 === Difference between Extreme Response Spectrum and Shock Response Spectrum
 ERS and SRS use the same mathematical device, a bank of linear SDOF oscillators at a chosen damping ratio ζ, equivalently a quality factor $Q ≈ (2 ζ)^(-1)$, to report a peak response versus natural frequency. They differ mainly in the type of input they target and in how the peak is interpreted.
@@ -949,7 +949,7 @@ $ F D S_(e n v) (f)=max_j [F D S_j (f)] $ <parallelfds>
   caption: [Composite FDS of all motor speeds for PCB_CENTER Z-axis ($b=9$, $zeta=0.05$)]
 )<compositefdsb9centerz>
 
-The FDS methodology has an important mathematical property: when the same fatigue exponent $b$ and damping ratio $zeta$ are used consistently for both the forward calculation (PSD to FDS) and inverse transformation (FDS back to PSD), these values cancel out in the final accelerated profile. Accurate material specific values should be used when available from testing or supplier data. When such data is unavailable, established default values provide reasonable approximations. Following Lalanne's recommendations for electronic assemblies, calculations were performed with $b = 8$ and $b = 9$ (typical for solder joints) and $zeta = 0.05$ (Q = 10, representing lightly damped PCB behavior) @lalanne2010mechanicalvol @LalanneSummary. Both exponent values were evaluated to examine their influence on the resulting test specifications.
+The FDS methodology has an important mathematical property: when the same fatigue exponent $b$ and damping ratio $zeta$ are used consistently for both the forward calculation (PSD to FDS) and inverse transformation (FDS back to PSD), these values cancel out in the final accelerated profile. Accurate material specific values should be used when available from testing or supplier data. When such data is unavailable, established default values provide reasonable approximations. Following Lalanne's recommendations for electronic assemblies, calculations were performed with $b = 8$ and $b = 9$ (typical for solder joints) and $zeta = 0.05$ (Q = 10, representing lightly damped PCB behavior) @lalanne2010_fatigue_damage @LalanneSummary. Both exponent values were evaluated to examine their influence on the resulting test specifications.
 
 The frequency-domain approach was chosen for computational efficiency. While time-domain and frequency-domain methods produce equivalent results for stationary Gaussian vibration, the frequency-domain calculation runs substantially faster when processing multiple channels across many operating modes. Preliminary comparisons confirmed negligible differences between the two approaches, validating the frequency-domain method for this application.
 
@@ -1033,13 +1033,27 @@ Once the equivalent PSD is established, accelerated test profiles are generated 
 
 == Response Spectrum Validation
 
-Although the accelerated profiles are designed to match cumulative fatigue damage, they must also be validated to ensure they do not introduce unrealistic peak responses that exceed the severest transient events encountered in the field. This validation is performed by computing the Extreme Response Spectrum (ERS) of each accelerated PSD and comparing it against the Shock Response Spectrum (SRS) envelope of the reference shock events.
+To ensure that the accelerated PSD does not introduce unrealistically high dynamic responses, the profile is validated using response spectra computed from single-degree-of-freedom (SDOF) oscillators across the frequency of interest. Two complementary metrics are used, the Shock Response Spectrum (SRS) and the Extreme Response Spectrum (ERS).
 
-The validation follows the procedure described in @responsespectrumvalidation. For each accelerated profile, the ERS is calculated at a damping ratio of 0.05, which corresponds to a quality factor of 10, across the frequency range of interest. This ERS represents the expected maximum response of single degree of freedom systems when subjected to the random vibration profile for the specified duration.
+=== Shock Response Spectrum Calculation
+
+The SRS represents the maximum absolute acceleration response of an SDOF oscillator subjected to the excitation. The calculation of SRS is explained in @srs. The maximax SRS convention is adopted in this work, meaning the peak of peak values across events @lalanne2014_mechanical_shock. For numerical implementation, the well established recursive algorithm of Smallwood (1981) @smallwood1981_improved_srs is used, which provides an efficient and stable way to compute the SRS for arbitrary time histories. @srsenvelopecheese shows the SRS of all the channels and axes of the shock event, which is the blending of 400 grams of Grana Padano cheese in Thermomix#super(sym.trademark.registered) TM7.
+
+=== Extreme Response Spectrum Calculation
+
+The calculation of ERS is explained in @ers. However, for a stationary random Gaussian vibration signal defined by a PSD $S_(a a)(f)$, the ERS at natural frequency $f_0$ is given by,
+
+$ E R S(f_0)= T_(a c c) integral^infinity_0 |H(f,f_0)|^2 S_(a a)(f)d f $
+
+where, $H(f,f_0)$ is the SDOF transfer function for base excitation, and $T_(a c c)$ is the duration of the accelerated test. This definition follows directly from response PSD theory and Parseval @BendatPiersol2010 and is consistent with standard practice in vibration fatigue assessment.
+
+=== Validation Criterion 
+
+The validation follows the procedure described in @responsespectrumvalidation. To avoid over-testing, the following validation rule is adopted,
+
+$ E R S_(a c c)(f_0) <= S R S(f_0) $
 
 The reference SRS envelope is constructed from the shock event recorded during data acquisition, which is cheese block blending. This event represents the most severe transient load the backend experiences during operation. The SRS is computed using the maximax convention, taking the peak absolute acceleration response at the same damping ratio and frequency grid as the ERS calculation.
-
-
 
 #figure(
   box(stroke: 1pt+black)[
@@ -1057,18 +1071,13 @@ The reference SRS envelope is constructed from the shock event recorded during d
     )
   ],
   caption: [Shock Response Spectrum Envelope of Blending of Grana Padano]
-)
-
-
+) <srsenvelopecheese>
 
 If the ERS of an accelerated profile remains below the SRS envelope across all frequencies, the profile is validated and can proceed to laboratory testing. If the ERS exceeds the SRS at any frequency, the test duration must be increased to reduce the spectral amplitude, thereby lowering the peak responses while maintaining fatigue damage equivalence. This iterative adjustment ensures that the accelerated test remains representative of field conditions without introducing artificial failure modes.
 
 = Validation Procedure
 
-#lorem(200)
-
 = Experimental Setup
-#lorem(200)
 
 == Test Fixture for the Backend PCB
 
@@ -1108,21 +1117,15 @@ For running the accelerated PSD profiles on the shaker table, the need for a fix
 
 = Results and Discussion
 == Finding Nemo
-#lorem(200)
 
 == Finding Dory
-#lorem(200)
 == Analysis
-#lorem(250)
 
 == Implications
-#lorem(250)
 
 = Conclusion and Outlook
 == Summary
-#lorem(150)
 
 == Future Work
-#lorem(150)
 
 #bibliography("references.bib", style: "ieee")
