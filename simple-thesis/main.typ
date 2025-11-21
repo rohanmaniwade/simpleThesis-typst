@@ -701,7 +701,7 @@ The analysis was conducted under two boundary conditions to understand how mount
     ], caption: "Mounting of backend in TM7"
   )<fixingpointsofbackend>
 
-Second, a constrained analysis was performed with fixed supports applied at the four mounting locations where the backend is bolted to the TM7 chassis, as illustrated in @fixingpointsofbackend. This configuration represents the operational mounting condition and produces mode shapes shown in @modalshapeswithconstraint1 through @modalshapeswithconstraint6.
+Second, a constrained analysis was performed with fixed supports applied at the four mounting locations where the backend is held to the TM7 chassis, as illustrated in @fixingpointsofbackend. This configuration represents the operational mounting condition and produces mode shapes shown in @modalshapeswithconstraint1 through @modalshapeswithconstraint6.
 
 The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions.
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_1_56.368Hz.png")]
