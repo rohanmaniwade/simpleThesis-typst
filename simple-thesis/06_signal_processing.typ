@@ -265,7 +265,7 @@ $ E R S(f_0)= k(f_0,T)sigma_y(f_0) $
 
 ERS is used to validate accelerated PSD profiles against shock limits, consistent with vibration fatigue guidance in @lalanne2010mechanicalvol.
 
-=== Validation Criterion 
+=== Validation Criterion <validationcriterion>
 
 The validation follows the procedure described in @responsespectrumvalidation. To avoid over-testing, the following validation rule is adopted,
 
