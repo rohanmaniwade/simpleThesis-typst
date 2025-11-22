@@ -47,7 +47,7 @@ The recorded vibration time histories for all speed modes were imported as `.csv
       read("../../Images/Plots/time_history_CENTER_Z_cropped.pdf", encoding: none), width: 150mm,
     )
   ],
-  caption: "Time history signal for `PCB_CENTER` Z-axis"
+  caption: [Time history signal for `PCB_CENTER` Z-axis]
 )<timehistory_center_z>
 
 @timehistory_center_z presents the vibration time histories recorded at sensor `PCB_CENTER` along the Z axis for all operating modes and shock events. Most speed modes exhibit stationary random behaviour, with relatively stable amplitude distributions over time. The dough mode introduces transient variations due to the alternating blade direction and dough resistance. The signal in black corresponds to the cheese block blending event, where two 200-gram blocks of Grana Padano were processed at Speed 8. This event produced significantly higher amplitude peaks and broader frequency content compared to normal operation, making it suitable as a reference shock for validating that accelerated profiles do not exceed realistic severity limits.
@@ -82,7 +82,7 @@ MIL-STD-810 random vibration profiles for electronics typically span 20-2000 Hz.
       read("../../Images/Plots/psd_inspect_CENTER_Z_cropped.pdf", encoding: none)
     )
   ],
-  caption: "PSDs of all motor speed modes for `PCB_CENTER` Z-axis"
+  caption: [PSDs of all motor speed modes for `PCB_CENTER` Z-axis]
 )<PSDinspect>
 
 @PSDinspect presents the power spectral densities computed from 1-minute recordings for all motor speeds at sensor `PCB_CENTER` along the Z axis. Each colored trace corresponds to a different operating speed, spanning the frequency range from 0 to 2000 Hz. The spectral shapes vary noticeably across operating conditions. At lower speeds, energy concentrates in narrow peaks around blade pass frequencies and their harmonics. As speed increases, the vibration energy spreads more broadly across the spectrum, reflecting the more complex excitation from faster blade motion and fluid interaction. Elevated spectral content appears consistently between 50 and 200 Hz across multiple modes, coinciding with the first few structural resonances identified during modal analysis. This concentration of energy near natural frequencies indicates resonant amplification, which directly influences fatigue accumulation. The PSDs form the input for fatigue damage spectrum calculations, where the spectral energy at each frequency is weighted according to how effectively that frequency excites structural oscillators across a range of natural frequencies.
@@ -175,7 +175,7 @@ The correction exponent $2/b$ is derived from the relationship: since damaging s
       read("../../Images/Plots/psd_init_cropped.pdf", encoding: none)
     )
   ],
-  caption: [Initial equivalent PSD derived from Lalanne's formula for PCB_CENTER Z-axis ($b=9$, $zeta=0.05$, $T_(e q)=924$ hours)]
+  caption: [Initial equivalent PSD derived from Lalanne's formula for `PCB_CENTER` Z-axis ($b=9$, $zeta=0.05$, $T_(e q)=924$ hours)]
 )<psdinit>
 
 @psdinit shows the initial equivalent PSD obtained by directly applying Lalanne's analytical inversion formula per @fdstopsdinit to the composite FDS. This initial estimate assumes narrow-band Rayleigh response characteristics and provides the starting point for the iterative refinement process. While this analytical solution offers a computationally efficient first approximation, the assumption of narrow-band behavior may not fully capture the broadband nature of the actual structural response.
@@ -186,7 +186,7 @@ The correction exponent $2/b$ is derived from the relationship: since damaging s
       read("../../Images/Plots/psd_match_cropped.pdf", encoding: none)
     )
   ],
-  caption: [Comparison of initial and converged equivalent PSDs for PCB_CENTER Z-axis]
+  caption: [Comparison of initial and converged equivalent PSDs for `PCB_CENTER` Z-axis]
 )<psdmatch>
 
 The iterative refinement process adjusts the initial PSD to account for broadband response characteristics using Rice's more general damage formulation. @psdmatch compares the initial PSD from Lalanne's formula with the converged PSD after iterative correction. At each iteration, the multiplicative correction factor from @corr is applied frequency-by-frequency to adjust the PSD based on the ratio of target to computed FDS values. The refined profile shows localized adjustments, particularly in frequency regions where the narrow-band assumption deviates from the actual broadband damage accumulation. Under-relaxation and gain limiting ensure stable convergence without oscillation.
@@ -218,7 +218,7 @@ Once the equivalent PSD is established, accelerated test profiles are generated 
       read("../../Images/Plots/acc_psds_cropped.pdf", encoding: none)
     )
   ],
-  caption: [Accelerated PSD profiles for PCB_CENTER Z-axis ($b=9$, $zeta=0.05$)]
+  caption: [Accelerated PSD profiles for `PCB_CENTER` Z-axis ($b=9$, $zeta=0.05$)]
 )<acceleratedpsds>
 
 @acceleratedpsds presents the equivalent PSD corresponding to the full 924-hour endurance profile along with a series of accelerated profiles spanning 1, 1.5, 2, 4, 5, 10, 20, 50, and 100 hours. Each accelerated curve represents the same fatigue damage as the baseline but compressed into a shorter duration. Shorter test times require higher spectral amplitudes to maintain damage equivalence, illustrating the trade-off between test efficiency and severity. This complete set of accelerated profiles was generated for both $b = 8$ and $b = 9$ across all three sensors (`PCB_LEFT`, `PCB_CENTER`, `PCB_TOP`) and all three axes (X, Y, Z), yielding nine independent test specifications to evaluate the influence of the fatigue exponent and capture the full vibrational behavior of the backend PCB.
@@ -293,13 +293,57 @@ The reference SRS envelope is constructed from the shock event recorded during d
 
 If the ERS of an accelerated profile remains below the SRS envelope across all frequencies, the profile is validated and can proceed to laboratory testing. If the ERS exceeds the SRS at any frequency, the test duration must be increased to reduce the spectral amplitude, thereby lowering the peak responses while maintaining fatigue damage equivalence. This iterative adjustment ensures that the accelerated test remains representative of field conditions without introducing artificial failure modes.
 
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/Plots/srsvsersvalidation_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [SRS vs ERS Validation for `PCB_CENTER` Z-axis]
-)<srsvserscenterzaxis>
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_X-1.png")]
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_Y-1.png")]
+#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_Z-1.png")]
+#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_X-1.png")]
+#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_Y-1.png")]
+#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_Z-1.png")]
+#let img7 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_X-1.png")]
+#let img8 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_Y-1.png")]
+#let img9 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_Z-1.png")]
 
-@srsvserscenterzaxis demonstrates that all accelerated profiles for the `PCB_CENTER` sensor in the Z-axis, including the most severe 1 hour profile, remain below the SRS envelope across the entire frequency range. This confirms that none of these profiles introduce peak responses exceeding the reference shock event, validating them for laboratory testing without the need for duration adjustment.
+#show figure: set block(breakable: true)
+
+#subpar.grid(columns: 1, inset: 0em,
+  figure(img1, caption: [`PCB_CENTER` X-axis]),<srsvserscenterxaxisb8>,
+  figure(img2, caption: [`PCB_CENTER` Y-axis]),<srsvserscenteryaxisb8>,
+  figure(img3, caption: [`PCB_CENTER` Z-axis]),<srsvserscenterzaxisb8>,
+  figure(img4, caption: [`PCB_LEFT` X-axis]),<srsvsersleftxaxisb8>,
+  figure(img5, caption: [`PCB_LEFT` Y-axis]),<srsvsersleftyaxisb8>,
+  figure(img6, caption: [`PCB_LEFT` Z-axis]),<srsvsersleftzaxisb8>,
+  figure(img7, caption: [`PCB_TOP` X-axis]),<srsvserstopxaxisb8>,
+  figure(img8, caption: [`PCB_TOP` Y-axis]),<srsvserstopyaxisb8>,
+  figure(img9, caption: [`PCB_TOP` Z-axis]),<srsvserstopzaxisb8>,
+  caption: [SRS vs ERS validation for all sensors and axes ($b=8$)],
+)
+
+
+
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_X_cropped_page-0001.jpg")]
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_Y_cropped_page-0001.jpg")]
+#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_Z_cropped_page-0001.jpg")]
+#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_X_cropped_page-0001.jpg")]
+#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_Y_cropped_page-0001.jpg")]
+#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_Z_cropped_page-0001.jpg")]
+#let img7 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_X_cropped_page-0001.jpg")]
+#let img8 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_Y_cropped_page-0001.jpg")]
+#let img9 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_Z_cropped_page-0001.jpg")]
+
+#show figure: set block(breakable: true)
+
+#subpar.grid(columns: 1, inset: 0em,
+  figure(img1, caption: [`PCB_CENTER` X-axis]),<srsvserscenterxaxisb9>,
+  figure(img2, caption: [`PCB_CENTER` Y-axis]),<srsvserscenteryaxisb9>,
+  figure(img3, caption: [`PCB_CENTER` Z-axis]),<srsvserscenterzaxisb9>,
+  figure(img4, caption: [`PCB_LEFT` X-axis]),<srsvsersleftxaxisb9>,
+  figure(img5, caption: [`PCB_LEFT` Y-axis]),<srsvsersleftyaxisb9>,
+  figure(img6, caption: [`PCB_LEFT` Z-axis]),<srsvsersleftzaxisb9>,
+  figure(img7, caption: [`PCB_TOP` X-axis]),<srsvserstopxaxisb9>,
+  figure(img8, caption: [`PCB_TOP` Y-axis]),<srsvserstopyaxisb9>,
+  figure(img9, caption: [`PCB_TOP` Z-axis]),<srsvserstopzaxisb9>,
+  caption: [SRS vs ERS validation for all sensors and axes ($b=9$)],
+)
+
+
+The validation results from @srsvserscenterxaxisb8 through @srsvserstopzaxisb8 (for $b=8$) and @srsvserscenterxaxisb9 through @srsvserstopzaxisb9 (for $b=9$) confirm that the majority of accelerated profiles remain within acceptable severity limits across all sensor locations and axes. For most channels, even the most aggressive 1 hour test duration produces ERS values that stay below the SRS envelope, validating these profiles for laboratory testing without risk of overtesting. However, the `PCB_TOP` X-axis location exhibits notably higher dynamic response amplification. At this location, accelerated profiles shorter than 10 hours exceed the reference shock severity, indicating that the combination of structural amplification and acceleration factor would introduce unrealistic loading conditions. Consequently, only the 10 hour profile and longer durations are validated for this channel. This constraint reflects the proximity of `PCB_TOP` to a structural antinode where modal amplification is particularly pronounced, resulting in elevated response levels that limit the achievable acceleration factor while maintaining damage equivalence without overtesting.

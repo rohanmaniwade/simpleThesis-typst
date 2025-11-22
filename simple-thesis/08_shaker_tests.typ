@@ -10,7 +10,7 @@ With the accelerated PSD profiles calculated and validated for severity, experim
 
 The goal was to verify that the accelerated profiles produce the same fatigue damage as the field measurements. During each test, response accelerations were recorded at the same sensor locations used during field data acquisition. The FDS was then computed from these measured responses and compared against the target FDS derived from field data. Good agreement between the two would confirm that the shaker accurately reproduces the intended fatigue conditions.
 
-Accelerated profiles were generated for both fatigue exponents, $b=8$ and $b=9$, to evaluate their influence on test specifications. However, as discussed in @limitsoftimecompression and illustrated in @testtimereduction, there are practical limits on how much a test can be compressed whilst maintaining realistic severity levels.
+Accelerated profiles were generated for both fatigue exponents, $b=8$ and $b=9$, to evaluate their influence on test specifications. However, as discussed in \@limitsoftimecompression and illustrated in \@testtimereduction, there are practical limits on how much a test can be compressed whilst maintaining realistic severity levels.
 
 For the 924-hour equivalent PSD, the maximum achievable time compression differs depending on the fatigue exponent. With $b=8$, the compression factor is limited to 256, giving a minimum test duration of,
 
@@ -33,3 +33,5 @@ The control accelerometer was positioned at the `PCB_LEFT` location on the backe
 In vibration testing practice, one sensor location serves as the control point whilst additional accelerometers record the response at other positions of interest. This approach allows subsequent analysis to determine whether different areas of the structure experience higher or lower fatigue damage than the control location. By comparing the FDS at each response position against the control position, it becomes possible to identify regions that may be overtested or undertested relative to the specified profile.
 
 The sensors used for data acquisition were used once again for the shaker tests. Each sensor used for data acquisition was used in the same position for the shaker tests. 3 triaxial sensors in `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP` were used. Since the shaker was uniaxial, the fixture was oriented in X, Y, and Z positions using an auxiliary fixture. 
+
+[MENTION SENSORS AND SHOW IMAGES, ALSO MENTION SHAKER RESOLUTION]

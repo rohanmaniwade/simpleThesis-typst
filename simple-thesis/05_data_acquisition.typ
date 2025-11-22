@@ -200,8 +200,8 @@ Instrumentation effects were minimised. Miniature sensors with short leads limit
 
 Placement was also aligned with reliability. Solder‑joint fatigue correlates with relative displacement and local stress near components, so measuring in component‑dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two miniature triaxial accelerometers and one triaxial accelerometer were installed at antinodes of the first bending mode that persist across both boundary conditions.
 
-#let img1 = box(stroke: 1pt+black)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_2.png", width: 65mm, height: 36mm, fit: "contain")]
-#let img2 = box(stroke: 1pt+black)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/mode1_4.png", width: 65mm, height: 36mm, fit: "contain")]
+#let img1 = box(stroke: 1pt+black, inset: 0em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_2.png")]
+#let img2 = box(stroke: 1pt+black)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/mode1_4.png")]
 
 #subpar.grid(columns: 2, inset: 0.5em,
   figure(img1, caption: [Mode 1 - without constraints]),<mode1wconstraints>,
@@ -210,22 +210,35 @@ Placement was also aligned with reliability. Solder‑joint fatigue correlates w
 )
 
 
-The sensor placement was as follows,
-
-- `PCB_LEFT` was placed at the left‑front edge where Mode 1 shows an out‑of‑plane antinode and high curvature.
-
-- `PCB_TOP` was bonded on top of the high voltage electrolytic capacitor designated CAP‑E in the BOM (270 µF, 450 V, ±20%, 85 °C, 30×35 mm) @CoSyBackEndPCB2025 to sample the response directly on a central component.
-
-- `PCB_CENTER`, A third triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading.
-
-The sensor placements are shown in @accelerometerplacement .
+Three triaxial accelerometers were installed to capture the full three dimensional vibration response of the backend PCB. The sensor specifications and placement details are summarised in @accelerometertable.
 
 #figure(
 box(stroke: 1pt + black)[
-  #image("../../Images/acc_placement_w_axis.svg", width: 100mm)
+  #image("../../Images/acc_placement_w_axis.svg", width: 80mm)
 ],
 caption: [Accelerometer Placement on Backend PCB],
 )<accelerometerplacement>
+
+
+#figure(kind: table, caption: [Accelerometer placement and specifications])[
+  #table(
+    columns: (auto, auto, auto, auto, auto),
+    align: (left, left, left, center, left),
+    stroke: 0.05em,
+    table.header([*Sensor ID*], [*Model*], [*Type*], [*Mounting Location*], [*Modal Justification*]),
+    [`PCB_LEFT`], [PCB 356A06/NC], [Triaxial], [#image("../../Images/Pictures/PCB_LEFT_closeup.png", width: 30mm)], [Mode 1 out of plane antinode with high curvature],
+    [`PCB_TOP`], [PCB 356A06/NC], [Triaxial], [#image("../../Images/Pictures/PCB_TOP_closeup.png", width: 30mm)], [Direct response measurement on central component],
+    [`PCB_CENTER`], [4524-B-001], [Triaxial], [#image("../../Images/Pictures/PCB_CENTER_closeup.png", width: 30mm)], [Global motion capture and reference for relative deformation],
+  )
+]<accelerometertable>
+
+`PCB_LEFT` was placed at the left front edge where Mode 1 shows an out of plane antinode and high curvature. `PCB_TOP` was bonded on top of the high voltage capacitor CAP-E @CoSyBackEndPCB2025 to sample the response directly on a central component. `PCB_CENTER`, a cubic triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading.
+
+[ADD A LINE THAT SAYS SPECIFICATIONS MENTIONED IN APPENDIX WHERE YOU MENTION EVERYTHING ABOUT THE SENSORS]
+
+The sensor placements are shown in @accelerometerplacement .
+
+
 
 == Vibration Data Acquisition
 
