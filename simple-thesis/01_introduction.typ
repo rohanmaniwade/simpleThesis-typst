@@ -6,9 +6,10 @@
 
 // Chapter 1: Introduction
 
+#pagebreak()
+
 = Introduction
 
-== Vorwerk
 
 Founded in 1883 in Wuppertal, Germany, Vorwerk is a family owned company that grew from carpet manufacturing into a global provider of premium household products and services @vorwerk_group_about. The group operates several brands and business units and is best known for a direct sales model that combines product expertise with personal consultation and community support. This approach relies on demonstrations, training, and genuine relationships with customers.
 Vorwerk's portfolio centers on durable, high quality products that make daily life at home easier. Its divisions include Thermomix#super[#sym.trademark.registered], a multifunctional cooking system, and Kobold, a range of home cleaning systems. The company invests in research and development, strong supply chains, and after sales service to sustain product reliability and customer satisfaction over a long service life @vorwerk_group_about.
@@ -37,15 +38,6 @@ Key features and specifications,
 - Heating power: 1000W
 - Motor power: 500W @vorwerk_tm7
 
-
-== Problem Statement
-Many engineered products operate in complex environments of loads over their service life. This can gradually lead to mechanical fatigue to the point of loss of function. To manage that risk, manufacturers validate and verify their products to meet a specified lifetime in the field. However, conventional endurance testing is lengthy and resource intensive, which makes it hard to iterate and slows down development.
-
-Thermomix#super[#sym.trademark.registered] TM7, a product of the Vorwerk Group, is affected by vibrational, thermal, and transportational loads that originate from within and outside the product. Inside the company, a combined vibration and thermal endurance profile is used to assure 4,000 field hours of service. Running this complete profile on a complex assembly takes considerable time and effort, which motivates a more efficient approach.
-
-This thesis formulates a methodology to derive an accelerated test profile that reproduces, in a laboratory setting, the fatigue damage and relevant operational loads observed in the field, while reducing test duration. The TM7 serves as the case study; the methodology is intended to generalise to other complex assemblies.
-
-
 == Backend PCB
 
 #align(center)[
@@ -61,6 +53,15 @@ The backend PCB is the central power and control module of Thermomix#super[#sym.
 The backend is a multilayer FR4 assembly measuring 220 × 165.5 mm and 1.6 mm thick. Its layout balances competing needs: high current traces and large power components generate concentrated heat that must be managed, while sensitive analog and digital circuits need careful grounding and EMI suppression. This design complexity makes the backend a good representative of modern mixed signal power electronics assemblies found in household appliances.
 
 The backend plays a critical role in system reliability. Motor speed commands, heater regulation, and safety interlocks all depend on it working continuously. Solder joint fatigue, capacitor degradation, or any interconnect failure can cause functional loss. The board experiences mechanical vibration from motor imbalance and blade interaction with liquid, as well as thermal cycling from heater operation, which makes it an ideal test specimen for validating accelerated vibration methods. Its internal resonances, mass distribution, and mounting constraints represent the kinds of complex boundary conditions encountered in real product qualification. This means findings from testing this component can be directly applied to other assemblies within the TM7 and similar appliances.
+
+
+== Problem Statement
+Many engineered products operate in complex environments of loads over their service life. This can gradually lead to mechanical fatigue to the point of loss of function. To manage that risk, manufacturers validate and verify their products to meet a specified lifetime in the field. However, conventional endurance testing is lengthy and resource intensive, which makes it hard to iterate and slows down development.
+
+Thermomix#super[#sym.trademark.registered] TM7, a product of the Vorwerk Group, is affected by vibrational, thermal, and transportational loads that originate from within and outside the product. Inside the company, a combined vibration and thermal endurance profile is used to assure 4,000 field hours of service. Running this complete profile on a complex assembly takes considerable time and effort, which motivates a more efficient approach.
+
+This thesis formulates a methodology to derive an accelerated test profile that reproduces, in a laboratory setting, the fatigue damage and relevant operational loads observed in the field, while reducing test duration. The TM7 serves as the case study; the methodology is intended to generalise to other complex assemblies.
+
 
 == Endurance profile for Thermomix#super[#sym.trademark.registered] TM7
 Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.trademark.registered] TM7 based on usage patterns observed in earlier product generations @Vorwerk2025HALT. In normal household use, the appliance experiences a characteristic distribution of motor speeds and heating temperatures over a lifetime of roughly 4,000 hours. To ensure that laboratory testing remains representative of real operation, the qualification profile was designed to reproduce this same distribution.

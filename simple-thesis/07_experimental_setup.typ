@@ -4,6 +4,8 @@
 #import "template.typ": thesis
 #import "@preview/subpar:0.2.2"
 
+#pagebreak()
+
 = Experimental Setup
 
 After all the accelerated PSD profiles are under acceptable limits from the validation, we can move forward to shaker tests. 
@@ -11,7 +13,7 @@ After all the accelerated PSD profiles are under acceptable limits from the vali
 
 == Test Fixture for the Backend PCB
 
-To conduct the accelerated shaker table tests, a custom fixture was required to securely mount the backend PCB. The fixture design prioritises replicating the mounting conditions experienced by the backend during actual device operation, ensuring that the boundary conditions remain consistent with field use.
+To conduct the accelerated shaker table tests, a custom fixture was required to securely mount the backend PCB. The fixture design prioritises replicating the mounting conditions experienced by the backend during actual device operation, which is illustrated by @fixingpointsofbackend, ensuring that the boundary conditions remain consistent with field use.
 
 #let img1 = box(stroke: 1pt+black, inset: 0.1em)[#image("../../Images/fixture/fixturecadwlabels.png")]
 #let img2 = box(stroke: 1pt+black, inset: 0.1em)[#image("../../Images/fixture/screw_mounts.png")]

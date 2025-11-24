@@ -3,6 +3,8 @@
 #import "template.typ": thesis
 #import "@preview/subpar:0.2.2"
 
+#pagebreak()
+
 = Signal Processing and Spectral Synthesis
 
 Because three sensors record along three orthogonal axes, nine accelerated profiles are produced (one per sensor‑axis channel). The code was written to do the following,

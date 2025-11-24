@@ -3,6 +3,8 @@
 #import "template.typ": thesis
 #import "@preview/subpar:0.2.2"
 
+#pagebreak()
+
 = Theoretical Background
 
 == Fatigue Damage in Vibration Testing
@@ -19,6 +21,8 @@ where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number
 
 === Basquin's Law 
 Basquin’s law describes the relationship between the amplitude of cyclic stress and the number of cycles to failure, especially important for high-cycle fatigue scenarios. It is typically given as a power law,
+
+[REVISE THE EQUATION THROUGHOUT THE THESIS]
 
 $ sigma_a = sigma'_f (2N_f)^b $
 
