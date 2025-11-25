@@ -147,7 +147,7 @@ The frequency-domain approach was chosen for computational efficiency. While tim
 
 @compositefdsb9centerz shows the FDS for each motor speed at sensor `PCB_CENTER` Z-axis from 0 to 2000 Hz, computed with $b = 9$ and $zeta = 0.05$. Each colored trace represents one operating speed, revealing how that mode contributes to damage at different natural frequencies. The bold composite FDS, calculated by time-weighted summation per @seriesfds, sums up all individual contributions. This composite represents the total accumulated fatigue damage over the complete endurance profile and directly determines the accelerated test specification.
 
-== FDS to PSD inversion 
+== FDS to PSD inversion <fdstopsdinversion>
 
 The FDS to PSD inversion is a critical step in developing accelerated vibration test specifications from field data. After the composite FDS is calculated that bounds all measured vibration environments, this method converts it into a PSD profile that can be programmed into vibration testing equipment. The equivalent PSD is derived from the composite FDS using Lalanne's analytical relationship @lalanne2010mechanicalvol,
 

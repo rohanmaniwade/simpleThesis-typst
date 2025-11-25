@@ -42,7 +42,7 @@ Key features and specifications,
 
 #align(center)[
   #figure(
-    box(stroke: 0.5pt+black)[
+    box(stroke: 1pt+black)[
     #image("../../Images/Backend.jpg",width: 120mm)],
     caption: [Backend PCB],
   ) <backend>

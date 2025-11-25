@@ -117,12 +117,12 @@ The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANS
 
   
     #subpar.grid(columns: 2, inset: 0.5em,
-    figure(img1, caption: [Mode 1 - 66.575 Hz]),<backendmesh1>,
-    figure(img2, caption: [Mode 2 - 84.124 Hz]),<backendmesh2>,
-    figure(img3, caption: [Mode 3 - 114.97 Hz]),<backendmesh3>,
-    figure(img4, caption: [Mode 4 - 148.6 Hz]),<backendmesh4>,
+    figure(img1, caption: [Mesh - Side view (1)]),<backendmesh1>,
+    figure(img2, caption: [Mesh - Side view (2)]),<backendmesh2>,
+    figure(img3, caption: [Mesh - Top view]),<backendmesh3>,
+    figure(img4, caption: [Mesh - Isometric view]),<backendmesh4>,
     caption: "Backend PCB CAD-model discretisation",
-  )
+  )<backendmesh>
 
 
 The analysis was conducted under two boundary conditions to understand how mounting affects the modal behavior. First, a free free analysis was performed with no constraints applied, representing the suspended configuration used during the impulse hammer test. The resulting mode shapes and frequencies for the first six modes are presented in @modalshapeswoconstraint1 through @modalshapeswoconstraint6.
@@ -172,6 +172,8 @@ The constrained boundary condition introduces stiffness at the mounting points, 
     figure(img6, caption: [Mode 6 - 194.35 Hz]),<modalshapeswithconstraint6>,
     caption: "Backend PCB mode shapes with constraint",
   )
+
+[INSERT TABLE COMPARING FREQUENCIES FOR BOTH CONSTRAINED AND NON CONSTRAINED]
 
 === Modal Correlation Between Simulation and Experiment
 

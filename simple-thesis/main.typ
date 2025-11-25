@@ -7,7 +7,7 @@
 #include "../title.typ"
 
 #muchpdf(
-  read("../Sperrvermerk_prof.pdf", encoding: none)
+  read("../Sperrvermerk_updated_prof_signed.pdf", encoding: none)
 )
 #muchpdf(
   read("../Sperrvermerk_Studierende_EN_signed.pdf", encoding: none)
@@ -141,14 +141,8 @@
 
 #include "08_shaker_tests.typ"
 
-= Results and Discussion
+#include "09_resultsanddiscussion.typ"
 
-
-
-== Finding Nemo
-
-== Finding Dory
-== Analysis
 
 == Implications
 
