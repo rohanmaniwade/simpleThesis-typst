@@ -206,9 +206,16 @@ The iterative refinement process adjusts the initial PSD to account for broadban
 
 === PSD Envelope Smoothing Method
 
+#figure(
+box(stroke: 1pt + black)[
+  #image("../../Images/Plots/PSDsmoothing.png", width: 120mm)
+],
+caption: [Accelerometer Placement on Backend PCB],
+)<psdsmoothing>
+
 The iteratively matched PSD contains sharp peaks and deep notches that challenge practical shaker reproduction, as seen in @psdmatch. Electrodynamic shakers have inherent limitations in control loop bandwidth, actuator response, and fixture dynamics that make it difficult to accurately follow such irregular spectra.
 
-To address this, a log frequency peak follower envelope is applied. This approach tracks the dominant resonant peaks while limiting the spectral decay between adjacent peaks to 1 dB per octave. The envelope is enforced to remain conservative at all frequencies, ensuring that $P S D_(e n v)(f) >= P S D_(m a t c h e d)(f)$ everywhere. This preserves the critical resonant content driving fatigue damage while eliminating the sharp drops and narrow notches that shakers cannot reliably control. The result is a smoothed specification that maintains test severity and remains executable in the laboratory.
+To address this, a log frequency peak follower envelope is applied as shown in @psdsmoothing. This approach tracks the dominant resonant peaks while limiting the spectral decay between adjacent peaks to 1 dB per octave. The envelope is enforced to remain conservative at all frequencies, ensuring that $P S D_(e n v)(f) >= P S D_(m a t c h e d)(f)$ everywhere. This preserves the critical resonant content driving fatigue damage while eliminating the sharp drops and narrow notches that shakers cannot reliably control. The result is a smoothed specification that maintains test severity and remains executable in the laboratory.
 
 == Accelerated Profile Generation 
 

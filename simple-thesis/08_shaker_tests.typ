@@ -131,56 +131,56 @@ All the required tests were ran on the backend PCB as mentioned in @finalshakert
 All required tests were performed on the backend printed circuit board as described in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were exported directly from the PSD control channel windows in the m+p VibControl software. These figures display both the reference and control PSDs, as well as warning and abort limits. The control PSDs and the response vibrations measured through the SQuadrigas formed basis for subsequent FDS validations. All control PSDs remained within the specified limits, and the tests were completed successfully without any errors.
 
 
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_X_b8_2000Hz_4h_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [Shaker Control `PCB_LEFT` X-axis, $b=8$, $T_(t e s t)=4h$]
-)<shakercontrolpsd1>
 
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Y_b8_2000Hz_4h_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [Shaker Control `PCB_LEFT` Y-axis, $b=8$, $T_(t e s t)=4h$]
-)<shakercontrolpsd2>
-
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Z_b8_2000Hz_4h_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [Shaker Control `PCB_LEFT` Z-axis, $b=8$, $T_(t e s t)=4h$]
-)<shakercontrolpsd3>
-
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_X_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [Shaker Control `PCB_LEFT` X-axis, $b=9$, $T_(t e s t)=1.5h$]
-)<shakercontrolpsd4>
-
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Y_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [Shaker Control `PCB_LEFT` Y-axis, $b=9$, $T_(t e s t)=1.5h$]
-)<shakercontrolpsd5>
-
-#figure(
-  box(stroke: 1pt+black)[
-    #muchpdf(
-      read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Z_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
-    )
-  ],
-  caption: [Shaker Control `PCB_LEFT` Z-axis, $b=9$, $T_(t e s t)=1.5h$]
-)<shakercontrolpsd6>
+#subpar.grid(
+  columns: 2,
+  figure(
+    box(stroke: 1pt+black)[
+      #muchpdf(
+        read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_X_b8_2000Hz_4h_cropped.pdf", encoding: none)
+      )
+    ],
+    caption: [Shaker Control `PCB_LEFT` X-axis, $b=8$, $T_(t e s t)=4h$]
+  ),<shakercontrolpsd1>,
+  figure(
+    box(stroke: 1pt+black)[
+      #muchpdf(
+        read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Y_b8_2000Hz_4h_cropped.pdf", encoding: none)
+      )
+    ],
+    caption: [Shaker Control `PCB_LEFT` Y-axis, $b=8$, $T_(t e s t)=4h$]
+  ),<shakercontrolpsd2>,
+  figure(
+    box(stroke: 1pt+black)[
+      #muchpdf(
+        read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Z_b8_2000Hz_4h_cropped.pdf", encoding: none)
+      )
+    ],
+    caption: [Shaker Control `PCB_LEFT` Z-axis, $b=8$, $T_(t e s t)=4h$]
+  ),<shakercontrolpsd3>,
+  figure(
+    box(stroke: 1pt+black)[
+      #muchpdf(
+        read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_X_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
+      )
+    ],
+    caption: [Shaker Control `PCB_LEFT` X-axis, $b=9$, $T_(t e s t)=1.5h$]
+  ),<shakercontrolpsd4>,
+  figure(
+    box(stroke: 1pt+black)[
+      #muchpdf(
+        read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Y_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
+      )
+    ],
+    caption: [Shaker Control `PCB_LEFT` Y-axis, $b=9$, $T_(t e s t)=1.5h$]
+  ),<shakercontrolpsd5>,
+  figure(
+    box(stroke: 1pt+black)[
+      #muchpdf(
+        read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Z_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
+      )
+    ],
+    caption: [Shaker Control `PCB_LEFT` Z-axis, $b=9$, $T_(t e s t)=1.5h$]
+  ),<shakercontrolpsd6>,
+  caption: [Shaker control PSDs for all axes and both fatigue exponents],
+)
