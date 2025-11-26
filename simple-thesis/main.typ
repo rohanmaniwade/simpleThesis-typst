@@ -143,13 +143,7 @@
 
 #include "09_resultsanddiscussion.typ"
 
-
-== Implications
-
-= Conclusion and Outlook
-== Summary
-
-== Future Work
+#include "10_conclusionandoutlook.typ"
 
 #pagebreak()
 

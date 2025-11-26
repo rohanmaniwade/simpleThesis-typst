@@ -178,7 +178,7 @@ Poorly controlled time reduction can create artificial problems that do not exis
 
 
 
-=== Response spectrum validation <responsespectrumvalidation>
+=== Validation of Reduced Test Time <responsespectrumvalidation>
 
 Peak response consistency is checked by comparing the MRS (Maximum Response Spectrum), also known as ERS (Extreme Response Spectrum), of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
 

@@ -6,12 +6,14 @@
 
 #pagebreak()
 
-= Experimental Setup
+= Test Fixture for the Backend PCB
 
-After all the accelerated PSD profiles are under acceptable limits from the validation, we can move forward to shaker tests. 
+Reliable vibration testing requires a fixture that accurately replicates real mounting conditions. This section outlines the design and validation of the custom test fixture used for the backend PCB.
 
 
-== Test Fixture for the Backend PCB
+
+
+== Design of Test Fixture
 
 To conduct the accelerated shaker table tests, a custom fixture was required to securely mount the backend PCB. The fixture design prioritises replicating the mounting conditions experienced by the backend during actual device operation, which is illustrated by @fixingpointsofbackend, ensuring that the boundary conditions remain consistent with field use.
 
@@ -19,7 +21,7 @@ To conduct the accelerated shaker table tests, a custom fixture was required to 
 #let img2 = box(stroke: 1pt+black, inset: 0.1em)[#image("../../Images/fixture/screw_mounts.png")]
 
 #subpar.grid(columns: 2, inset: 0em,
-  figure(img1, caption: [CAD model with labels]),<fixturecad>,
+  figure(img1, caption: [CAD model of fixture]),<fixturecad>,
   figure(img2, caption: [Screw mounting points]),<screwmounts>,
   caption: [Backend PCB test fixture design],
 )
@@ -52,9 +54,9 @@ Before running the accelerated vibration tests, it was essential to understand h
 
 #subpar.grid(columns: 2,
   figure(img1, caption: [Fixture mesh]),<fixturemesh>,
-  figure(img2, caption: [Mode 1 - Side view]),<fixturemode1>,
+  figure(img2, caption: [Mode 1 - 7088.7 Hz]),<fixturemode1>,
   caption: [ANSYS modal analysis of the test fixture],
-),
+)
 
 ANSYS finite element analysis was used to conduct the modal analysis. The fixture model included the aluminium material properties and boundary conditions that represent how it mounts to the shaker table. @fixturemesh shows the mesh used for the analysis. The first mode shape is visualised in @fixturemode1, showing how the fixture deforms at its fundamental natural frequency.
 

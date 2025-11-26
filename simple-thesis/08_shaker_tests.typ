@@ -130,7 +130,7 @@ All the required tests were ran on the backend PCB as mentioned in @finalshakert
 
 All required tests were performed on the backend printed circuit board as described in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were exported directly from the PSD control channel windows in the m+p VibControl software. These figures display both the reference and control PSDs, as well as warning and abort limits. The control PSDs and the response vibrations measured through the SQuadrigas formed basis for subsequent FDS validations. All control PSDs remained within the specified limits, and the tests were completed successfully without any errors.
 
-
+#show figure: set block(breakable: true)
 
 #subpar.grid(
   columns: 2,

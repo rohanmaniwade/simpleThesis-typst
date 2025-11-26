@@ -27,3 +27,22 @@ Risam et al. (2006) @risam2006methodology presented iterative electrodynamic sha
 
 == Fatigue Damage Spectrum (FDS) driven synthesis
 Lalanne (2010) @lalanne2010mechanicalvol formalised a specification development framework in which measured environments are transformed into fatigue damage spectra (FDS). These spectra are enveloped or summed (depending on whether environments act in parallel or sequence) to build a composite target; an accelerated PSD is then synthesised to deliver equivalent cumulative damage in a compressed duration and validated against SRS / ERS envelopes. This frequency‑resolved damage approach bridges operational variability and laboratory reproducibility more directly than scalar stress escalation alone.
+
+== Fundamental Assumptions and Limitations of Accelerated Vibration Testing
+
+Accelerated vibration testing compresses long operational exposure into a shorter laboratory test by either increasing amplitude, adjusting frequency content or editing the excitation environment. While widely applied, these methods rely on several modelling assumptions that introduce unavoidable uncertainty @farrar1999review. Understanding these assumptions is essential for interpreting the results that follow. As noted by Caruso and Dasgupta @caruso1998fundamental, there are no magical analytical models that can predict the life of a complex assembly with complete accuracy. Each model represents only one physical degradation mechanism acting on one specific material under one specific set of conditions. Real assemblies contain many interacting materials and geometries and therefore no single model can fully describe every process that contributes to ageing and fatigue.
+
+Fatigue estimation in vibration testing often uses Miner’s rule @miner1945cumulative. This rule treats fatigue damage as a sum of independent increments and assumes that the number of cycles at each stress level is all that matters. It does not account for interaction between cycles or for the effect of load sequence. These assumptions simplify the physics of crack initiation and growth but do not reflect the full behaviour of components in real operational environments. Miner’s rule should therefore be viewed as a useful approximation rather than a complete physical model.
+
+There is also uncertainty in the fatigue exponent $b$. This exponent is extracted from S-N curves that already contain statistical scatter and depend on material, geometry and failure mode. For printed circuit boards, recommended values fall within a range rather than a single number. As a result, the true exponent cannot be known with certainty and small changes in $b$ can shift the balance between broadband and narrowband contributions to fatigue damage.
+
+Frequency domain fatigue methods introduce additional assumptions. They require the vibration environment to be sufficiently stationary and Gaussian so that power spectral densities and related metrics describe it adequately. Strongly transient or intermittent behaviour cannot be represented fully in this framework. As Farrar and colleagues @farrar1999review pointed out in their review of accelerated testing criteria, condensed spectral methods may miss dynamic effects such as impacts or other nonlinear events that sometimes occur in real operation.
+
+Accelerated vibration tests also rely on the idea that the exaggerated environment does not create failure mechanisms that would not appear in service. If the test conditions are too severe, they can amplify boundary condition uncertainties, fixture transmissibility or modal behaviour to an extent that does not reflect real use. These effects do not make accelerated testing invalid. Instead, they define the range within which accelerated tests remain physically meaningful and where their results can be trusted.
+
+Understanding these assumptions and their consequences is important for applying accelerated vibration methods responsibly. They provide the context for the methodology used in this thesis and guide the interpretation of the validation results that follow.
+
+[PROBABLY ADD THE LIMITATIONS IMAGES HERE]
+
+
+
