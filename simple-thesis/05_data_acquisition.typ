@@ -110,6 +110,8 @@ To complement the experimental modal analysis and provide a predictive tool for 
 
 The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANSYS Workbench 2025 R1. The mesh was generated with an element size of 1 mm, and adaptive sizing was used to ensure adequate resolution of local features and mode shapes while maintaining computational efficiency. Appropriate element designations were assigned to all components, each with their respective material properties @CoSyBackEndPCB2025. The total mass of the model was adjusted so that the simulated PCB weight was approximately 550 grams, matching the actual measured weight of the physical PCB.
 
+#show figure: set block(breakable: true)
+
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend_mesh/mesh_1.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend_mesh/mesh_2.png")]
 #let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend_mesh/mesh_3.png")]
@@ -134,7 +136,8 @@ The analysis was conducted under two boundary conditions to understand how mount
 #let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode5_4.png")]
 #let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode6_4.png")]
 
-  
+  #show figure: set block(breakable: true)
+
     #subpar.grid(columns: 2, inset: 0.5em,
     figure(img1, caption: [Mode 1 - 66.575 Hz]),<modalshapeswoconstraint1>,
     figure(img2, caption: [Mode 2 - 84.124 Hz]),<modalshapeswoconstraint2>,
@@ -154,7 +157,8 @@ Second, a constrained analysis was performed with fixed supports applied at the 
     ], caption: "Mounting of backend in TM7"
   )<fixingpointsofbackend>
 
-The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions.
+The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions. For all the natural frequencies with and without constraints, see Appendix. 
+
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_1_56.368Hz.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_2_98.955Hz.png")]
 #let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_3_116.75Hz.png")]
@@ -173,7 +177,6 @@ The constrained boundary condition introduces stiffness at the mounting points, 
     caption: "Backend PCB mode shapes with constraint",
   )
 
-[INSERT TABLE COMPARING FREQUENCIES FOR BOTH CONSTRAINED AND NON CONSTRAINED]
 
 === Modal Correlation Between Simulation and Experiment
 

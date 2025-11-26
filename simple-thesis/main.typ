@@ -41,49 +41,68 @@
     [Publication 2. Authors. "Title." *Venue*, Location, Date.],
   ),
   acronyms: [
-    *Mathematical Symbols* \
-    #sym.zeta - Damping ratio \
-    #sym.sigma - Stress \
-    #sym.sigma#sub[a] - Stress amplitude \
-    #sym.sigma'#sub[f] - Fatigue strength coefficient \
-    b - Basquin exponent (fatigue parameter) \
-    C - Material constant in Basquin's law \
-    D - Cumulative fatigue damage \
-    f - Frequency \
-    f#sub[0] - Natural frequency \
-    Q - Quality factor \
-    K - Stiffness constant relating stress to displacement \
-    N - Number of cycles to failure \
-    N#sub[f] - Cycles to failure at given stress \
-    N#sub[i] - Number of cycles at stress level i \
-    n#sub[i] - Number of applied cycles at stress level i \
-    m - Number of stress levels \
-    z - Relative displacement \
-    z#sub[p] - Peak relative displacement \
-    z#sub[p,i] - Peak displacement amplitude at level i \
-    T#sub[field] - Field operation duration \
-    T#sub[test] - Laboratory test duration \
-    T#sub[acc] - Accelerated test duration \
-    T#sub[eq] - Equivalent test duration \
-    G#sub[test] - PSD level in test \
-    G#sub[field] - PSD level in field \
-    #sym.alpha - Under-relaxation factor \
-    H - SDOF transfer function \
-    S#sub[aa] - Acceleration power spectral density \
-    $dot.double(x)$#sub[rms] - RMS acceleration \
-    k - Peak factor (Vanmarcke model) \
-    #sym.gamma - Euler-Mascheroni constant \
-    #sym.Gamma - Gamma function \
-    #sym.epsilon - Irregularity factor (bandwidth correction) \
-    #sym.nu#sub[0] - Mean zero-crossing rate \
-    #sym.nu#sub[p] - Mean peak rate \
-    m#sub[0], m#sub[2], m#sub[4] - Spectral moments \
-    #sym.sigma#sub[rms] - RMS stress \
-    r#sub[i] - Frequency ratio (experimental to simulated) \
-    s(f) - Frequency-dependent scaling factor \
-    a - Linear scaling coefficient \
-    C - Time compression factor \
-    \ 
+
+#show figure: set block(breakable: true)
+
+#set table(stroke: none)
+#figure(
+  tblr(
+    rows(0, stroke: (bottom: 1pt), hooks: strong),
+    column-gutter: 1em,
+    row-gutter: 1em,
+    content-hook: rowtable.with(table: arguments),
+    [Symbol & Meaning & Unit],
+    [$a$ & Linear scaling coefficient & -],
+    [$a_{abs}(t)$ & Absolute acceleration & $m/s^2$],
+    [$b$ & Basquin exponent & -],
+    [$C$ & Material constant in Basquin's law & -],
+    [$D$ & Cumulative fatigue damage & -],
+    [$F$ & Time Compression Factor & -],
+    [$dot.double(x)_(r m s)$ & RMS acceleration & $m/s^2$],
+    [$dot.double(x)_(r m s, f i e l d)$ & RMS acceleration (field) & $m/s^2$],
+    [$dot.double(x)_(r m s, t e s t)$ & RMS acceleration (test) & $m/s^2$],
+    [$f$ & Frequency & $H z$],
+    [$f_0$ & Natural frequency & $H z$],
+    [$G_(f i e l d)$ & PSD level in field & $(m/s^2)^2/(H z)$],
+    [$G_(t e s t)$ & PSD level in test & $(m/s^2)^2/(H z)$],
+    [$H$ & SDOF transfer function & -],
+    [$K$ & Stiffness constant relating stress to displacement & $N/m$],
+    [$k$ & Peak factor (Vanmarcke model) & -],
+    [$m$ & Number of stress levels & -],
+    [$m_0$ & Spectral moments (orders 0) & $(m/s^2)^2$],
+    [$m_2$ & Spectral moment (order 2) & $(m/s^2)^2·(H z)^2$],
+    [$m_4$ & Spectral moment (order 4) &  $(m/s^2)^2·(H z)^4$],
+    [$N$ & Number of cycles to failure & cycles],
+    [$N_f$ & Cycles to failure at given stress & cycles],
+    [$N_i$ & Number of cycles at stress level i & cycles],
+    [$n_i$ & Number of applied cycles at stress level i & cycles],
+    [$Q$ & Quality factor & -],
+    [$r_i$ & Frequency ratio (experimental to simulated) & -],
+    [$S_(a a)$ & Acceleration power spectral density & $(m/s^2)^2/(H z)$],
+    [$s(f)$ & Frequency-dependent scaling factor & -],
+    [$T_(a c c)$ & Accelerated test duration & hours],
+    [$T_(e q)$ & Equivalent test duration & hours],
+    [$T_(f i e l d)$ & Field operation duration & hours],
+    [$T_(t e s t)$ & Laboratory/test duration & hours],
+    [$v_p$ & Peak frequency (from spectral moments) & $H z$],
+    [$z$ & Relative displacement & $m$],
+    [$z_p$ & Peak relative displacement & $m$],
+    [$z_(p,i)$ & Peak displacement amplitude at level i & $m$],
+    [$alpha$ & Under-relaxation factor & -],
+    [$gamma$ & Euler–Mascheroni constant & -],
+    [$Gamma$ & Gamma function & -],
+    [$epsilon$ & Irregularity factor (bandwidth correction) & -],
+    [$zeta$ & Damping ratio & -],
+    [$nu_0$ & Mean zero-crossing rate & $1/s$],
+    [$nu_p$ & Mean peak rate & $1/s$],
+    [$sigma$ & Stress & $P a$],
+    [$sigma_a$ & Stress amplitude & $P a$],
+    [$sigma_f$ & Fatigue strength coefficient & $P a$],
+    [$sigma_p$ & Peak stress & $P a$],
+    [$sigma_(r m s)$ & RMS stress & $P a$],
+  ),
+)
+
     *Acronyms* \
     PCB - Printed Circuit Board \
     PSD - Power Spectral Density \
@@ -105,6 +124,9 @@
     BOM - Bill of Materials \
     CW - Clockwise \
     CCW - Counter-Clockwise
+    WAFO - Wave Analysis for Fatigue and Ocean \
+    MIL-STD-810 - Military standard \
+    ICP - Integrated Circuit Piezoelectric \
 
   ],
   abstract: [
@@ -143,10 +165,13 @@
 
 #include "09_resultsanddiscussion.typ"
 
-#include "10_conclusionandoutlook.typ"
+#include "10_conclusion.typ"
 
-#pagebreak()
+#include "11_futurework.typ"
 
 #include "-1_Appendix.typ"
+
+
+#pagebreak()
 
 #bibliography("references.bib", style: "ieee")

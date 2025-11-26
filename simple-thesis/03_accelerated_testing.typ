@@ -28,21 +28,37 @@ Risam et al. (2006) @risam2006methodology presented iterative electrodynamic sha
 == Fatigue Damage Spectrum (FDS) driven synthesis
 Lalanne (2010) @lalanne2010mechanicalvol formalised a specification development framework in which measured environments are transformed into fatigue damage spectra (FDS). These spectra are enveloped or summed (depending on whether environments act in parallel or sequence) to build a composite target; an accelerated PSD is then synthesised to deliver equivalent cumulative damage in a compressed duration and validated against SRS / ERS envelopes. This frequency‑resolved damage approach bridges operational variability and laboratory reproducibility more directly than scalar stress escalation alone.
 
+#pagebreak()
+
 == Fundamental Assumptions and Limitations of Accelerated Vibration Testing
 
-Accelerated vibration testing compresses long operational exposure into a shorter laboratory test by either increasing amplitude, adjusting frequency content or editing the excitation environment. While widely applied, these methods rely on several modelling assumptions that introduce unavoidable uncertainty @farrar1999review. Understanding these assumptions is essential for interpreting the results that follow. As noted by Caruso and Dasgupta @caruso1998fundamental, there are no magical analytical models that can predict the life of a complex assembly with complete accuracy. Each model represents only one physical degradation mechanism acting on one specific material under one specific set of conditions. Real assemblies contain many interacting materials and geometries and therefore no single model can fully describe every process that contributes to ageing and fatigue.
+#show figure: set block(breakable: true)
 
-Fatigue estimation in vibration testing often uses Miner’s rule @miner1945cumulative. This rule treats fatigue damage as a sum of independent increments and assumes that the number of cycles at each stress level is all that matters. It does not account for interaction between cycles or for the effect of load sequence. These assumptions simplify the physics of crack initiation and growth but do not reflect the full behaviour of components in real operational environments. Miner’s rule should therefore be viewed as a useful approximation rather than a complete physical model.
+#let img1 = box(stroke: black, inset: 0.5em, width: 70mm)[#image("../../Images/whatwehopewecanlearnfromanacceleratedtestprediction.png")]
 
-There is also uncertainty in the fatigue exponent $b$. This exponent is extracted from S-N curves that already contain statistical scatter and depend on material, geometry and failure mode. For printed circuit boards, recommended values fall within a range rather than a single number. As a result, the true exponent cannot be known with certainty and small changes in $b$ can shift the balance between broadband and narrowband contributions to fatigue damage.
+#let img2 = box(stroke: black, inset: 0.5em, width: 70mm)[#image("../../Images/thebestwecanhopefor.png")]
 
-Frequency domain fatigue methods introduce additional assumptions. They require the vibration environment to be sufficiently stationary and Gaussian so that power spectral densities and related metrics describe it adequately. Strongly transient or intermittent behaviour cannot be represented fully in this framework. As Farrar and colleagues @farrar1999review pointed out in their review of accelerated testing criteria, condensed spectral methods may miss dynamic effects such as impacts or other nonlinear events that sometimes occur in real operation.
+#let img3 = box(stroke: black, inset: 0.5em, width: 70mm)[#image("../../Images/inotherwords.png")]
 
-Accelerated vibration tests also rely on the idea that the exaggerated environment does not create failure mechanisms that would not appear in service. If the test conditions are too severe, they can amplify boundary condition uncertainties, fixture transmissibility or modal behaviour to an extent that does not reflect real use. These effects do not make accelerated testing invalid. Instead, they define the range within which accelerated tests remain physically meaningful and where their results can be trusted.
+#subpar.grid(columns: 1, inset: 0.5em,
+    figure(img1, caption: [What is expected from an accelerated test model]),<uncertainty1>,
+    figure(img2, caption: [What should actually be expected]),<uncertainty2>,
+    figure(img3, caption: [The best we can get]),<uncertainty3>,
+caption: [Uncertainties in Life Prediction Models @caruso1998fundamental],
+)
 
-Understanding these assumptions and their consequences is important for applying accelerated vibration methods responsibly. They provide the context for the methodology used in this thesis and guide the interpretation of the validation results that follow.
+Accelerated vibration testing compresses long operational exposure into a shorter laboratory test by increasing amplitude, adjusting frequency content or editing the environment @farrar1999review. These methods are powerful, but they rest on simplifying assumptions that must be understood before interpreting any results. As noted by Caruso and Dasgupta @caruso1998fundamental, there are no magical analytical models that can predict the life of a complex assembly with complete accuracy. Each model captures only one degradation mechanism acting on one material in one set of conditions, while real assemblies contain many interacting materials and geometries. No single model can therefore describe every process that contributes to ageing and fatigue.
 
-[PROBABLY ADD THE LIMITATIONS IMAGES HERE]
+Fatigue estimation often uses Miner’s rule @miner1945cumulative, which treats damage as a sum of independent increments and assumes that the order of cycles does not matter. This simplifies the physics of crack initiation and growth but does not reflect nonlinear or sequence dependent behaviour that may occur in real service. The fatigue exponent $b$ introduces further uncertainty because it is taken from S-N data with inherent scatter. For printed circuit boards the exponent lies within a range rather than a precise value, and small changes can shift the balance between broadband and narrowband contributions to damage.
+
+Frequency domain fatigue methods add their own assumptions. They require the vibration environment to be stationary and Gaussian so that power spectral densities describe it adequately. Strongly transient or intermittent events cannot be represented in this framework, and condensed spectral methods may miss dynamic effects such as impacts or other nonlinear responses @farrar1999review. Accelerated environments must also avoid creating failure mechanisms that would not appear in service. Excessive acceleration can magnify fixture transmissibility, boundary condition sensitivity or modal amplification beyond what occurs in real operation.
+
+@uncertainty1 through @uncertainty3 from Caruso and Dasgupta @caruso1998fundamental illustrate this idea clearly. A formula that appears precise is actually built from estimated averages, material constants and assumed operating ranges. The output is therefore an informed estimate rather than an exact answer. Accelerated test models cannot deliver an exact equivalence between test cycles and service cycles because every term in the underlying physics of failure representation carries uncertainty.
+
+These limitations do not make accelerated testing unreliable. They define the range within which accelerated methods remain physically meaningful and where their results can be trusted. Recognising these assumptions provides the context for the methodology used in this thesis and for the interpretation of the validation results that follow.
+
+
+
 
 
 

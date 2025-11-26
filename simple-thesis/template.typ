@@ -175,7 +175,6 @@
   // Apply numbered headings to main content
   set heading(numbering: "1.1")
   
-
   
   // Show the main content
   body

@@ -62,19 +62,7 @@ ANSYS finite element analysis was used to conduct the modal analysis. The fixtur
 
 The key requirement for this analysis was ensuring the first natural frequency of the fixture is at least twice the maximum test frequency of 2000 Hz. This criterion is important because it guarantees the fixture acts as a rigid body throughout the test frequency range, faithfully transmitting vibrations from the shaker table to the PCB without introducing any modal interactions or unwanted amplifications.
 
-// #set table(stroke: none)
-// #align(center)[
-// #grid(columns: 2, gutter: 3em,
 
-// tblr(
-//   rows(0, stroke: (bottom: 1pt), hooks: strong),
-//   content-hook: from-dataframe,
-//   (Mode:   ("Mode 1", "Mode 2", "Mode 3", "Mode 4", "Mode 5",),
-//   "Natural Frequency (Hz)":   ("7088.7", "7175.8", "7242.0", "7652.7", "7652.7",)),
-//   caption: [Natural frequencies of the test fixture from ANSYS modal analysis]
-// )
-// )
-// ]
 
 #figure(
   table(

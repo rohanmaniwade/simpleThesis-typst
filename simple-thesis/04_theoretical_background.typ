@@ -22,11 +22,9 @@ where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number
 === Basquin's Law 
 Basquin’s law describes the relationship between the amplitude of cyclic stress and the number of cycles to failure, especially important for high-cycle fatigue scenarios. It is typically given as a power law,
 
-[REVISE THE EQUATION THROUGHOUT THE THESIS]
+$ N sigma_p^b = C $
 
-$ sigma_a = sigma'_f (2N_f)^b $
-
-Here, $sigma_a$ is the stress amplitude, $sigma'_f$ is the fatigue strength coefficient, $N_f$ is the cycles to failure, and $b$ is a negative exponent that reflects the sensitivity of fatigue life to stress changes. Even a small increase in stress can sharply decrease fatigue life, depending on the material's $b$ exponent. Basquin’s law is widely used to fit experimental fatigue data and model S-N curves @oh1910exponential.
+Here, $sigma_p$ is the peak (amplitude) stress, $N$ is the number of cycles to failure, $b$ is the Basquin exponent (material fatigue exponent), and $C$ is a material‑dependent constant. Even a small increase in stress can sharply decrease fatigue life, depending on the material's $b$ exponent. Basquin’s law is widely used to fit experimental fatigue data and model S–N curves @oh1910exponential.
 
 === S-N curve
 
@@ -150,7 +148,7 @@ $ G_"test"= G_"field" (T_"field"/T_"test")^(2/b) $  <timecompression>
 
 where $T_"field"$ is real life duration, $T_"test"$ is the planned acceleration test duration, $dot.double(x)_"rms test"$, $dot.double(x)_"rms field"$ $G_"test"$, and $G_"field"$ are PSD levels and acceleration rms in test and field environments respectively, and $b$ is the Basquin’s exponent which is unique to each material.
 
-For example, if the test RMS is doubled and $b=8$ for typical solder joints, the time compression factor is $C=2^8=256$, meaning a 256-hour field duration can theoretically be simulated in a 1 hour test. @nagle2010test @lalanne2010mechanicalvol.
+For example, if the test RMS is doubled and $b=8$ for typical solder joints, the time compression factor is $F=2^8=256$, meaning a 256-hour field duration can theoretically be simulated in a 1 hour test. @nagle2010test @lalanne2010mechanicalvol.
 
 === Limits of Time Compression <limitsoftimecompression>
 
