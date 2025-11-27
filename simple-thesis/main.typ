@@ -42,12 +42,14 @@
   ),
   acronyms: [
 
+*Symbols*
+
 #show figure: set block(breakable: true)
 
 #set table(stroke: none)
-#figure(
-  tblr(
+#tblr(
     rows(0, stroke: (bottom: 1pt), hooks: strong),
+    align: (center),
     column-gutter: 1em,
     row-gutter: 1em,
     content-hook: rowtable.with(table: arguments),
@@ -80,7 +82,6 @@
     [$r_i$ & Frequency ratio (experimental to simulated) & -],
     [$S_(a a)$ & Acceleration power spectral density & $(m/s^2)^2/(H z)$],
     [$s(f)$ & Frequency-dependent scaling factor & -],
-    [$T_(a c c)$ & Accelerated test duration & hours],
     [$T_(e q)$ & Equivalent test duration & hours],
     [$T_(f i e l d)$ & Field operation duration & hours],
     [$T_(t e s t)$ & Laboratory/test duration & hours],
@@ -100,8 +101,7 @@
     [$sigma_f$ & Fatigue strength coefficient & $P a$],
     [$sigma_p$ & Peak stress & $P a$],
     [$sigma_(r m s)$ & RMS stress & $P a$],
-  ),
-)
+  )
 
     *Acronyms* \
     PCB - Printed Circuit Board \
