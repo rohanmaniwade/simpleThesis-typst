@@ -79,7 +79,7 @@ The windowing correction factor ensures proper PSD amplitude scaling. For theore
 MIL-STD-810 random vibration profiles for electronics typically span 20-2000 Hz. Extending the analysis beyond 2 KHz does not improve fidelity for PCB-level durability assessments, since the standard environmental spectra contain negligble energy above this point @MILSTD810H_2019. 
 
 #figure(
-  box(stroke: 1pt+black)[
+  box(stroke: 1pt)[
     #muchpdf(
       read("../../Images/Plots/psd_inspect_CENTER_Z_cropped.pdf", encoding: none)
     )
@@ -302,15 +302,15 @@ The reference SRS envelope is constructed from the shock event recorded during d
 
 If the ERS of an accelerated profile remains below the SRS envelope across all frequencies, the profile is validated and can proceed to laboratory testing. If the ERS exceeds the SRS at any frequency, the test duration must be increased to reduce the spectral amplitude, thereby lowering the peak responses while maintaining fatigue damage equivalence. This iterative adjustment ensures that the accelerated test remains representative of field conditions without introducing artificial failure modes.
 
-#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_X-1.png")]
-#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_Y-1.png")]
-#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_Z-1.png")]
-#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_X-1.png")]
-#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_Y-1.png")]
-#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_Z-1.png")]
-#let img7 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_X-1.png")]
-#let img8 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_Y-1.png")]
-#let img9 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_Z-1.png")]
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_X_cropped.pdf")]
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_Y_cropped.pdf")]
+#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/CENTER_Z_cropped.pdf")]
+#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_X_cropped.pdf")]
+#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_Y_cropped.pdf")]
+#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/LEFT_Z_cropped.pdf")]
+#let img7 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_X_cropped.pdf")]
+#let img8 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_Y_cropped.pdf")]
+#let img9 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b8/TOP_Z_cropped.pdf")]
 
 #show figure: set block(breakable: true)
 
@@ -329,15 +329,15 @@ If the ERS of an accelerated profile remains below the SRS envelope across all f
 
 
 
-#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_X_cropped_page-0001.jpg")]
-#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_Y_cropped_page-0001.jpg")]
-#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_Z_cropped_page-0001.jpg")]
-#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_X_cropped_page-0001.jpg")]
-#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_Y_cropped_page-0001.jpg")]
-#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_Z_cropped_page-0001.jpg")]
-#let img7 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_X_cropped_page-0001.jpg")]
-#let img8 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_Y_cropped_page-0001.jpg")]
-#let img9 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_Z_cropped_page-0001.jpg")]
+#let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_X_cropped.pdf")]
+#let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_Y_cropped.pdf")]
+#let img3 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/CENTER_Z_cropped.pdf")]
+#let img4 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_X_cropped.pdf")]
+#let img5 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_Y_cropped.pdf")]
+#let img6 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/LEFT_Z_cropped.pdf")]
+#let img7 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_X_cropped.pdf")]
+#let img8 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_Y_cropped.pdf")]
+#let img9 = box(stroke: black, inset: 0.5em)[#image("../../Images/Plots/SRSvsERSforall/b9/TOP_Z_cropped.pdf")]
 
 #show figure: set block(breakable: true)
 

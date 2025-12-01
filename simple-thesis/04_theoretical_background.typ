@@ -30,7 +30,7 @@ Here, $sigma_p$ is the peak (amplitude) stress, $N$ is the number of cycles to f
 
 #figure(
 box(stroke: 1pt + black, inset: 5pt)[
-  #image("../../Images/sncurve.svg", width: 100mm)
+  #image("../../Images/SNcurve_cropped.pdf", width: 100mm)
 ],
 caption: [S-N curve @Suresh1998],
 )
@@ -52,7 +52,7 @@ Lalanne @lalanne2010mechanicalvol defines _test tailoring_ as the structured pro
 
 #figure(
 box(stroke: 1pt + black, inset: 25pt, radius: 3pt)[
-  #image("../../Images/general_tailoring_procedure.svg", width: 100mm)
+  #image("../../Images/general_tailoring_procedure_cropped.pdf", width: 100mm)
 ],
 caption: [General Tailoring Procedure @lalanne2010mechanicalvol],
 ) <general_tailoring_procedure>

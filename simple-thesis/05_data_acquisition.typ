@@ -309,11 +309,7 @@ caption: [Accelerometer Placement on Backend PCB],
   )
 ]<accelerometertable>
 
-`PCB_LEFT` was placed at the left front edge where Mode 1 shows an out of plane antinode and high curvature. `PCB_TOP` was bonded on top of the high voltage capacitor CAP-E @CoSyBackEndPCB2025 to sample the response directly on a central component. `PCB_CENTER`, a cubic triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading.
-
-[ADD A LINE THAT SAYS SPECIFICATIONS MENTIONED IN APPENDIX WHERE YOU MENTION EVERYTHING ABOUT THE SENSORS]
-
-The sensor placements are shown in @accelerometerplacement .
+`PCB_LEFT` was placed at the left front edge where Mode 1 shows an out of plane antinode and high curvature. `PCB_TOP` was bonded on top of the high voltage capacitor CAP-E @CoSyBackEndPCB2025 to sample the response directly on a central component. `PCB_CENTER`, a cubic triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading. The sensor placements are shown in @accelerometerplacement.
 
 
 

@@ -6,13 +6,19 @@
 #import "@preview/subpar:0.2.2"
 #include "../title.typ"
 
+#page[ #set page(numbering: none)]
+
 #muchpdf(
   read("../Sperrvermerk_updated_prof_signed.pdf", encoding: none)
 )
+
+#page[ #set page(numbering: none)]
+
 #muchpdf(
   read("../Sperrvermerk_Studierende_EN_signed.pdf", encoding: none)
 )
 
+#page[ #set page(numbering: none)]
 
 
 #show: doc => thesis(
@@ -40,6 +46,12 @@
     [Publication 1. (Year). Title. Journal/Conference. DOI/URL],
     [Publication 2. Authors. "Title." *Venue*, Location, Date.],
   ),
+  dedication: [
+    #set text(font: "Times New Roman", size: 12pt)
+    
+    _To humanity and its everlong pursuit of understanding vibration, to every creature born from entropy that shapes our universe, and to white monsters for fueling me along the way._
+
+  ],
   acronyms: [
 
 *Symbols*
@@ -127,30 +139,21 @@
     WAFO - Wave Analysis for Fatigue and Ocean \
     MIL-STD-810 - Military standard \
     ICP - Integrated Circuit Piezoelectric \
-
   ],
   abstract: [
-    Everyday kitchen products must quietly absorb thousands of hours of vibration and heat before anyone considers replacement. Reproducing that life in a laboratory often demands long rigid endurance campaigns that slow learning and inflate cost. This thesis presents and validates a method that compresses vibration endurance tests for complex electromechanical assemblies while keeping the underlying physics of fatigue and transient response intact.
 
-    The backend printed circuit board of Thermomix#super[#sym.trademark.registered] TM7 acts as the central study object. It is a lightly damped, resonance rich, mixed-signal power assembly excited by motor loads and occasional severe events. Multi-axis vibration time histories and a pronounced high load blending event were measured. From these recordings, power spectral densities (PSDs) were estimated then converted to fatigue damage spectra (FDS) using two complementary paths. One path uses time domain rainflow counting of single degree of freedom response. The other uses frequency domain spectral moments with a probabilistic damage rate model. Modal contributions were time-weighted to form a composite spectrum that represents the cumulative fatigue potential of the full operating profile.
+This thesis presents a method for accelerating vibration endurance testing by creating a laboratory Power Spectral Density, or PSD, that reflects the vibration loads experienced during real operation. The approach begins with time-domain measurements taken from the Thermomix#super(sym.trademark.registered) TM7 backend printed circuit board during normal use. These measurements are converted into individual and combined Fatigue Damage Spectra, which describe how different frequencies contribute to material fatigue. The combined spectrum is then used to generate an accelerated PSD that produces the same level of damage in a shorter time.
 
-    An analytical inversion first produced an equivalent PSD profile. Time compression scaling transformed this baseline into families of accelerated spectra. A smooth peak following envelope retained resonance driven damage energy while removing impractical narrow notches and making profiles executable on a shaker.
+A Python library VibeAccelKit was developed to calculate the spectra, construct the combined fatigue profile, and create the accelerated test PSD. The workflow also includes validation through fatigue damage comparison and through shock and energy response spectra. The final PSD was tested on a uniaxial shaker to evaluate how well the laboratory environment reproduced the critical vibration content found in the real machine.
 
-    Physical credibility was checked by comparing extreme response spectra (ERS) derived from each accelerated profile with the shock response spectrum (SRS) envelope of the recorded transient event. Most sensor axis combinations remained within limits even at short durations. A small number of high response locations set natural bounds on the shortest feasible test length and demonstrated realistic structural constraint.
-
-    The method condensed an endurance demand of about 800 hours into laboratory specifications measured in tens of hours with viable cases near 12 hours and a more aggressive case near 4.5 hours while retaining dominant fatigue carrying frequencies and peak behaviour. All processing and synthesis steps are implemented in the open source Python toolkit VibeAccelKit enabling transparent and repeatable workflows.
-
-    The principal contributions are an integrated loop that links spectral damage estimation with response validation a practical broadband inversion refinement executable spectra suitable for control and a clear route to future progress in multi-point control adaptive resonance tracking strain based durability assessment and thermo mechanical integration. The work shows that endurance qualification can be made markedly faster without sacrificing authenticity of structural experience.
+The results show that the method can recreate the important damaging frequencies while significantly reducing total test duration. The presented workflow offers a practical and repeatable way to translate operational vibration into a meaningful endurance test for complex electronic assemblies.
   ],
   acknowledgements: [
-    _First and foremost, I would like to thank my supervisor and mentor, Clément Corselli, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me. I would also like to thank Dr.-Ing. Philipp Ingelath and Dr. Roland Kraus for the wisdom and guidance that made it possible to carry out my thesis as smoothly and efficiently as I did._
+    _First and foremost, I would like to thank my supervisor and mentor, *Clément Corselli*, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me. I would also like to thank *Dr.-Ing. Philipp Ingelath* and *Dr. Roland Kraus* for the wisdom and guidance that made it possible to carry out my thesis as smoothly and efficiently as I did, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
 
-    _I thank my mother, sister, and grandparents for their unwavering support. I could not have come to Germany or been blessed with the opportunities I’ve had without them. Last but not least, I would like to thank my friends and Diana, my love, all of whom listened to my incessant rambling about Fatigue Damage Spectrum and vibration when they really didn’t have to._
-  ],
-  dedication: [
-    #set text(font: "Times New Roman", size: 12pt)
-    
-    _To humanity and its everlong pursuit of understanding vibration, to every creature born from entropy that shape our universe, and to white monsters for fueling me along the way._
+    _My deepest gratitude to *Prof. Dr.-Ing. Bettar Ould el Moctar* for supervising the academic side of this work, and to *Dr.-Ing. Galal Galal* for his insights and encouragement throughout the project._
+
+    _I thank my mother, sister, and grandparents for their unwavering support. I could not have come to Germany or been blessed with the opportunities I’ve had without them. Last but not least, I would like to thank my friends and *Diana*, my love, all of whom listened to my incessant rambling about Fatigue Damage Spectrum and vibration when they really didn’t have to._
 
   ],
   doc,
@@ -162,29 +165,29 @@
 
 
 
-// #include "01_introduction.typ"
+#include "01_introduction.typ"
 
-// #include "02_objective.typ"
+#include "02_objective.typ"
 
-// #include "03_accelerated_testing.typ"
+#include "03_accelerated_testing.typ"
 
-// #include "04_theoretical_background.typ"
+#include "04_theoretical_background.typ"
 
-// #include "05_data_acquisition.typ"
+#include "05_data_acquisition.typ"
 
-// #include "06_signal_processing.typ"
+#include "06_signal_processing.typ"
 
-// #include "07_experimental_setup.typ"
+#include "07_experimental_setup.typ"
 
-// #include "08_shaker_tests.typ"
+#include "08_shaker_tests.typ"
 
-// #include "09_resultsanddiscussion.typ"
+#include "09_resultsanddiscussion.typ"
 
-// #include "10_conclusion.typ"
+#include "10_conclusion.typ"
 
-// #include "11_futurework.typ"
+#include "11_futurework.typ"
 
-// #include "-1_Appendix.typ"
+#include "-1_Appendix.typ"
 
 
 #pagebreak()

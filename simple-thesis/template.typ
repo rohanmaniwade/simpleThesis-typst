@@ -96,16 +96,6 @@
     
   //  #date.display("[month repr:long] [year]")
   //]
-  // Acronyms
-  page[
-    #heading(level: 1, "List of Symbols")
-    #acronyms
-  ]
-  // Abstract
-  page[
-    #heading(level: 1, "Abstract")
-    #abstract
-  ]
   // Optional sections
   if showSignatures and signature != [] {
     pagebreak()
@@ -145,6 +135,11 @@
       }
     ]
   }
+ // Abstract
+  page[
+    #heading(level: 1, "Abstract")
+    #abstract
+  ]
   // Table of Contents
   page[
     #outline(
@@ -167,6 +162,11 @@
       title: none,
       target: figure.where(kind: table),
     )
+  ]
+    // Acronyms
+  page[
+    #heading(level: 1, "List of Symbols")
+    #acronyms
   ]
   // Main content
   set page(numbering: "1")

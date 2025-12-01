@@ -23,7 +23,7 @@ caption: [TIRA uni-axial electrodynamic shaker],
 
 
 
-The experimental work was performed using a uniaxial electrodynamic shaker system, specifically the TIRA TV 55240 LS 340. This system is capable of delivering controlled broadband random excitation in the frequency range from 2 Hz to 3000 Hz, with a maximum force output of 4 kilonewtons. These capabilities are well suited for the backend printed circuit board and its supporting fixture. The shaker system is equipped with a matched power amplifier, forced air cooling, and a suite of safety features that ensure stable operation and precise control during extended vibration tests. Further details regarding the hardware and its specifications are provided in the appendix. [INSERT APPENDIX ENTRY]
+The experimental work was performed using a uniaxial electrodynamic shaker system, specifically the TIRA TV 55240 LS 340. This system is capable of delivering controlled broadband random excitation in the frequency range from 2 Hz to 3000 Hz, with a maximum force output of 4 kilonewtons. These capabilities are well suited for the backend printed circuit board and its supporting fixture. The shaker system is equipped with a matched power amplifier, forced air cooling, and a suite of safety features that ensure stable operation and precise control during extended vibration tests. Further details regarding the hardware and its specifications are provided in the appendix.
 
 The backend PCB was mounted on the custom test fixture and instrumented with three triaxial accelerometers located at `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP`.The same three triaxial accelerometers described in @accelerometertable were used for all tests, each installed at the identical locations as during data acquisition. This ensured consistency in sensor placement and allowed direct comparison between field and laboratory measurements.
 
@@ -109,7 +109,7 @@ During each test, the selected axis of the `PCB_LEFT` accelerometer provided the
 
 #figure(
 box(stroke: 1pt + black, inset: 1em)[
-  #image("../../Images/Shaker test pictures/shakercontrol.svg", width: 130mm)
+  #image("../../Images/shakerarchitecture_cropped.pdf", width: 130mm)
 ],
 caption: [Shaker test architecture],
 )<shakertestarchitecture>

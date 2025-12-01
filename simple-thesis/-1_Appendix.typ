@@ -54,7 +54,7 @@
 
 = Appendix B: Data Acquisition Hardware
 
-=== SQuadriga II Data Acquisition System
+== SQuadriga II Data Acquisition System
 - Manufacturer: HEAD acoustics GmbH
 - Model: SQuadriga II
 - Configuration: Two units connected (Control + Module mode)
@@ -65,20 +65,20 @@
 
 = Appendix C: Software and Analysis Tools
 
-=== ANSYS Workbench
+== ANSYS Workbench
 - Manufacturer: ANSYS, Inc.
 - Version: 2025 R1
 - Application: Finite Element Modal Analysis, Design
 - Modules Used: Mechanical, Modal Analysis, SpaceClaim
 
-=== HEAD acoustics ArtemiS SUITE
+== HEAD acoustics ArtemiS SUITE
 - Manufacturer: HEAD acoustics GmbH
 - Version: 16.7
 - Application: Data acquisition and signal analysis, Impulse Hammer Test
 - Modules Used: Modal Analysis Project, Data Acquisition, Pool Project
 - Sampling Frequency: 48 kHz
 
-=== m+p VibControl 
+== m+p VibControl 
 
 - Manufacturer: m+p international
 - Version: 2.16.12.1
