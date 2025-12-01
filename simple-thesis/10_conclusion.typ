@@ -20,5 +20,5 @@ The accelerated PSD profiles achieved a significant reduction in test duration. 
 
 It is important to recognise that accelerated testing inherently compresses a complex field environment into a shorter time and therefore cannot perfectly reproduce every aspect of real operation. Isolated deviations in fatigue or transient behaviour are characteristic of all accelerated durability methods and highlight the need for careful validation.
 
-Overall, this study demonstrates that an accelerated vibration profile can be created for a complex PCB while preserving the essential fatigue and transient properties of the field environment. This work provides a practical foundation for extending mission synthesis beyong individual assemblies and towards complete device level qualification.
+Overall, this study demonstrates that an accelerated vibration profile can be created for a complex PCB while preserving the essential fatigue and transient properties of the field environment. This work provides a practical foundation for extending mission synthesis beyond individual assemblies and towards complete device level qualification.
 

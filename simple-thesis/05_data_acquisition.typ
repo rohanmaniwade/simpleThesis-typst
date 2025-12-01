@@ -127,7 +127,7 @@ The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANS
   )<backendmesh>
 
 
-The analysis was conducted under two boundary conditions to understand how mounting affects the modal behavior. First, a free free analysis was performed with no constraints applied, representing the suspended configuration used during the impulse hammer test. The resulting mode shapes and frequencies for the first six modes are presented in @modalshapeswoconstraint1 through @modalshapeswoconstraint6.
+The analysis was conducted under two boundary conditions to understand how mounting affects the modal behaviour. First, a free free analysis was performed with no constraints applied, representing the suspended configuration used during the impulse hammer test. The resulting mode shapes and frequencies for the first six modes are presented in @modalshapeswoconstraint1 through @modalshapeswoconstraint6.
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_1.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode2_1.png")]

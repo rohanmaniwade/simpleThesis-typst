@@ -68,7 +68,7 @@ According to Lalanne, tailoring consists of four principal stages,
   - Determine statistical descriptors such as the mean, standard deviation, and variation coefficient for each frequency band.
   - Combine the results - for shocks, by enveloping all SRS curves anf for vibrations, by summing FDS curves and enveloping ERS curves. 
   - The result of this stage is one representative set of spectra per situation - an SRS, an ERS, and an FDS.
-+ Establishment of the test program -- From the composite FDS of the life profile, generate a test spectrum that reproduces the same cumulative fatigue damage in a shorter, laboratory-controlled time. Apply test factors that account for sample size, confidence level, and the probability of failure.
++ Establishment of the test programme -- From the composite FDS of the life profile, generate a test spectrum that reproduces the same cumulative fatigue damage in a shorter, laboratory-controlled time. Apply test factors that account for sample size, confidence level, and the probability of failure.
 
 This procedure ensures that the resulting test is representative, traceable, efficiently accelerated and severe enough to reproduce service damage without introducing unrealistic loads.
 
@@ -154,7 +154,7 @@ For example, if the test RMS is doubled and $b=8$ for typical solder joints, the
 
 Achieving effective test time reduction while maintaining realistic severity requires careful attention to several critical factors. The compression must accurately represent real world conditions without introducing artificial failures or missing genuine failure modes.
 
-The most important consideration is selecting an appropriate value for the material exponent $b$. This parameter should be as close as possible to the actual material behavior, and when uncertain, conservative default values should be used. The accuracy of $b$ directly affects the validity of the time compression calculation.
+The most important consideration is selecting an appropriate value for the material exponent $b$. This parameter should be as close as possible to the actual material behaviour, and when uncertain, conservative default values should be used. The accuracy of $b$ directly affects the validity of the time compression calculation.
 
 Physical limits constrain how much compression is practically achievable. The excitation level cannot exceed the material's ultimate strength, which typically limits the amplification factor to 2 or 3 times the fatigue limit for most materials. While this constraint may seem restrictive, it can still enable substantial time reduction. For an amplification factor of 2, the maximum achievable compression varies significantly with the material exponent, as shown in @testtimereduction.
 
@@ -171,7 +171,7 @@ Poorly controlled time reduction can create artificial problems that do not exis
 
 - Maximum stress levels may exceed the ultimate strength limit, creating failure modes that never occur at real operating levels. This leads to false failures that do not represent actual service conditions.
 - Equipment containing mechanical clearances may experience shocks under high acceleration that would not appear at normal levels, or would be much smaller in magnitude. These artificial impacts can dominate the test results and mask the actual failure mechanisms of interest.
-- The damage equivalence calculation assumes linear structural behavior, which often breaks down in practice. As stress levels increase beyond the linear range, errors in the amplification factor become more significant, and the shorter the test time, the larger these errors become. This can lead to either overly conservative or non conservative results depending on how the nonlinearities affect the actual structure. @lalanne2010mechanicalvol
+- The damage equivalence calculation assumes linear structural behaviour, which often breaks down in practice. As stress levels increase beyond the linear range, errors in the amplification factor become more significant, and the shorter the test time, the larger these errors become. This can lead to either overly conservative or non conservative results depending on how the nonlinearities affect the actual structure. @lalanne2010mechanicalvol
 
 
 

@@ -64,7 +64,7 @@ Matriculation No.: #matrikelNr\
  [Examiner], [#ersterGutachter],
  [Supervisors:], [#betreuerEins],
  [], [#betreuerZwei],
- [Degree Program:], [#fach],
+ [Degree Programme:], [#fach],
  [Academic Semester:], [#semester],
  [Date:], [#date]
 )
