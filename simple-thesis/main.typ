@@ -148,7 +148,9 @@ A Python library _VibeAccelKit_ was developed to calculate the spectra, construc
 The results show that the method can recreate the important damaging frequencies while significantly reducing total test duration. The presented workflow offers a practical and repeatable way to translate operational vibration into a meaningful endurance test for complex electronic assemblies.
   ],
   acknowledgements: [
-    _First and foremost, I would like to thank my supervisor and mentor, *Clément Corselli*, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me. I would also like to thank *Dr.-Ing. Philipp Ingelath* and *Dr. Roland Kraus* for the wisdom and guidance that made it possible to carry out my thesis as smoothly and efficiently as I did, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
+    _First and foremost, I would like to thank my supervisor and mentor, *Clément Corselli*, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me._
+    
+    _I would also like to thank *Dr.-Ing. Philipp Ingelath*, *Dr. Roland Kraus* and other professionals at *Vorwerk* for the wisdom and guidance that made it possible to carry out my thesis as smoothly and efficiently as I did, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
 
     _My deepest gratitude to *Prof. Dr.-Ing. Bettar Ould el Moctar* for supervising the academic side of this work, and to *Dr.-Ing. Galal Galal* for his insights and encouragement throughout the project._
 

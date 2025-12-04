@@ -9,7 +9,7 @@
 #let betreuerEins = "Clément Georges Corselli"
 #let betreuerZwei = "Dr.-Ing. Philipp Ingenlath" 
 #let ersterGutachter = "Prof. Dr.-Ing. Bettar Ould el Moctar"
-#let zweiterGutachter = ""
+#let zweiterGutachter = "Dr.-Ing. Galal Galal"
 #let fach = "M.Sc. Mechanical Engineering (Mechatronics)"
 #let semester = "Summer Semester 2025"
 #let date = "31.10.2025"
@@ -61,7 +61,7 @@ Matriculation No.: #matrikelNr\
   row-gutter: 3mm,
   align: (left, left),
  
- [Examiner], [#ersterGutachter],
+ [Examiner], [#ersterGutachter],[],[#zweiterGutachter],
  [Supervisors:], [#betreuerEins],
  [], [#betreuerZwei],
  [Degree Programme:], [#fach],
