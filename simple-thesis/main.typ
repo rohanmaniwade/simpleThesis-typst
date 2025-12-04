@@ -116,35 +116,34 @@
   )
 
     *Acronyms* \
+    BOM - Bill of Materials \
+    CAD - Computer-Aided Design \
+    CCW - Counter-Clockwise \
+    CW - Clockwise \
+    EMI - Electromagnetic Interference \
+    ERS - Extreme Response Spectrum \
+    FDS - Fatigue Damage Spectrum \
+    FEM - Finite Element Method \
+    ICP - Integrated Circuit Piezoelectric \
+    IGBT - Insulated-Gate Bipolar Transistor \
+    IHT - Impulse Hammer Test \
+    IIPL - Improved Inverse Power Law \
+    IPL - Inverse Power Law \
+    MOSFET - Metal-Oxide-Semiconductor Field-Effect Transistor \
+    MRS - Maximum Response Spectrum \
     PCB - Printed Circuit Board \
     PSD - Power Spectral Density \
-    FDS - Fatigue Damage Spectrum \
-    ERS - Extreme Response Spectrum \
-    SRS - Shock Response Spectrum \
-    MRS - Maximum Response Spectrum \
-    SDOF - Single Degree of Freedom \
     RMS - Root Mean Square \
-    CAD - Computer-Aided Design \
-    FEM - Finite Element Method \
-    IHT - Impulse Hammer Test \
-    IGBT - Insulated-Gate Bipolar Transistor \
-    MOSFET - Metal-Oxide-Semiconductor Field-Effect Transistor \
+    SDOF - Single Degree of Freedom \
+    SRS - Shock Response Spectrum \
     TRIAC - Triode for Alternating Current \
-    IPL - Inverse Power Law \
-    IIPL - Improved Inverse Power Law \
-    EMI - Electromagnetic Interference \
-    BOM - Bill of Materials \
-    CW - Clockwise \
-    CCW - Counter-Clockwise
     WAFO - Wave Analysis for Fatigue and Ocean \
-    MIL-STD-810 - Military standard \
-    ICP - Integrated Circuit Piezoelectric \
   ],
   abstract: [
 
-This thesis presents a method for accelerating vibration endurance testing by creating a laboratory Power Spectral Density, or PSD, that reflects the vibration loads experienced during real operation. The approach begins with time-domain measurements taken from the Thermomix#super(sym.trademark.registered) TM7 backend printed circuit board during normal use. These measurements are converted into individual and combined Fatigue Damage Spectra, which describe how different frequencies contribute to material fatigue. The combined spectrum is then used to generate an accelerated PSD that produces the same level of damage in a shorter time.
+This thesis presents a method for accelerating vibration endurance testing by creating a laboratory _Power Spectral Density_, or PSD, that reflects the vibration loads experienced during real operation. The approach begins with time-domain measurements taken from the Thermomix#super(sym.trademark.registered) TM7 backend printed circuit board during normal use. These measurements are converted into individual and combined _Fatigue Damage Spectra_, or FDS, which describe how different frequencies contribute to material fatigue. The combined spectrum is then used to generate an accelerated PSD that produces the same level of damage in a shorter time.
 
-A Python library VibeAccelKit was developed to calculate the spectra, construct the combined fatigue profile, and create the accelerated test PSD. The workflow also includes validation through fatigue damage comparison and through shock and energy response spectra. The final PSD was tested on a uniaxial shaker to evaluate how well the laboratory environment reproduced the critical vibration content found in the real machine.
+A Python library _VibeAccelKit_ was developed to calculate the spectra, construct the combined fatigue profile, and create the accelerated test PSD. The workflow also includes validation through fatigue damage comparison and through shock and energy response spectra. The final PSD was tested on a uniaxial shaker to evaluate how well the laboratory environment reproduced the critical vibration content found in the real machine.
 
 The results show that the method can recreate the important damaging frequencies while significantly reducing total test duration. The presented workflow offers a practical and repeatable way to translate operational vibration into a meaningful endurance test for complex electronic assemblies.
   ],

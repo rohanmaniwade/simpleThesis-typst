@@ -17,7 +17,7 @@ Modal analysis reveals the dynamic behaviour of a component by identifying its n
 
 For this reason, modal anaysis was performed on the Thermomix#super(sym.trademark.registered) TM7 backend PCB before vibration measurements were taken. The results helped act as a guide for optimum accelerometer placement.
 
-A combination of experimental modal analysis (Impulse Hammer Test) using HEAD acoustics ArtemiS Suite and finite element modal analysis in ANSYS Workbench 2025 R1 was used to obtain a complete description of the board's modal characteristics.
+A combination of experimental modal analysis, _impulse hammer test_, using _HEAD acoustics ArtemiS Suite_ and FEM analysis in _ANSYS Workbench 2025 R1_ was used to obtain a complete description of the board's modal characteristics.
 
 === Experimental Modal Analysis (Impulse Hammer Test)
 
@@ -271,7 +271,7 @@ Applying the frequency‑dependent linear scaling reduced the mean absolute freq
 
 Accelerometer placement was driven by mode shapes from ANSYS together with the impulse‑hammer modal test. Two boundary conditions were reviewed: free free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
 
-To separate bending and torsion with a small channel count, sensors were distributed to regions with distinct modal participation. This follows information‑based optimal sensor placement principles; independence was checked pragmatically with coherence and Auto‑MAC to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020.
+To separate bending and torsion with a small channel count, sensors were distributed to regions with distinct modal participation. This follows information‑based optimal sensor placement principles; independence was checked pragmatically with coherence and Auto‑MAC to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020. Auto‑MAC (Automatic Modal Assurance Criterion) is a statistical measure that evaluates whether different vibration modes can be clearly distinguished from one another. Good Auto‑MAC values confirm that the sensor locations provide independent modal information rather than redundant measurements.
 
 Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the PCB was suspended during hammer tests to approximate free free boundary conditions. The resulting frequency response functions did not show mass‑loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
 
@@ -326,12 +326,12 @@ With the sensors positioned, vibration data was collected for all operating cond
   caption: "Data Acquisition setup with HEAD acoustics ArtemiS",
 )<dataacquisitionsetup>
 
-Data collection used two SQuadriga units connected together to handle all nine measurement channels (three sensors × three axes each). The first unit connected to the laptop in "Control" mode, while the second acted as an extension in "Module" mode. HEAD acoustics ArtemiS Suite recorded the vibrations at a sampling frequency of 48 kHz, capturing all channels simultaneously to preserve timing relationships. This sampling rate was chosen to ensure adequate temporal resolution for subsequent FDS and SRS calculations, which require the sampling frequency to be 7 to 10 times the maximum spectrum frequency of interest. For SRS calculations, a factor of 10 is typically recommended, making 48 kHz a conservative choice that provides substantial margin for frequencies up to 4.8 kHz. @lalanne2010mechanicalvol
+Data collection used two _SQuadriga_ units connected together to handle all nine measurement channels (three sensors × three axes each). The first unit connected to the laptop in "Control" mode, while the second acted as an extension in "Module" mode. HEAD acoustics ArtemiS Suite recorded the vibrations at a sampling frequency of 48 kHz, capturing all channels simultaneously to preserve timing relationships. This sampling rate was chosen to ensure adequate temporal resolution for subsequent FDS and SRS calculations, which require the sampling frequency to be 7 to 10 times the maximum spectrum frequency of interest. For SRS calculations, a factor of 10 is typically recommended, making 48 kHz a conservative choice that provides substantial margin for frequencies up to 4.8 kHz. @lalanne2010mechanicalvol
 
 For each motor speed from 40 to 10,000 rpm in clockwise and counter-clockwise directions, one‑minute recordings captured the vibration patterns during steady operation. The bowl contained 1000 grams of water throughout testing, matching the endurance test setup. This water load creates realistic blade interactions and damping that affect how the structure vibrates.
 
 
-In addition to these recordings, a "dough mode" was also recorded which is mentioned in the endurance profile in @endurancemotorload. For this mode, instead of 1000 gms of water, 800 grams of pizza dough was used. The dough was kneaded for 30 seconds using the "Pizzateig" recipe from Cookidoo#super(sym.trademark.registered) @cookidoo_pizzateig_recipe. In this mode, the blade alternates between clockwise and counter-clockwise rotations with one-second stops between direction changes. This creates strong, low frequency forces when the blade encounters dough resistance.
+In addition to these recordings, a "dough mode" was also recorded which is mentioned in the endurance profile in @endurancemotorload. For this mode, instead of 1000 grams of water, 800 grams of pizza dough was used. The dough was kneaded for 30 seconds using the "Pizzateig" recipe from Cookidoo#super(sym.trademark.registered) @cookidoo_pizzateig_recipe. In this mode, the blade alternates between clockwise and counter-clockwise rotations with one-second stops between direction changes. This creates strong, low frequency forces when the blade encounters dough resistance.
 
 #let img1 = box(stroke: 1pt+black, inset: 0em)[#image("../../Images/Pictures/cheeseblendingtop.jpg")]
 #let img2 = box(stroke: 1pt+black)[#image("../../Images/Pictures/blendedcheese.jpg")]
@@ -344,7 +344,7 @@ In addition to these recordings, a "dough mode" was also recorded which is menti
 
 One shock event was recorded to set reference limits for validating the accelerated test profiles later. This event, shown in @blendingofgranapadano1 and @blendingofgranapadano2 represents a severe operating condition that creates transient impact loads,
 
-- Cheese block blending: Two 200‑gram Grana Padano blocks processed for 30 seconds in "Blend" mode at Speed 8, from the "Rosmarin‑Parmesan Waffeln" recipe. This generates high‑frequency vibrations from blade strikes on hard cheese.
+- Cheese block blending: Two 200 grams Grana Padano blocks processed for 30 seconds in "Blend" mode at Speed 8, from the "Rosmarin‑Parmesan Waffeln" recipe. This generates high‑frequency vibrations from blade strikes on hard cheese.
 
 These recordings define the life cycle of the device by capturing the full range of operational vibration environments. They form the basis for calculating fatigue damage and deriving accelerated test profiles. The shock event is used to ensure that accelerated test conditions stay within realistic limits.
 

@@ -102,7 +102,7 @@ Although the sensor at `PCB_LEFT` measures three orthogonal directions, only one
 
 
 
-During each test, the selected axis of the `PCB_LEFT` accelerometer provided the feedback signal for closed loop control, while all axes of all sensors were recorded simultaneously. The control signal was split using a T-connector so that VibControl received the conditioned accelerometer signal for feedback, while SQuadriga recorded the same signal together with the response channels at `PCB_CENTER` and `PCB_TOP`. All measurements were collected in ArtemiS Suite and served as the basis for computing the Fatigue Damage Spectrum.
+During each test, the selected axis of the `PCB_LEFT` accelerometer provided the feedback signal for closed loop control, while all axes of all sensors were recorded simultaneously. The control signal was split using a T-connector so that VibControl received the conditioned accelerometer signal for feedback, while SQuadriga recorded the same signal together with the response channels at `PCB_CENTER` and `PCB_TOP`. All measurements were collected in ArtemiS Suite and served as the basis for computing the FDS.
 
 
 == Signal Routing and Sensor Conditioning
@@ -122,9 +122,9 @@ All accelerometer channels from `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP` were rec
 
 == Shaker PSD Control & Drive Signal
 
-All tests were conducted under closed loop control with m+p VibControl. In this mode, the software continuously monitored the vibration measured by the control channel and automatically adjusted the drive voltage to match the target PSD. 
+All tests were conducted under closed loop control with _m+p VibControl_. In this mode, the software continuously monitored the vibration measured by the control channel and automatically adjusted the drive voltage to match the target PSD. 
 
-The accelerated PSDs were imported in VibEdit in `.csv` format. To ensure safe operation, the shaker's maximum acceleration was limited to 5G. The PSD control included ±3 dB warning limits and ±6 dB abort limits to ensure the drive signal remained within acceptable bounds during testing. The frequency resolution for all tests was set to 1 Hz. Before each test, the calibration for the relevant axis was set according to the direction being tested, using the corresponding value from the calibration sheet to ensure accurate control and measurement.
+The accelerated PSDs were imported in _VibEdit_ in the m+p VibControl software in `.csv` format. To ensure safe operation, the shaker's maximum acceleration was limited to 5G. The PSD control included ±3 dB warning limits and ±6 dB abort limits to ensure the drive signal remained within acceptable bounds during testing. The frequency resolution for all tests was set to 1 Hz. Before each test, the calibration for the relevant axis was set according to the direction being tested, using the corresponding value from the calibration sheet to ensure accurate control and measurement.
 
 All the required tests were ran on the backend PCB as mentioned in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were printed directly from the PSD control channel windows in m+p VibControl, which illustrate the reference and control PSDs along with the warning and abort limits. The control PSDs will form the basis for calculating FDS. The control PSDs were all under limits and the tests ran without an error.
 

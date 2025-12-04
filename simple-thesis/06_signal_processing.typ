@@ -10,29 +10,29 @@
 Because three sensors record along three orthogonal axes, nine accelerated profiles are produced (one per sensor‑axis channel). The code was written to do the following,
 
 1. Inspect vibration time‑history signals for each mode (visualisation and sanity checks).
-2. Convert time histories to Power Spectral Densities (PSDs).
-3. Compute the Fatigue Damage Spectrum (FDS) for each mode.
+2. Convert time histories to PSD.
+3. Compute the FDS for each mode.
 4. Form a composite FDS by summing modal damage contributions weighted by their dwell times in the endurance profile.
 5. Invert the composite FDS to an equivalent PSD for the target life duration.
 6. Apply time reduction from @timecompression to derive accelerated PSDs for 1 h, 1.5 h, 2 h, 4h, 5 h, 10 h, 20 h, 50 h, and 100 h.
-7. Compute the Extreme Response Spectrum (ERS) for each accelerated PSD and compare against the Shock Response Spectrum (SRS) envelope of the reference shock event (e.g., cheese‑blending load) to check severity.
+7. Compute the ERS for each accelerated PSD and compare against the SRS envelope of the reference shock event (e.g., cheese‑blending load) to check severity.
 
 The Python libary VibeAccelKit @vibeaccelkit2025 was used for the computation and signal processing.
 
 == Introduction to VibeAccelKit
 
-VibeAccelKit @vibeaccelkit2025 is a Python-based toolkit developed as part of this thesis work to implement and automate the complete workflow for vibration test tailoring, mission synthesis, and test acceleration. The library integrates established damage equivalence methodologies, particularly the Fatigue Damage Spectrum method and FDS-to-PSD conversion method @lalanne2010mechanicalvol @mcneill2008implementing into a cohesive, reproducible framework suitable for both research and industrial application.
+VibeAccelKit @vibeaccelkit2025 is a Python-based toolkit developed as part of this thesis work to implement and automate the complete workflow for vibration test tailoring, mission synthesis, and test acceleration. The library integrates established damage equivalence methodologies, particularly the FDS method and FDS-to-PSD conversion method @lalanne2010mechanicalvol @mcneill2008implementing into a cohesive, reproducible framework suitable for both research and industrial application.
 
 The toolkit addresses three primary objectives, 
 + Quantifying fatigue damage across multiple mission profiles using spectral damage metrics
 + Synthesising composite damage spectra that represent combined mission loading, and
-+ Generating accelerated Power Spectral Density (PSD) test profiles that replicate equivalent damage in reduced test durations.
++ Generating accelerated PSD test profiles that replicate equivalent damage in reduced test durations.
 
-Additionally, VibeAccelKit incorporates validation capabilities to ensure that the accelerated test specifications do not exceed critical response limits, such as the Shock Response Spectrum (SRS) and Extreme Response Spectrum (ERS), thereby preventing overtesting.
+Additionally, VibeAccelKit incorporates validation capabilities to ensure that the accelerated test specifications do not exceed critical response limits, such as the SRS and ERS, thereby preventing overtesting.
 
-Built upon NumPy and SciPy for computational efficiency, VibeAccelKit implements both time domain and frequency domain approaches for FDS calculation. The time domain method employs a single-degree-of-freedom (SDOF) oscillator simulation coupled with rainflow cycle counting to directly quantify fatigue damage from accelerated time histories. The frequency domain approach leverages spectral moment analysis and probabilistic damage rate models (Rice and Rayleigh distributions) to compute FDS directly from PSDs, offering computational advantages for stationary random processes.
+Built upon NumPy and SciPy for computational efficiency, VibeAccelKit implements both time domain and frequency domain approaches for FDS calculation. The time domain method employs a SDOF oscillator simulation coupled with rainflow cycle counting to directly quantify fatigue damage from accelerated time histories. The frequency domain approach leverages spectral moment analysis and probabilistic damage rate models (Rice and Rayleigh distributions) to compute FDS directly from PSDs, offering computational advantages for stationary random processes.
 
-The core acceleration methodology follows Lalanne’s analytical framework, which relates FDS to an equivalent PSD through the relationship between damage accumulation, spectral density, and test duration. The acceleration process scales the equivalent PSD according to the target test duration and fatigue exponent, maintaining damage equivalence while reducing test time. validation routines that verify that the accelerated profile satisfies design constraints, ensuring that response spectra remain within acceptable bounds relative to the original mission requirements. 
+The core acceleration methodology follows Lalanne’s analytical framework, which relates FDS to an equivalent PSD through the relationship between damage accumulation, spectral density, and test duration. The acceleration process scales the equivalent PSD according to the target test duration and fatigue exponent, maintaining damage equivalence while reducing test time. Validation routines that verify that the accelerated profile satisfies design constraints, ensuring that response spectra remain within acceptable bounds relative to the original mission requirements. 
 
 VibeAccelKit represents a practical implementation of vibration test acceleration theory, providing researchers and test engineers with an open-source tool for developing, analysing, and validation accelerated vibration test profiles. The library facilitates reproducible research workflows and enables systematic exploration of acceleration parameters, fatigue exponents, and validation criteria within a unified computational environment.
 
@@ -87,11 +87,11 @@ MIL-STD-810 random vibration profiles for electronics typically span 20-2000 Hz.
   caption: [PSDs of all motor speed modes for `PCB_CENTER` Z-axis]
 )<PSDinspect>
 
-@PSDinspect presents the power spectral densities computed from 1-minute recordings for all motor speeds at sensor `PCB_CENTER` along the Z axis. Each coloured trace corresponds to a different operating speed, spanning the frequency range from 0 to 2000 Hz. The spectral shapes vary noticeably across operating conditions. At lower speeds, energy concentrates in narrow peaks around blade pass frequencies and their harmonics. As speed increases, the vibration energy spreads more broadly across the spectrum, reflecting the more complex excitation from faster blade motion and fluid interaction. Elevated spectral content appears consistently between 50 and 200 Hz across multiple modes, coinciding with the first few structural resonances identified during modal analysis. This concentration of energy near natural frequencies indicates resonant amplification, which directly influences fatigue accumulation. The PSDs form the input for fatigue damage spectrum calculations, where the spectral energy at each frequency is weighted according to how effectively that frequency excites structural oscillators across a range of natural frequencies.
+@PSDinspect presents the PSD computed from 1-minute recordings for all motor speeds at sensor `PCB_CENTER` along the Z axis. Each coloured trace corresponds to a different operating speed, spanning the frequency range from 0 to 2000 Hz. The spectral shapes vary noticeably across operating conditions. At lower speeds, energy concentrates in narrow peaks around blade pass frequencies and their harmonics. As speed increases, the vibration energy spreads more broadly across the spectrum, reflecting the more complex excitation from faster blade motion and fluid interaction. Elevated spectral content appears consistently between 50 and 200 Hz across multiple modes, coinciding with the first few structural resonances identified during modal analysis. This concentration of energy near natural frequencies indicates resonant amplification, which directly influences fatigue accumulation. The PSDs form the input for FDS calculations, where the spectral energy at each frequency is weighted according to how effectively that frequency excites structural oscillators across a range of natural frequencies.
 
 == Fatigue Damage Spectrum calculation
 
-The FDS quantifies cumulative fatigue damage as a function of natural frequency for a population of single-degree-of-freedom (SDOF) oscillators subjected to base excitation @lalanne2010mechanicalvol. VibeAccelKit implements two complementary appraoches. 
+The FDS quantifies cumulative fatigue damage as a function of natural frequency for a population of SDOF oscillators subjected to base excitation @lalanne2010mechanicalvol. VibeAccelKit implements two complementary appraoches. 
 
 - Time Domain FDS: For each natural frequency $f_0$ and damping ratio $zeta$ the relative displacement of $z(t)$ of a base-excited SDOF oscillator is computed by solving,
 
@@ -202,7 +202,7 @@ The iterative refinement process adjusts the initial PSD to account for broadban
   caption: [Target composite FDS and recomputed FDS from converged equivalent PSD for `PCB_CENTER` Z-axis]
 )<fdsmatch>
 
-@fdsmatch validates the inversion process by comparing the target composite FDS with the FDS recomputed from the final converged PSD using Rice's broadband damage model. The close agreement between the two curves confirms that the iterative method successfully produces an equivalent PSD that reproduces the desired fatigue damage spectrum. The resulting equivalent PSD corresponds to a test duration of 924 hours, meaning this profile, when run continuously for 924 hours, would replicate the same cumulative fatigue damage as the complete endurance cycle. The convergence criterion of less than 0.1 dB error ensures that the resulting test specification will deliver fatigue damage equivalent to the field profile across the entire frequency range of interest.
+@fdsmatch validates the inversion process by comparing the target composite FDS with the FDS recomputed from the final converged PSD using Rice's broadband damage model. The close agreement between the two curves confirms that the iterative method successfully produces an equivalent PSD that reproduces the desired FDS. The resulting equivalent PSD corresponds to a test duration of 924 hours, meaning this profile, when run continuously for 924 hours, would replicate the same cumulative fatigue damage as the complete endurance cycle. The convergence criterion of less than 0.1 dB error ensures that the resulting test specification will deliver fatigue damage equivalent to the field profile across the entire frequency range of interest.
 
 === PSD Envelope Smoothing Method
 
@@ -234,7 +234,7 @@ Once the equivalent PSD is established, accelerated test profiles are generated 
 
 == Response Spectrum Validation
 
-To ensure that the accelerated PSD does not introduce unrealistically high dynamic responses, the profile is validated using response spectra computed from single-degree-of-freedom (SDOF) oscillators across the frequency of interest. Two complementary metrics are used, the Shock Response Spectrum (SRS) and the Extreme Response Spectrum (ERS).
+To ensure that the accelerated PSD does not introduce unrealistically high dynamic responses, the profile is validated using response spectra computed from SDOF oscillators across the frequency of interest. Two complementary metrics are used, the SRS and the ERS.
 
 === Shock Response Spectrum Calculation
 
@@ -242,7 +242,7 @@ The SRS represents the maximum absolute acceleration response of an SDOF oscilla
 
 === Extreme Response Spectrum Calculation
 
-The Extreme Response Spectrum (ERS) is used to estimate the expected peak absolute acceleration response of a family of base-excited SDOF oscillators subjected to stationary random vibration. The calculation of ERS in time domain is explained in @ers. However, for stationary Gaussian random signals, the ERS can be computed from PSDs.
+The ERS is used to estimate the expected peak absolute acceleration response of a family of base-excited SDOF oscillators subjected to stationary random vibration. The calculation of ERS in time domain is explained in @ers. However, for stationary Gaussian random signals, the ERS can be computed from PSDs.
 
 For each oscillator with natural frequency $f_0$ and damping $zeta$, the absolute acceleration function is @Newland2012 @Steinberg2000,
 

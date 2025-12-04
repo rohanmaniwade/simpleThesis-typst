@@ -17,7 +17,7 @@ Miner's law, also known as the Palmgren-Miner rule, helps engineers estimate whe
 
 $ D=sum^n_"i=1" n_i/N_i $
 
-where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number of cycles to failure at that level. Miner's law provides a practical way to condense a lifetime's worth of damage into an accelerated lab test, but it does assume that each cycle contributes independently to failure. Real materials sometimes deviate due to load sequence effects or nonlinear damage accumulation, a limitation explored in more advanced research @Palmgren1924 @miner1945cumulative.
+where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number of cycles to failure at that level. Miner's law provides a practical way to condense a lifetime's worth of damage into an accelerated lab test, however it does assume that each cycle contributes independently to failure. Real materials sometimes deviate due to load sequence effects or nonlinear damage accumulation, a limitation explored in more advanced research @Palmgren1924 @miner1945cumulative.
 
 === Basquin's Law 
 Basquin’s law describes the relationship between the amplitude of cyclic stress and the number of cycles to failure, especially important for high-cycle fatigue scenarios. It is typically given as a power law,
@@ -63,8 +63,8 @@ According to Lalanne, tailoring consists of four principal stages,
 + Analysis of the life cycle profile -- Identify and divide the product's operational life into "situations", each representing a distinct environment (e.g., storage, transport, flight, operation). Each situation is further broken into events of sub-situations (e.g., take-off, cruise, landing), characterised qualitatively by factors such as vibration type, shock, temperature, acoustics.
 + Collection of real environment data -- Quantify each situation using measured time histories of PSDs. Parameters include vibration amplitudes, temperature ranges, and durations.
 + Synopsis of data -- The collected data from all events within a situation are condensed into representative spectra,
-  - Compute Shock Response Spectra (SRS) for shock events.
-  - Compute Extreme Response Spectra (ERS) and Fatigue Damage Spectra (FDS) for vibration events.
+  - Compute SRS for shock events.
+  - Compute ERS and FDS for vibration events.
   - Determine statistical descriptors such as the mean, standard deviation, and variation coefficient for each frequency band.
   - Combine the results - for shocks, by enveloping all SRS curves anf for vibrations, by summing FDS curves and enveloping ERS curves. 
   - The result of this stage is one representative set of spectra per situation - an SRS, an ERS, and an FDS.
@@ -72,9 +72,9 @@ According to Lalanne, tailoring consists of four principal stages,
 
 This procedure ensures that the resulting test is representative, traceable, efficiently accelerated and severe enough to reproduce service damage without introducing unrealistic loads.
 
-=== Fatigue Damage Spectrum (FDS) <fds>
+=== Fatigue Damage Spectrum <fds>
 
-*Fatigue Damage Spectrum (FDS)* describes how a single‑degree‑of‑freedom (SDOF) linear system accumulates fatigue damage under a given vibration input as a function of its natural frequency f#sub[0] and an assumed damping ratio #sym.zeta.
+_Fatigue Damage Spectrum_, or FDS, describes how a _single‑degree‑of‑freedom_ (SDOF) linear system accumulates fatigue damage under a given vibration input as a function of its natural frequency f#sub[0] and an assumed damping ratio #sym.zeta.
 
 The standard calculation relies on the following assumptions:
 - The system behaves as a linear SDOF oscillator.
@@ -93,14 +93,14 @@ If $n_i$ is the number of half‑cycles at amplitude $z_p_i$, then the fatigue d
 
 $ D=K^b/(2C) sum_(i=1)^m n_i z^b_p_i $  <fatiguedamage>
 
-Repeating this evaluation across a sweep of natural frequencies $f_0$ (and for specified values of $zeta$, $b$, $K$, and $C$) yields the _fatigue damage spectrum_ (FDS) $D(f_0)$ of the excitation.
+Repeating this evaluation across a sweep of natural frequencies $f_0$ (and for specified values of $zeta$, $b$, $K$, and $C$) yields the FDS $D(f_0)$ of the excitation.
 
 The FDS may be computed from either a time history or a PSD representation, provided the underlying random vibration is stationary and approximately Gaussian @lalanne2010mechanicalvol.
 
 In this work, one‑minute time history segments are sampled, converted to PSD form, and aggregated to estimate cumulative damage over the full operating duration.
 
-=== Extreme Response Spectrum (ERS) <ers>
-The Extreme Response Spectrum gives, for each natural frequency $f_0$ at damping ζ, the maximum relative displacement response of an equivalent linear SDOF system driven by the input @lalanne2010mechanicalvol.
+=== Extreme Response Spectrum <ers>
+The _Extreme Response Spectrum_, or ERS, gives, for each natural frequency $f_0$ at damping ζ, the maximum relative displacement response of an equivalent linear SDOF system driven by the input @lalanne2010mechanicalvol.
 
 ERS in displacement form is
 
@@ -112,9 +112,9 @@ $ E R S _ a (f_0, ζ) = (2pi f_0)^2 max_t | z(t; f_0, ζ) | $
 
 In practice, ERS is computed by filtering the input through a bank of linear SDOF systems across $f_0$ at the chosen damping and then taking the per‑filter maximum of the relative displacement or the corresponding acceleration. ERS assumes linearity and a specified damping ratio. Unlike FDS, it summarises peak response rather than accumulated damage @lalanne2010mechanicalvol.
 
-=== Shock Response Spectrum (SRS) <srs>
+=== Shock Response Spectrum <srs>
 
-The Shock Response Spectrum characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base‑excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo‑velocity forms that are useful for damage correlation and historical limits @lalanne2014_mechanical_shock.
+The _Shock Response Spectrum_, or SRS, characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base‑excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo‑velocity forms that are useful for damage correlation and historical limits @lalanne2014_mechanical_shock.
 
 Acceleration form for a base‑excited SDOF is
 
@@ -122,7 +122,7 @@ $ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $ <shockresponsespectrumca
 
 Here, $a_{abs}(t)$ denotes the absolute acceleration of the mass, which is the sum of base acceleration and the relative component, for the oscillator tuned to $f_0$ at damping ζ under the given shock input. The spectrum is computed by filtering the input through a bank of SDOF filters that span the frequency range of interest and by recording the peak value for each filter.
 
-=== Difference between Extreme Response Spectrum and Shock Response Spectrum
+=== Difference between ERS and SRS
 ERS and SRS use the same mathematical device, a bank of linear SDOF oscillators at a chosen damping ratio ζ, equivalently a quality factor $Q ≈ (2 ζ)^(-1)$, to report a peak response versus natural frequency. They differ mainly in the type of input they target and in how the peak is interpreted.
 
 - Input and intent - ERS is used for random long duration vibration. SRS is used for short transients and shocks.
@@ -178,7 +178,7 @@ Poorly controlled time reduction can create artificial problems that do not exis
 
 === Validation of Reduced Test Time <responsespectrumvalidation>
 
-Peak response consistency is checked by comparing the MRS (Maximum Response Spectrum), also known as ERS (Extreme Response Spectrum), of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
+Peak response consistency is checked by comparing the _Maximum Response Spectrum_, also known as MRS or ERS, of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
 
 #figure(
     box(stroke: 1pt+black)[
