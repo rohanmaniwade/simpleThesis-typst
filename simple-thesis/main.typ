@@ -114,38 +114,47 @@
     [$sigma_p$ & Peak stress & $P a$],
     [$sigma_(r m s)$ & RMS stress & $P a$],
   )
+#pagebreak()
+    *Acronyms*
 
-    *Acronyms* \
-    BOM - Bill of Materials \
-    CAD - Computer-Aided Design \
-    CCW - Counter-Clockwise \
-    CW - Clockwise \
-    EMI - Electromagnetic Interference \
-    ERS - Extreme Response Spectrum \
-    FDS - Fatigue Damage Spectrum \
-    FEM - Finite Element Method \
-    ICP - Integrated Circuit Piezoelectric \
-    IGBT - Insulated-Gate Bipolar Transistor \
-    IHT - Impulse Hammer Test \
-    IIPL - Improved Inverse Power Law \
-    IPL - Inverse Power Law \
-    MOSFET - Metal-Oxide-Semiconductor Field-Effect Transistor \
-    MRS - Maximum Response Spectrum \
-    PCB - Printed Circuit Board \
-    PSD - Power Spectral Density \
-    RMS - Root Mean Square \
-    SDOF - Single Degree of Freedom \
-    SRS - Shock Response Spectrum \
-    TRIAC - Triode for Alternating Current \
-    WAFO - Wave Analysis for Fatigue and Ocean \
+#set table(stroke: none)
+#table(
+  columns: 3,
+  align: (left, center, left),
+  column-gutter: 1em,
+  [BOM], [–], [Bill of Materials],
+  [CAD], [–], [Computer-Aided Design],
+  [CCW], [–], [Counter-Clockwise],
+  [CW], [–], [Clockwise],
+  [EMI], [–], [Electromagnetic Interference],
+  [ERS], [–], [Extreme Response Spectrum],
+  [FDS], [–], [Fatigue Damage Spectrum],
+  [FEM], [–], [Finite Element Method],
+  [ICP], [–], [Integrated Circuit Piezoelectric],
+  [IGBT], [–], [Insulated-Gate Bipolar Transistor],
+  [IHT], [–], [Impulse Hammer Test],
+  [IIPL], [–], [Improved Inverse Power Law],
+  [IPL], [–], [Inverse Power Law],
+  [MOSFET], [–], [Metal-Oxide-Semiconductor Field-Effect Transistor],
+  [MRS], [–], [Maximum Response Spectrum],
+  [PCB], [–], [Printed Circuit Board],
+  [PSD], [–], [Power Spectral Density],
+  [RMS], [–], [Root Mean Square],
+  [SDOF], [–], [Single Degree of Freedom],
+  [SRS], [–], [Shock Response Spectrum],
+  [TRIAC], [–], [Triode for Alternating Current],
+  [WAFO], [–], [Wave Analysis for Fatigue and Ocean],
+)
   ],
   abstract: [
 
-This thesis presents a method for accelerating vibration endurance testing by creating a laboratory _Power Spectral Density_, or PSD, that reflects the vibration loads experienced during real operation. The approach begins with time-domain measurements taken from the Thermomix#super(sym.trademark.registered) TM7 backend printed circuit board during normal use. These measurements are converted into individual and combined _Fatigue Damage Spectra_, or FDS, which describe how different frequencies contribute to material fatigue. The combined spectrum is then used to generate an accelerated PSD that produces the same level of damage in a shorter time.
+Vibration endurance testing of complex electronic assemblies traditionally requires hundreds of hours to validate product durability. This thesis develops a systematic approach to compress these lengthy tests while preserving the essential fatigue characteristics that determine real world performance.
 
-A Python library _VibeAccelKit_ was developed to calculate the spectra, construct the combined fatigue profile, and create the accelerated test PSD. The workflow also includes validation through fatigue damage comparison and through shock and energy response spectra. The final PSD was tested on a uniaxial shaker to evaluate how well the laboratory environment reproduced the critical vibration content found in the real machine.
+The methodology transforms operational vibration data from the Thermomix#super(sym.trademark.registered) TM7 backend printed circuit board into accelerated laboratory test profiles. Time domain measurements from actual kitchen use are processed through _Fatigue Damage Spectra_, or FDS analysis to identify the frequency content that drives material degradation. This damage equivalent approach enables the creation of accelerated _Power Spectral Density_, or PSD profiles that reproduce field fatigue in dramatically shorter laboratory tests.
 
-The results show that the method can recreate the important damaging frequencies while significantly reducing total test duration. The presented workflow offers a practical and repeatable way to translate operational vibration into a meaningful endurance test for complex electronic assemblies.
+The work introduces _VibeAccelKit_, a Python library that accommodates the complete workflow from vibration measurement to accelerated test synthesis. Comprehensive validation through both fatigue damage comparison and shock response verification ensures that laboratory conditions remain physically realistic and representative of operational stresses.
+
+Experimental validation on a uniaxial shaker confirms that the method successfully bridges the gap between lengthy endurance requirements and practical test schedules. The approach promises to transform product validation by making thorough durability assessment both feasible and routine in modern engineering practice.
   ],
   acknowledgements: [
     _First and foremost, I would like to thank my supervisor and mentor, *Clément Corselli*, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me._

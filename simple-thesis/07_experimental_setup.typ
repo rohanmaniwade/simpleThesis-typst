@@ -13,7 +13,7 @@ Reliable vibration testing requires a fixture that accurately replicates real mo
 
 
 
-== Design of Test Fixture
+== Design of test fixture
 
 To conduct the accelerated shaker table tests, a custom fixture was required to securely mount the backend PCB. The fixture design prioritises replicating the mounting conditions experienced by the backend during actual device operation, which is illustrated by @fixingpointsofbackend, ensuring that the boundary conditions remain consistent with field use.
 
@@ -45,7 +45,7 @@ The bottom plate features H7/m6 press fit holes that permanently secure the m6 p
 
 The fixture secures the backend at the same locations used in Thermomix#super(sym.trademark.registered) TM7. These points are demonstrated in @fixpoint1 through @fixpoint4. This approach ensures that the mechanical boundary conditions during testing accurately represent those experienced during normal field operation, allowing for valid correlation between test results and real world performance.
 
-== Modal Analysis of Test Fixture
+== Modal analysis of test fixture
 
 Before running the accelerated vibration tests, it was essential to understand how the fixture itself behaves dynamically. A modal analysis was performed to identify the fixture's natural frequencies and ensure it would not introduce unwanted vibrations that could interfere with the test results or potentially damage the backend PCB.
 

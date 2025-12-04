@@ -11,21 +11,21 @@
 
 The accelerated PSD profiles developed in the previous chapters were validated experimentally on a uniaxial electrodynamic shaker. The purpose of these tests was to reproduce the accelerated vibration environment on the PCB, measure the structural responses, and verify whether the accelerated PSDs generated in software can be stably executed in closed loop control. The shaker setup also accomodated data acquisition for response measurement, which can be used for the computation of FDS, which was essential for evaluating the damage equivalence between the analytical predictions and the physical test responses.
 
-== Shaker System
+== Shaker system
 
 #figure(
 box(stroke: 1pt + black)[
   #image("../../Images/Shaker test pictures/shaker.jpg", width: 60mm)
 ],
-caption: [TIRA uni-axial electrodynamic shaker],
+caption: [TIRA uniaxial electrodynamic shaker],
 )<tirashaker>
 
 
 
 
-The experimental work was performed using a uniaxial electrodynamic shaker system, specifically the TIRA TV 55240 LS 340. This system is capable of delivering controlled broadband random excitation in the frequency range from 2 Hz to 3000 Hz, with a maximum force output of 4 kilonewtons. These capabilities are well suited for the backend printed circuit board and its supporting fixture. The shaker system is equipped with a matched power amplifier, forced air cooling, and a suite of safety features that ensure stable operation and precise control during extended vibration tests. Further details regarding the hardware and its specifications are provided in the appendix.
+The experimental work was performed using a uniaxial electrodynamic shaker system, specifically the TIRA TV 55240 LS 340. This system is capable of delivering controlled broadband random excitation in the frequency range from 2 Hz to 3000 Hz, with a maximum force output of 4 kN. These capabilities are well suited for the backend printed circuit board and its supporting fixture. The shaker system is equipped with a matched power amplifier, forced air cooling, and a suite of safety features that ensure stable operation and precise control during extended vibration tests. Further details regarding the hardware and its specifications are provided in the appendix.
 
-The backend PCB was mounted on the custom test fixture and instrumented with three triaxial accelerometers located at `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP`.The same three triaxial accelerometers described in @accelerometertable were used for all tests, each installed at the identical locations as during data acquisition. This ensured consistency in sensor placement and allowed direct comparison between field and laboratory measurements.
+The backend PCB was mounted on the custom test fixture and instrumented with three triaxial accelerometers located at `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP`. The same three triaxial accelerometers described in @accelerometertable were used for all tests, each installed at the identical locations as during data acquisition. This ensured consistency in sensor placement and allowed direct comparison between field and laboratory measurements.
 
 Accelerated profiles were generated for both fatigue exponents, $b=8$ and $b=9$, to evaluate their influence on test specifications. However, as discussed in @limitsoftimecompression and illustrated in @testtimereduction, there are practical limits on how much a test can be compressed whilst maintaining realistic severity levels.
 
@@ -65,7 +65,7 @@ These calculations establish the lower bounds for test duration. Attempting to c
 The validation process reveals an important trade off between test efficiency and severity constraints. @acceptabletimecompressionb8 and @acceptabletimecompressionb9 summarise the shortest acceptable test durations for each sensor location and axis. For $b=9$, most channels can be tested in as little as 1.5 hours whilst remaining within the shock severity envelope. The higher fatigue exponent permits more aggressive acceleration, compressing the 924 hour field profile by a factor of 640. In contrast, $b=8$ requires a more conservative 4 hour minimum for most locations, corresponding to a compression factor of 256. The exception in both cases is `PCB_TOP` X-axis, where structural resonance effects restrict the minimum duration to 10 hours regardless of the fatigue exponent. These validated durations establish the baseline specifications for the subsequent shaker table tests, balancing practical test efficiency against the fundamental requirement to avoid introducing unrealistic loading conditions.
 
 
-== Control Sensor Selection
+== Control sensor selection
 
 The shaker used in this work is uniaxial and can therefore excite only one direction at a time. As a result, a single point and single axis control strategy was necessary. Among the three mounted sensors, the `PCB_LEFT` location demonstrated the strongest and most stable mechanical coupling during the self test procedure, while `PCB_TOP` and `PCB_CENTER` resulted in poor coherence errors. The `PCB_LEFT` position was the most mechanically inert and consistently produced high coherence between the shaker drive and the measured response, which is essential for reliable closed loop control. For this reason, the `PCB_LEFT` accelerometer served as the control sensor for every test. @finalshakertests shows the planned shaker tests considering the limitations of time compression and shaker control positions.
 
@@ -102,10 +102,10 @@ Although the sensor at `PCB_LEFT` measures three orthogonal directions, only one
 
 
 
-During each test, the selected axis of the `PCB_LEFT` accelerometer provided the feedback signal for closed loop control, while all axes of all sensors were recorded simultaneously. The control signal was split using a T-connector so that VibControl received the conditioned accelerometer signal for feedback, while SQuadriga recorded the same signal together with the response channels at `PCB_CENTER` and `PCB_TOP`. All measurements were collected in ArtemiS Suite and served as the basis for computing the FDS.
+During each test, the selected axis of the `PCB_LEFT` accelerometer provided the feedback signal for closed loop control, while all axes of all sensors were recorded simultaneously. The control signal was split using a T-connector so that _m+p VibControl_ software received the conditioned accelerometer signal for feedback, while SQuadriga recorded the same signal together with the response channels at `PCB_CENTER` and `PCB_TOP`. All measurements were collected in ArtemiS Suite and served as the basis for computing the FDS.
 
 
-== Signal Routing and Sensor Conditioning
+== Signal routing and sensor conditioning
 
 #figure(
 box(stroke: 1pt + black, inset: 1em)[
@@ -114,13 +114,13 @@ box(stroke: 1pt + black, inset: 1em)[
 caption: [Shaker test architecture],
 )<shakertestarchitecture>
 
-The selected axis from the `PCB_LEFT` triaxial accelerometer needed to support two independent functions. It had to supply the feedback required for closed loop control in VibControl and it had to provide an unmodified signal for multi channel recording in SQuadriga. To achieve this with a single physical sensor, its output signal was passed through a BNC T-connector. The T-connector produced two electrically identical branches.
+The selected axis from the `PCB_LEFT` triaxial accelerometer needed to support two independent functions. It had to supply the feedback required for closed loop control in m+p VibControl and it had to provide an unmodified signal for multi channel recording in SQuadriga. To achieve this with a single physical sensor, its output signal was passed through a BNC T-connector. The T-connector produced two electrically identical branches.
 
 @shakertestarchitecture provides a clear overview. One branch of the accelerometer signal was routed to the m+p VibControl frontend, configured in ICP mode to supply constant current and perform signal conditioning for closed loop control. The other branch was sent to the HEAD SQuadriga I, operated in AC coupled mode to read the conditioned voltage without supplying additional power, preventing conflicts between ICP excitation and the SQuadriga input. SQuadriga I and II were linked to record all sensor channels, mirroring the data acquisition setup. For response measurement, SQuadriga I (connected to the laptop) was set to "Control" mode and SQuadriga II to "Module" mode. Data acquisition was managed in HEAD acoustics ArtemiS. This setup ensured the accelerometer was powered only once while supporting both control and data recording.
 
 All accelerometer channels from `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP` were recorded in ArtemiS Suite. Recording all nine channels for every test direction ensured that the structural response of the backend PCB was fully captured and allowed for a detailed comparison with the analytical spectra.
 
-== Shaker PSD Control & Drive Signal
+== Shaker PSD control
 
 All tests were conducted under closed loop control with _m+p VibControl_. In this mode, the software continuously monitored the vibration measured by the control channel and automatically adjusted the drive voltage to match the target PSD. 
 

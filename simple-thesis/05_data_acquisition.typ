@@ -11,20 +11,20 @@ The first step of the test tailoring methodology is data acquisition. In this st
 
 Thermomix#super(sym.trademark.registered) TM7 operates across multiple knife rotational speeds, spanning from 40 rpm to 10,000 rpm in both clockwise and counter-clockwise directions. The endurance profile also includes a dough mode where the knife alternates between 600 rpm in CW and CCW. The complete set of rotational speeds and their contribution to the endurance load profile are detailed in @averagemotorload and @endurancemotorload. Since the endurance profile represents the device lifetime, all speed modes with their defined operational hours occur in series rather than parallelly.  
 
-== Modal Analysis of the Backend PCB
+== Modal analysis of backend PCB
 
 Modal analysis reveals the dynamic behaviour of a component by identifying its natural frequencies, damping ratios, and corresponding mode shapes. These parameters govern how the structure responds to excitation and how fatigue accumulates over time.
 
 For this reason, modal anaysis was performed on the Thermomix#super(sym.trademark.registered) TM7 backend PCB before vibration measurements were taken. The results helped act as a guide for optimum accelerometer placement.
 
-A combination of experimental modal analysis, _impulse hammer test_, using _HEAD acoustics ArtemiS Suite_ and FEM analysis in _ANSYS Workbench 2025 R1_ was used to obtain a complete description of the board's modal characteristics.
+A combination of experimental modal analysis, _impulse hammer test_, using _HEAD acoustics ArtemiS Suite_ and FEM analysis in _ANSYS Workbench 2025 R2_ was used to obtain a complete description of the board's modal characteristics.
 
-=== Experimental Modal Analysis (Impulse Hammer Test)
+=== Experimental modal analysis (Impulse Hammer Test)
 
 
 The impulse hammer test was performed using HEAD acoustics ArtemiS Suite, which served both as the acquisition and analysis platform.
 
-For the test, the backend PCB was suspended on a string to approximate free-free boundary conditions. Three uni-axial accelerometers were carefully glued at selected locations to capture the response, and a total of 26 measurement points were defined on both the top and bottom sides of the PCB, as depicted in @measurementpointstop and @measurementpointsbottom.
+For the test, the backend PCB was suspended on a string to approximate free-free boundary conditions. Three uniaxial accelerometers were carefully glued at selected locations to capture the response, and a total of 26 measurement points were defined on both the top and bottom sides of the PCB, as depicted in @measurementpointstop and @measurementpointsbottom.
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_3.png")]
 
@@ -98,9 +98,9 @@ The roving hammer method is advantageous for lightweight or delicate structures 
 
 
 
-=== Modal Analysis in ANSYS Workbench
+=== Modal analysis in ANSYS Workbench
 
-To complement the experimental modal analysis and provide a predictive tool for design modifications, a finite element modal analysis was performed in ANSYS Workbench.
+To complement the experimental modal analysis and provide a predictive tool for design modifications, a finite element modal analysis was performed in ANSYS Workbench 2025 R2.
 
 #figure(
     box(stroke: 1pt+black)[
@@ -108,7 +108,7 @@ To complement the experimental modal analysis and provide a predictive tool for 
     ], caption: "Backend PCB CAD model"
   )<backendcadmodel>
 
-The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANSYS Workbench 2025 R1. The mesh was generated with an element size of 1 mm, and adaptive sizing was used to ensure adequate resolution of local features and mode shapes while maintaining computational efficiency. Appropriate element designations were assigned to all components, each with their respective material properties @CoSyBackEndPCB2025. The total mass of the model was adjusted so that the simulated PCB weight was approximately 550 grams, matching the actual measured weight of the physical PCB.
+The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANSYS Workbench 2025 R2. The mesh was generated using tetrahedral elements with an element size of 1 mm, and adaptive sizing was used to ensure adequate resolution of local features and mode shapes while maintaining computational efficiency. Appropriate element designations were assigned to all components, each with their respective material properties @CoSyBackEndPCB2025. The total mass of the model was adjusted so that the simulated PCB weight was approximately 550 grams, matching the actual measured weight of the physical PCB.
 
 #show figure: set block(breakable: true)
 
@@ -127,7 +127,7 @@ The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANS
   )<backendmesh>
 
 
-The analysis was conducted under two boundary conditions to understand how mounting affects the modal behaviour. First, a free free analysis was performed with no constraints applied, representing the suspended configuration used during the impulse hammer test. The resulting mode shapes and frequencies for the first six modes are presented in @modalshapeswoconstraint1 through @modalshapeswoconstraint6.
+The analysis was conducted under two boundary conditions to understand how mounting affects the modal behaviour. First, a free-free analysis was performed with no constraints applied, representing the suspended configuration used during the impulse hammer test. The resulting mode shapes and frequencies for the first six modes are presented in @modalshapeswoconstraint1 through @modalshapeswoconstraint6.
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_1.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode2_1.png")]
@@ -157,7 +157,7 @@ Second, a constrained analysis was performed with fixed supports applied at the 
     ], caption: "Mounting of backend in TM7"
   )<fixingpointsofbackend>
 
-The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions. For all the natural frequencies with and without constraints, see Appendix. 
+The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free-free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions. For all the natural frequencies with and without constraints, see Appendix. 
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_1_56.368Hz.png")]
 #let img2 = box(stroke: black, inset: 0.5em)[#image("../../Images/BackendModalAnalysisPictures/Mode_2_98.955Hz.png")]
@@ -178,9 +178,9 @@ The constrained boundary condition introduces stiffness at the mounting points, 
   )
 
 
-=== Modal Correlation Between Simulation and Experiment
+=== Modal correlation between simulation and experiment
 
-The comparison between the experimental (impact hammer test) and numerical (ANSYS Modal) modal frequencies revealed a systematic deviation that increased with frequency as shown in @modescomparison. The FE model over-predicted the lower modes and increasingly under-predicted the higher modes.
+The comparison between the experimental (impact hammer test) and numerical (ANSYS Modal) modal frequencies revealed a systematic deviation that increased with frequency as shown in @modescomparison. The FE model overpredicted the lower modes and increasingly underpredicted the higher modes.
 
 #figure(
   box(stroke: 1pt+black, )[
@@ -194,7 +194,7 @@ For each mode, the ratio between the experimental and simulated frequency was ca
 
 $ r_i = f_i^"IHT" / f_i^"ANSYS" $
 
-The ratios showed a clear upward trend with frequency, as shown in @ratiovsfrequency. A linear relationship between the scaling factor and frequency was defined to progressively adjust each simulated mode. In practical implementation, the relationship took the form
+The ratios showed a clear upward trend with frequency, as shown in @ratiovsfrequency. A linear relationship between the scaling factor and frequency was defined to progressively adjust each simulated mode. In practical implementation, the relationship took the form,
 $ s(f) = a + b · f $
 
 where $a=0.6914$, $b=0.0011$, and $s(f)$ is the incremental scaling factor, as obtained from the linear trendline of the ratio plot.
@@ -205,7 +205,7 @@ where $a=0.6914$, $b=0.0011$, and $s(f)$ is the incremental scaling factor, as o
   ], caption: "Ratio vs Frequency",
 ) <ratiovsfrequency>
 
-The scaled frequency for each mode was then calculated as
+The scaled frequency for each mode was then calculated as,
 $ f_i^"scaled" = s(f_i^"ANSYS") · f_i^"ANSYS" $
 
 #figure(
@@ -263,19 +263,19 @@ The scaled frequencies exhibit substantially improved agreement with the test da
 ]<frequencycomparison>
 
 
-Applying the frequency‑dependent linear scaling reduced the mean absolute frequency error from approximately 35.9% to 7.4% across 29 modes (≈79% relative reduction). The worst‑case error decreased from 93.0% to 24.1%. Improvements were most pronounced for higher modes, where the unscaled deviations were largest. A small deterioration was observed in a few low‑order modes (e.g., Modes 6–8), which reflects the bias of a single global linear fit.
+Applying the frequency‑dependent linear scaling reduced the mean absolute frequency error from approximately 35.9% to 7.4% across 29 modes (≈79% relative reduction). The worst case error decreased from 93.0% to 24.1%. Improvements were most pronounced for higher modes, where the unscaled deviations were largest. A small deterioration was observed in a few low‑order modes (e.g., Modes 6–8), which reflects the bias of a single global linear fit.
 
 
 
-== Accelerometer Placement
+== Accelerometer placement
 
-Accelerometer placement was driven by mode shapes from ANSYS together with the impulse‑hammer modal test. Two boundary conditions were reviewed: free free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
+Accelerometer placement was driven by mode shapes from ANSYS together with the impulse hammer modal test. Two boundary conditions were reviewed, free-free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
 
-To separate bending and torsion with a small channel count, sensors were distributed to regions with distinct modal participation. This follows information‑based optimal sensor placement principles; independence was checked pragmatically with coherence and Auto‑MAC to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020. Auto‑MAC (Automatic Modal Assurance Criterion) is a statistical measure that evaluates whether different vibration modes can be clearly distinguished from one another. Good Auto‑MAC values confirm that the sensor locations provide independent modal information rather than redundant measurements.
+To separate bending and torsion with a small channel count, sensors were distributed to regions with distinct modal participation. This follows information based optimal sensor placement principles with independence verified through coherence measurements to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020.
 
-Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the PCB was suspended during hammer tests to approximate free free boundary conditions. The resulting frequency response functions did not show mass‑loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
+Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the PCB was suspended during hammer tests to approximate free-free boundary conditions. The resulting frequency response functions did not show mass loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
 
-Placement was also aligned with reliability. Solder‑joint fatigue correlates with relative displacement and local stress near components, so measuring in component‑dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, two miniature triaxial accelerometers and one triaxial accelerometer were installed at antinodes of the first bending mode that persist across both boundary conditions.
+Placement was also aligned with reliability. Solder joint fatigue correlates with relative displacement and local stress near components, so measuring in component dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, three triaxial accelerometers were installed at antinodes of the first bending mode that persist across both boundary conditions.
 
 #let img1 = box(stroke: 1pt+black, inset: 0em)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend without constraints/mode1_2.png")]
 #let img2 = box(stroke: 1pt+black)[#image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/mode1_4.png")]
@@ -313,7 +313,7 @@ caption: [Accelerometer Placement on Backend PCB],
 
 
 
-== Vibration Data Acquisition
+== Vibration data acquisition
 
 With the sensors positioned, vibration data was collected for all operating conditions in the endurance profile. The backend PCB was kept in its normal assembly to maintain realistic vibration coupling with the rest of the device.
 

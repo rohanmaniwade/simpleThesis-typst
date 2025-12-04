@@ -12,7 +12,7 @@
 #let zweiterGutachter = "Dr.-Ing. Galal Galal"
 #let fach = "M.Sc. Mechanical Engineering (Mechatronics)"
 #let semester = "Summer Semester 2025"
-#let date = "31.10.2025"
+#let date = "19.01.2026"
 
 // Set the page layout
 #set page(
@@ -61,7 +61,7 @@ Matriculation No.: #matrikelNr\
   row-gutter: 3mm,
   align: (left, left),
  
- [Examiner], [#ersterGutachter],[],[#zweiterGutachter],
+ [Examiners], [#ersterGutachter],[],[#zweiterGutachter],
  [Supervisors:], [#betreuerEins],
  [], [#betreuerZwei],
  [Degree Programme:], [#fach],

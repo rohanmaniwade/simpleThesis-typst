@@ -7,11 +7,11 @@
 
 = Theoretical Background
 
-== Fatigue Damage in Vibration Testing
+== Fatigue damage in vibration testing
 
-Fatigue damage prediction is essential for designing components that can handle repeated loading over their service life, especially in environments where vibration is a major factor. Predicting fatigue life relies heavily on Miner’s law for cumulative damage, Basquin’s Law for stress-life relationships, and the S-N curve for visualising how materials withstand cycles at different stress levels.
+Fatigue damage prediction is essential for designing components that can handle repeated loading over their service life, especially in environments where vibration is a major factor. Predicting fatigue life relies heavily on Miner's law for cumulative damage, Basquin's Law for stress-life relationships, and the S–N curve for visualising how materials withstand cycles at different stress levels.
 
-=== Palmgren-Miner Rule for Fatigue Damage Equivalence
+=== Palmgren-Miner rule for fatigue damage equivalence
 
 Miner's law, also known as the Palmgren-Miner rule, helps engineers estimate when a material will fail under varying stress cycles by quantifying fatigue damage accumulation. According to this rule, each stress cycle consumes a fraction of the total fatigue life, and failure occurs when the sum of these fractions equals one,
 
@@ -19,33 +19,33 @@ $ D=sum^n_"i=1" n_i/N_i $
 
 where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number of cycles to failure at that level. Miner's law provides a practical way to condense a lifetime's worth of damage into an accelerated lab test, however it does assume that each cycle contributes independently to failure. Real materials sometimes deviate due to load sequence effects or nonlinear damage accumulation, a limitation explored in more advanced research @Palmgren1924 @miner1945cumulative.
 
-=== Basquin's Law 
+=== Basquin's law 
 Basquin’s law describes the relationship between the amplitude of cyclic stress and the number of cycles to failure, especially important for high-cycle fatigue scenarios. It is typically given as a power law,
 
 $ N sigma_p^b = C $
 
 Here, $sigma_p$ is the peak (amplitude) stress, $N$ is the number of cycles to failure, $b$ is the Basquin exponent (material fatigue exponent), and $C$ is a material‑dependent constant. Even a small increase in stress can sharply decrease fatigue life, depending on the material's $b$ exponent. Basquin’s law is widely used to fit experimental fatigue data and model S–N curves @oh1910exponential.
 
-=== S-N curve
+=== S–N curve
 
 #figure(
 box(stroke: 1pt + black, inset: 5pt)[
   #image("../../Images/SNcurve_cropped.pdf", width: 100mm)
 ],
-caption: [S-N curve @Suresh1998],
+caption: [S–N curve @Suresh1998],
 )
 
-The S-N curve, or Wöhler curve, is a log-log plot of stress amplitude versus cycles to failure. It provides a clear picture of how materials behave under repeated loading, revealing the reduction in life as stress increases. The concept originated in the mid 19th century through the pioneering work of August Wöhler, a German railway engineer who conducted systematic fatigue tests on railway axles to study their failure mechanisms under cyclic loading. His experiments involved applying alternating stresses to metal components and observing the number of cycles to failure, laying the foundation for modern fatigue testing @Suresh1998.
+The S–N curve, or Wöhler curve, is a log-log plot of stress amplitude versus cycles to failure. It provides a clear picture of how materials behave under repeated loading, revealing the reduction in life as stress increases. The concept originated in the mid 19th century through the pioneering work of August Wöhler, a German railway engineer who conducted systematic fatigue tests on railway axles to study their failure mechanisms under cyclic loading. His experiments involved applying alternating stresses to metal components and observing the number of cycles to failure, laying the foundation for modern fatigue testing @Suresh1998.
 
-The S-N curve typically exhibits two distinct regions. In the high stress, low cycle region, materials fail quickly after a small number of cycles. In the low stress, high cycle region, materials can withstand millions of cycles before failure. For many steels and ferrous metals, the S-N curve flattens at low stress levels, reaching what is called the endurance limit or fatigue limit. Materials operating below this threshold can theoretically withstand infinite cycles without failure. However, aluminum and many non-ferrous metals lack a defined endurance limit and will eventually fail even at very low stress levels @Suresh1998. S-N curves are constructed experimentally and typically fitted using Basquin’s law. This approach helps engineers create test profiles that reflect real use conditions in a compressed timeframe @Juvinall2012 @Suresh1998.
+The S–N curve typically exhibits two distinct regions. In the high stress, low cycle region, materials fail quickly after a small number of cycles. In the low stress, high cycle region, materials can withstand millions of cycles before failure. For many steels and ferrous metals, the S–N curve flattens at low stress levels, reaching what is called the endurance limit or fatigue limit. Materials operating below this threshold can theoretically withstand infinite cycles without failure. However, aluminum and many non-ferrous metals lack a defined endurance limit and will eventually fail even at very low stress levels @Suresh1998. S–N curves are constructed experimentally and typically fitted using Basquin's law. This approach helps engineers create test profiles that reflect real use conditions in a compressed timeframe @Juvinall2012 @Suresh1998.
 
-Miner's law lets engineers sum damage from diverse stress cycles, Basquin’s law predicts fatigue life as a function of stress amplitude, and S-N curve visualises material performance under varying conditions. These tools are foundational for accelerated vibration testing strategies, ensuring components are reliable and safe without unnecessary over-testing @Pook2007.
+Miner's law lets engineers sum damage from diverse stress cycles, Basquin's law predicts fatigue life as a function of stress amplitude, and S–N curve visualises material performance under varying conditions. These tools are foundational for accelerated vibration testing strategies, ensuring components are reliable and safe without unnecessary overtesting @Pook2007.
 
-== Mission Synthesis
+== Mission synthesis <missionsynthesis>
 
 The concept of mission synthesis originates from the need to reproduce the fatigue damage experienced by structures in real operational environments within shorter laboratory tests. After World War II, engineers in aerospace and defense realised that many standardised tests defined by conservative envelopes either undertested or overtested components. Early studies on fatigue, such as Basquin’s stress-life relationship (1910) @oh1910exponential or Miner’s linear cumulative damage hypothesis (1945), provided a mathematical foundation to link cyclic loading with fatigue life @miner1945cumulative.
 
-=== Test Tailoring Procedure
+=== Test tailoring procedure
 
 Lalanne @lalanne2010mechanicalvol defines _test tailoring_ as the structured process of creating test specifications directly from a product's life cycle profile and its real environment data, rather than from fixed standard envelopes. This approach is consistent with modern standards such as GAM.EG13 and MIL-STD-810F/G, and STANAG 4370 (AECTP 400), which all require that mechanical and climatic tests reflect measured service conditions rather than arbitrary limits.
 
@@ -132,9 +132,9 @@ ERS and SRS use the same mathematical device, a bank of linear SDOF oscillators 
 In this thesis ERS characterises peak response under random profiles. SRS provides the reference envelope for shock severity. @lalanne2010mechanicalvol
 
 
-=== Test Time Compression
+=== Test time compression
 
-Reducing vibration test time is achieved by compressing the lifetime damage occuring in the field into a shorter, more intense laboratory test. The time compression formula is grounded in Miner’s rule @miner1945cumulative, where the total accumulated fatigue damage should be equivalent for both the accelerated and real-world scenario. 
+Reducing vibration test time is achieved by compressing the lifetime damage occuring in the field into a shorter, more intense laboratory test. The time compression formula is grounded in Miner’s rule @miner1945cumulative, where the total accumulated fatigue damage should be equivalent for both the accelerated and real world scenario. 
 
 If a component is expected to undergo a random vibration profile for $T_"field"$ hours in the real world, and the damage accumulation formula indicates the total damage incurred at the original severity, we can increase the input vibration's severity (RMS value) so the same damage happens in a shorter time period $T_"test"$.
 
@@ -150,7 +150,7 @@ where $T_"field"$ is real life duration, $T_"test"$ is the planned acceleration 
 
 For example, if the test RMS is doubled and $b=8$ for typical solder joints, the time compression factor is $F=2^8=256$, meaning a 256-hour field duration can theoretically be simulated in a 1 hour test. @nagle2010test @lalanne2010mechanicalvol.
 
-=== Limits of Time Compression <limitsoftimecompression>
+=== Limits of time compression <limitsoftimecompression>
 
 Achieving effective test time reduction while maintaining realistic severity requires careful attention to several critical factors. The compression must accurately represent real world conditions without introducing artificial failures or missing genuine failure modes.
 
@@ -176,7 +176,7 @@ Poorly controlled time reduction can create artificial problems that do not exis
 
 
 
-=== Validation of Reduced Test Time <responsespectrumvalidation>
+=== Validation of reduced test time <responsespectrumvalidation>
 
 Peak response consistency is checked by comparing the _Maximum Response Spectrum_, also known as MRS or ERS, of each accelerated profile with an SRS envelope that represents a relevant reference shock. The envelope uses the maximax convention. A small damping ζ is selected to match structural behaviour and frequency points are spaced on a logarithmic grid. This check confirms that time compression does not introduce unrealistic peaks @lalanne2010mechanicalvol @nagle2010test.
 

@@ -3,9 +3,6 @@
 #import "template.typ": thesis
 #import "@preview/subpar:0.2.2"
 
-#pagebreak()
-
-
 #set heading(numbering: none, supplement: [Appendix])
 
 = Appendix A: Modal Analysis of PCB in ANSYS Workbench
@@ -49,7 +46,7 @@
     [Mode 29], [1061.40], [1043.60],
     [Mode 30], [1126.20], [1052.90],
   ),
-  caption: [Modes of Backend PCB from ANSYS Workbench 2025 R1],
+  caption: [Modes of Backend PCB from ANSYS Workbench 2025 R2],
 )
 
 = Appendix B: Data Acquisition Hardware
@@ -67,7 +64,7 @@
 
 == ANSYS Workbench
 - Manufacturer: ANSYS, Inc.
-- Version: 2025 R1
+- Version: 2025 R2
 - Application: Finite Element Modal Analysis, Design
 - Modules Used: Mechanical, Modal Analysis, SpaceClaim
 
@@ -136,7 +133,7 @@ Specifications from page two include:
 
 == Accessories and Safety
 
-According to the manufacturer’s list on page one , the system includes an automatic armature centring system, a pneumatic load compensation system and a magnetic stray field reduction coil. Safety features include over temperature, over travel, under cooling and over current protection.
+According to the manufacturer’s list, the system includes an automatic armature centring system, a pneumatic load compensation system and a magnetic stray field reduction coil. Safety features include over temperature, over travel, under cooling and over current protection.
 
 
 
