@@ -26,7 +26,7 @@ This thesis addresses this challenge by developing a methodology that preserves 
   #figure(
     [
     #image("../../Images/TM7_wo_background.jpg", width: 80mm)],
-    caption: [_Thermomix#super[#sym.trademark.registered] TM7_ @thermomix_tm7_image],
+    caption: [_Thermomix#super[#sym.trademark.registered] TM7_],
   ) <thermomix>
 ]
 
