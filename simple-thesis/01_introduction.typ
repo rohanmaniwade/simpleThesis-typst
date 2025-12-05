@@ -14,9 +14,9 @@ Modern product development faces an increasingly critical challenge of validatin
 
 Founded in 1883 in _Wuppertal_, _Germany_, _Vorwerk GmbH_ exemplifies this challenge perfectly. What began as carpet manufacturing has evolved into a global provider of premium household products built on exceptional durability @vorwerk_group_about. The company's direct sales model relies on product demonstrations and personal consultation, where failures would be immediately visible and damaging.
 
-_Vorwerk's_ flagship _Thermomix#super[#sym.trademark.registered]_ represents a multifunctional cooking system designed for years of intensive home use, creating a durability paradox. Products that must prove their field longevity require extensive validation before reaching customers, with traditional testing extending for months and consuming engineering resources.
+_Vorwerk's_ flagship product, _Thermomix#super[#sym.trademark.registered]_, is a multifunctional cooking system designed for years of intensive home use, thereby creating a durability paradox. Products that must prove their field longevity require extensive validation before reaching customers, with traditional testing extending for months and consuming engineering resources.
 
-Modern products contain complex electronic assemblies with mixed circuits, power devices, and mechanical systems that experience combined stresses varying dynamically with operating conditions. Traditional approaches often fail to efficiently capture these interactions within practical timelines.
+Modern products incorporate complex electronic assemblies comprising mixed circuits, power devices, and mechanical systems that are subjected to dynamically varying stresses during operation. Traditional approaches often fail to efficiently capture these interactions within practical timelines.
 
 This thesis addresses this challenge by developing a methodology that preserves essential durability characteristics while dramatically reducing validation time. Using _Thermomix#super[#sym.trademark.registered] TM7_ as a case study, this work demonstrates how advanced signal processing and fatigue analysis can compress months of testing into days, enabling faster development without compromising reliability.
 
@@ -61,7 +61,7 @@ The _backend_ plays a critical role in system reliability. Motor speed commands,
 
 == Problem statement
 
-Modern consumer appliances must survive years of intensive use while maintaining performance and safety standards. Products like _Thermomix#super[#sym.trademark.registered] TM7_ experience complex loading patterns including internal vibration from motor operation, thermal cycling from heating elements, and external transport stresses. These combined loads gradually accumulate fatigue damage that can eventually cause component failure.
+Modern consumer appliances must survive years of intensive use while maintaining performance and safety standards. Products like _Thermomix#super[#sym.trademark.registered] TM7_ experience complex loading patterns including internal vibration from motor operation, thermal cycling from heating elements, and external transport stresses. These combined loads gradually induce fatigue damage, which can eventually result in component failure.
 
 To ensure reliability, manufacturers develop comprehensive endurance testing profiles that validate products against their intended service life. For the _TM7_, _Vorwerk_ employs a combined vibration and thermal endurance profile designed to replicate 4,000 field hours of operation. However, executing this complete profile on complex assemblies requires substantial time and resources, creating development bottlenecks that limit design iteration and delay product improvements.
 
@@ -178,7 +178,7 @@ The statistical distribution of motor speeds and their relative dwell times is s
 
 The heating element follows a complementary load profile designed to introduce representative and demanding thermal conditions. Heating is primarily applied at low rotational speeds since high speed operation already produces significant frictional heating through the interaction of the blades with the water. This targeted strategy increases the load on the heating system while avoiding excessive stress on the motor.
 
-In certain test segments, the bowl is intentionally left without water so that the heating element can reach temperatures above 100 °C. These dry heating phases are intended to place the heating circuit under additional stress, providing a more complete evaluation of the system's reliability.
+In certain test segments, the bowl is intentionally left without water so that the heating element can reach temperatures above 100 °C. These dry heating phases are intended to impose additional stress on the heating circuit, thereby enabling a more comprehensive evaluation of system reliability. 
 
 === Actuator cycles and test sequence
 
