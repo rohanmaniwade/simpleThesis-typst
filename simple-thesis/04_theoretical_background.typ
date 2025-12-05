@@ -9,22 +9,22 @@
 
 == Fatigue damage in vibration testing
 
-Fatigue damage prediction is essential for designing components that can handle repeated loading over their service life, especially in environments where vibration is a major factor. Predicting fatigue life relies heavily on Miner's law for cumulative damage, Basquin's Law for stress-life relationships, and the S–N curve for visualising how materials withstand cycles at different stress levels.
+Fatigue damage prediction is essential for designing components that can handle repeated loading over their service life, especially in environments where vibration is a major factor. Predicting fatigue life relies heavily on _Miner's law_ for cumulative damage, _Basquin's law_ for stress-life relationships, and the S–N curve for visualising how materials withstand cycles at different stress levels.
 
 === Palmgren-Miner rule for fatigue damage equivalence
 
-Miner's law, also known as the Palmgren-Miner rule, helps engineers estimate when a material will fail under varying stress cycles by quantifying fatigue damage accumulation. According to this rule, each stress cycle consumes a fraction of the total fatigue life, and failure occurs when the sum of these fractions equals one,
+_Miner's law_, also known as the _Palmgren-Miner rule_, helps engineers estimate when a material will fail under varying stress cycles by quantifying fatigue damage accumulation. According to this rule, each stress cycle consumes a fraction of the total fatigue life, and failure occurs when the sum of these fractions equals one,
 
 $ D=sum^n_"i=1" n_i/N_i $
 
-where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number of cycles to failure at that level. Miner's law provides a practical way to condense a lifetime's worth of damage into an accelerated lab test, however it does assume that each cycle contributes independently to failure. Real materials sometimes deviate due to load sequence effects or nonlinear damage accumulation, a limitation explored in more advanced research @Palmgren1924 @miner1945cumulative.
+where $n_i$ is the number of cycles at stress level $i$, and $N_i$ is the number of cycles to failure at that level. _Miner's law_ provides a practical way to condense a lifetime's worth of damage into an accelerated lab test, however it does assume that each cycle contributes independently to failure. Real materials sometimes deviate due to load sequence effects or nonlinear damage accumulation, a limitation explored in more advanced research @Palmgren1924 @miner1945cumulative.
 
 === Basquin's law 
-Basquin’s law describes the relationship between the amplitude of cyclic stress and the number of cycles to failure, especially important for high-cycle fatigue scenarios. It is typically given as a power law,
+_Basquin’s law_ describes the relationship between the amplitude of cyclic stress and the number of cycles to failure, especially important for high cycle fatigue scenarios. It is typically given as a power law,
 
 $ N sigma_p^b = C $
 
-Here, $sigma_p$ is the peak (amplitude) stress, $N$ is the number of cycles to failure, $b$ is the Basquin exponent (material fatigue exponent), and $C$ is a material‑dependent constant. Even a small increase in stress can sharply decrease fatigue life, depending on the material's $b$ exponent. Basquin’s law is widely used to fit experimental fatigue data and model S–N curves @oh1910exponential.
+Here, $sigma_p$ is the peak (amplitude) stress, $N$ is the number of cycles to failure, $b$ is the _Basquin_ exponent (material fatigue exponent), and $C$ is a material‑dependent constant. Even a small increase in stress can sharply decrease fatigue life, depending on the material's $b$ exponent. _Basquin’s law_ is widely used to fit experimental fatigue data and model S–N curves @oh1910exponential.
 
 === S–N curve
 
@@ -35,40 +35,40 @@ box(stroke: 1pt + black, inset: 5pt)[
 caption: [S–N curve @Suresh1998],
 )
 
-The S–N curve, or Wöhler curve, is a log-log plot of stress amplitude versus cycles to failure. It provides a clear picture of how materials behave under repeated loading, revealing the reduction in life as stress increases. The concept originated in the mid 19th century through the pioneering work of August Wöhler, a German railway engineer who conducted systematic fatigue tests on railway axles to study their failure mechanisms under cyclic loading. His experiments involved applying alternating stresses to metal components and observing the number of cycles to failure, laying the foundation for modern fatigue testing @Suresh1998.
+The S–N curve, or _Wöhler_ curve, is a log-log plot of stress amplitude versus cycles to failure. It provides a clear picture of how materials behave under repeated loading, revealing the reduction in life as stress increases. The concept originated in the mid 19th century through the pioneering work of _August Wöhler_ @wohler1870 , a German railway engineer who conducted systematic fatigue tests on railway axles to study their failure mechanisms under cyclic loading @Suresh1998.
 
-The S–N curve typically exhibits two distinct regions. In the high stress, low cycle region, materials fail quickly after a small number of cycles. In the low stress, high cycle region, materials can withstand millions of cycles before failure. For many steels and ferrous metals, the S–N curve flattens at low stress levels, reaching what is called the endurance limit or fatigue limit. Materials operating below this threshold can theoretically withstand infinite cycles without failure. However, aluminum and many non-ferrous metals lack a defined endurance limit and will eventually fail even at very low stress levels @Suresh1998. S–N curves are constructed experimentally and typically fitted using Basquin's law. This approach helps engineers create test profiles that reflect real use conditions in a compressed timeframe @Juvinall2012 @Suresh1998.
+The S–N curve typically exhibits two distinct regions. In the high stress, low cycle region, materials fail quickly after a small number of cycles. In the low stress, high cycle region, materials can withstand millions of cycles before failure. For many steels and ferrous metals, the S–N curve flattens at low stress levels, reaching what is called the endurance limit or fatigue limit. Materials operating below this threshold can theoretically withstand infinite cycles without failure. However, aluminum and many non-ferrous metals lack a defined endurance limit and will eventually fail even at very low stress levels @Suresh1998. S–N curves are constructed experimentally and typically fitted using _Basquin's law_. This approach helps engineers create test profiles that reflect real use conditions in a compressed timeframe @Juvinall2012 @Suresh1998.
 
-Miner's law lets engineers sum damage from diverse stress cycles, Basquin's law predicts fatigue life as a function of stress amplitude, and S–N curve visualises material performance under varying conditions. These tools are foundational for accelerated vibration testing strategies, ensuring components are reliable and safe without unnecessary overtesting @Pook2007.
+_Miner's law_ lets engineers sum damage from diverse stress cycles, _Basquin's law_ predicts fatigue life as a function of stress amplitude, and S–N curve visualises material performance under varying conditions. These tools are foundational for accelerated vibration testing strategies, ensuring components are reliable and safe without unnecessary overtesting @Pook2007.
 
 == Mission synthesis <missionsynthesis>
 
-The concept of mission synthesis originates from the need to reproduce the fatigue damage experienced by structures in real operational environments within shorter laboratory tests. After World War II, engineers in aerospace and defense realised that many standardised tests defined by conservative envelopes either undertested or overtested components. Early studies on fatigue, such as Basquin’s stress-life relationship (1910) @oh1910exponential or Miner’s linear cumulative damage hypothesis (1945), provided a mathematical foundation to link cyclic loading with fatigue life @miner1945cumulative.
+The concept of mission synthesis originates from the need to reproduce the fatigue damage experienced by structures in real operational environments within shorter laboratory tests. After World War II, engineers in aerospace and defense realised that many standardised tests defined by conservative envelopes either undertested or overtested components. Early studies on fatigue, such as _Basquin’s_ stress-life relationship (1910) @oh1910exponential or _Miner’s_ linear cumulative damage hypothesis (1945), provided a mathematical foundation to link cyclic loading with fatigue life @miner1945cumulative.
 
 === Test tailoring procedure
 
-Lalanne @lalanne2010mechanicalvol defines _test tailoring_ as the structured process of creating test specifications directly from a product's life cycle profile and its real environment data, rather than from fixed standard envelopes. This approach is consistent with modern standards such as GAM.EG13 and MIL-STD-810F/G, and STANAG 4370 (AECTP 400), which all require that mechanical and climatic tests reflect measured service conditions rather than arbitrary limits.
+_Lalanne_ @lalanne2010mechanicalvol defines test tailoring as the structured process of creating test specifications directly from a product's life cycle profile and its real environment data, rather than from fixed standard envelopes. This approach is consistent with modern standards such as _GAM.EG13_ and _MIL-STD-810F/G_, and _STANAG 4370 (AECTP 400)_, which all require that mechanical and climatic tests reflect measured service conditions rather than arbitrary limits.
 
 
 #figure(
 box(stroke: 1pt + black, inset: 25pt, radius: 3pt)[
-  #image("../../Images/general_tailoring_procedure_cropped.pdf", width: 100mm)
+  #image("../../Images/general_tailoring_procedure_cropped.pdf", width: 80mm)
 ],
-caption: [General Tailoring Procedure @lalanne2010mechanicalvol],
+caption: [General tailoring procedure @lalanne2010mechanicalvol],
 ) <general_tailoring_procedure>
 
 
-According to Lalanne, tailoring consists of four principal stages,
+According to _Lalanne_, tailoring consists of four principal stages,
 
-+ Analysis of the life cycle profile -- Identify and divide the product's operational life into "situations", each representing a distinct environment (e.g., storage, transport, flight, operation). Each situation is further broken into events of sub-situations (e.g., take-off, cruise, landing), characterised qualitatively by factors such as vibration type, shock, temperature, acoustics.
-+ Collection of real environment data -- Quantify each situation using measured time histories of PSDs. Parameters include vibration amplitudes, temperature ranges, and durations.
-+ Synopsis of data -- The collected data from all events within a situation are condensed into representative spectra,
++ Analysis of the life cycle profile - Identify and divide the product's operational life into "situations", each representing a distinct environment (e.g., storage, transport, flight, operation). Each situation is further broken into events of sub-situations (e.g., take-off, cruise, landing), characterised qualitatively by factors such as vibration type, shock, temperature, acoustics.
++ Collection of real environment data - Quantify each situation using measured time histories of PSD. Parameters include vibration amplitudes, temperature ranges, and durations.
++ Synopsis of data - The collected data from all events within a situation are condensed into representative spectra,
   - Compute SRS for shock events.
   - Compute ERS and FDS for vibration events.
   - Determine statistical descriptors such as the mean, standard deviation, and variation coefficient for each frequency band.
   - Combine the results - for shocks, by enveloping all SRS curves anf for vibrations, by summing FDS curves and enveloping ERS curves. 
   - The result of this stage is one representative set of spectra per situation - an SRS, an ERS, and an FDS.
-+ Establishment of the test programme -- From the composite FDS of the life profile, generate a test spectrum that reproduces the same cumulative fatigue damage in a shorter, laboratory-controlled time. Apply test factors that account for sample size, confidence level, and the probability of failure.
++ Establishment of the test programme - From the composite FDS of the life profile, generate a test spectrum that reproduces the same cumulative fatigue damage in a shorter, laboratory controlled time. Apply test factors that account for sample size, confidence level, and the probability of failure.
 
 This procedure ensures that the resulting test is representative, traceable, efficiently accelerated and severe enough to reproduce service damage without introducing unrealistic loads.
 
@@ -80,8 +80,8 @@ The standard calculation relies on the following assumptions:
 - The system behaves as a linear SDOF oscillator.
 - The S–N curve follows Basquin’s relation ($N#sym.sigma _p^b = C$).
 - Peak stress is proportional to the maximum relative displacement ($#sym.sigma _p = K z_p$).
-- The rainflow counting method is used to identify stress (displacement) cycles.
-- Miner’s damage accumulation rule applies.
+- The rainflow @ASTM_E1049_85_2017 (displacement) cycles.
+- _Miner’s_ damage accumulation rule applies.
 
 #figure(
     box(stroke: 1pt+black)[
@@ -97,7 +97,7 @@ Repeating this evaluation across a sweep of natural frequencies $f_0$ (and for s
 
 The FDS may be computed from either a time history or a PSD representation, provided the underlying random vibration is stationary and approximately Gaussian @lalanne2010mechanicalvol.
 
-In this work, one‑minute time history segments are sampled, converted to PSD form, and aggregated to estimate cumulative damage over the full operating duration.
+In this work, one minute time history segments are sampled, converted to PSD form, and aggregated to estimate cumulative damage over the full operating duration.
 
 === Extreme Response Spectrum <ers>
 The _Extreme Response Spectrum_, or ERS, gives, for each natural frequency $f_0$ at damping ζ, the maximum relative displacement response of an equivalent linear SDOF system driven by the input @lalanne2010mechanicalvol.
@@ -110,13 +110,13 @@ and the scaled acceleration form is
 
 $ E R S _ a (f_0, ζ) = (2pi f_0)^2 max_t | z(t; f_0, ζ) | $
 
-In practice, ERS is computed by filtering the input through a bank of linear SDOF systems across $f_0$ at the chosen damping and then taking the per‑filter maximum of the relative displacement or the corresponding acceleration. ERS assumes linearity and a specified damping ratio. Unlike FDS, it summarises peak response rather than accumulated damage @lalanne2010mechanicalvol.
+In practice, ERS is computed by filtering the input through a bank of linear SDOF systems across $f_0$ at the chosen damping and then taking the per filter maximum of the relative displacement or the corresponding acceleration. ERS assumes linearity and a specified damping ratio. Unlike FDS, it summarises peak response rather than accumulated damage @lalanne2010mechanicalvol.
 
 === Shock Response Spectrum <srs>
 
-The _Shock Response Spectrum_, or SRS, characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base‑excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo‑velocity forms that are useful for damage correlation and historical limits @lalanne2014_mechanical_shock.
+The _Shock Response Spectrum_, or SRS, characterises a transient shock by the maximum response of a bank of linear SDOF oscillators, each with natural frequency $f_0$ and damping ζ, when subjected to the same base excitation time history. In its most common form, the SRS reports the peak absolute acceleration response per $f_0$. Alternative conventions include peak relative displacement and pseudo velocity forms that are useful for damage correlation and historical limits @lalanne2014_mechanical_shock.
 
-Acceleration form for a base‑excited SDOF is
+Acceleration form for a base excited SDOF is
 
 $ S R S _ a (f_0, ζ) = max_t | a_{abs}(t; f_0, ζ) | $ <shockresponsespectrumcalc>
 
@@ -127,18 +127,18 @@ ERS and SRS use the same mathematical device, a bank of linear SDOF oscillators 
 
 - Input and intent - ERS is used for random long duration vibration. SRS is used for short transients and shocks.
 - How the peak is taken - For SRS the largest response may occur during or after the shock. Practice is to take the envelope of the primary and residual responses. For ERS under random excitation peaks are taken over a defined time window or sample. When ERS is derived from a PSD it represents an expected maximum for the specified duration.
-- Required representation - SRS is computed from a time history. ERS can be computed from time histories or, under stationarity and Gaussian assumptions, from PSDs.
+- Required representation - SRS is computed from a time history. ERS can be computed from time histories or, under stationarity and Gaussian assumptions, from PSD.
 
 In this thesis ERS characterises peak response under random profiles. SRS provides the reference envelope for shock severity. @lalanne2010mechanicalvol
 
 
 === Test time compression
 
-Reducing vibration test time is achieved by compressing the lifetime damage occuring in the field into a shorter, more intense laboratory test. The time compression formula is grounded in Miner’s rule @miner1945cumulative, where the total accumulated fatigue damage should be equivalent for both the accelerated and real world scenario. 
+Reducing vibration test time is achieved by compressing the lifetime damage occurring in the field into a shorter, more intense laboratory test. The time compression formula is grounded in _Miner’s rule_ @miner1945cumulative, where the total accumulated fatigue damage should be equivalent for both the accelerated and real world scenario. 
 
 If a component is expected to undergo a random vibration profile for $T_"field"$ hours in the real world, and the damage accumulation formula indicates the total damage incurred at the original severity, we can increase the input vibration's severity (RMS value) so the same damage happens in a shorter time period $T_"test"$.
 
-To compute the new laboratoxry test time, one uses the following relationship, 
+To compute the new laboratory test time, one uses the following relationship, 
 
 $ dot.double(x)_"rms test"= dot.double(x)_"rms field" (T_"field"/T_"test")^(1/b) $ <timereductionacc>
 
@@ -146,9 +146,9 @@ and for power spectral density G, we have,
 
 $ G_"test"= G_"field" (T_"field"/T_"test")^(2/b) $  <timecompression>
 
-where $T_"field"$ is real life duration, $T_"test"$ is the planned acceleration test duration, $dot.double(x)_"rms test"$, $dot.double(x)_"rms field"$ $G_"test"$, and $G_"field"$ are PSD levels and acceleration rms in test and field environments respectively, and $b$ is the Basquin’s exponent which is unique to each material.
+where $T_"field"$ is real life duration, $T_"test"$ is the planned acceleration test duration, $dot.double(x)_"rms test"$, $dot.double(x)_"rms field"$ $G_"test"$, and $G_"field"$ are PSD levels and acceleration rms in test and field environments respectively, and $b$ is the _Basquin’s_ exponent which is unique to each material.
 
-For example, if the test RMS is doubled and $b=8$ for typical solder joints, the time compression factor is $F=2^8=256$, meaning a 256-hour field duration can theoretically be simulated in a 1 hour test. @nagle2010test @lalanne2010mechanicalvol.
+For example, if the test RMS is doubled and $b=8$ for typical solder joints, the time compression factor is $F=2^8=256$, meaning a 256 hour field duration can theoretically be simulated in a 1 hour test. @nagle2010test @lalanne2010mechanicalvol.
 
 === Limits of time compression <limitsoftimecompression>
 
@@ -183,7 +183,7 @@ Peak response consistency is checked by comparing the _Maximum Response Spectrum
 #figure(
     box(stroke: 1pt+black)[
       #image("../../Images/srsvsersvalidationdiagram.png", width: 130mm)
-    ], caption: [Criteria for Acceptance of Accelerated Vibration Tests @SiemensMissionSynthesis]
+    ], caption: [Criteria for acceptance of accelerated vibration tests @SiemensMissionSynthesis]
   )
 
 Two outcomes are possible when validating the accelerated profile,

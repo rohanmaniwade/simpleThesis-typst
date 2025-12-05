@@ -12,13 +12,13 @@
 
 Modern product development faces an increasingly critical challenge of validating durability without endless testing. Traditional endurance testing can consume hundreds or thousands of hours, creating bottlenecks that slow innovation and delay market entry. This fundamental tension drives the need for smarter testing methodologies.
 
-Founded in 1883 in Wuppertal, Germany, _Vorwerk GmbH_ exemplifies this challenge perfectly. What began as carpet manufacturing has evolved into a global provider of premium household products built on exceptional durability @vorwerk_group_about. The company's direct sales model relies on product demonstrations and personal consultation, where failures would be immediately visible and damaging.
+Founded in 1883 in _Wuppertal_, _Germany_, _Vorwerk GmbH_ exemplifies this challenge perfectly. What began as carpet manufacturing has evolved into a global provider of premium household products built on exceptional durability @vorwerk_group_about. The company's direct sales model relies on product demonstrations and personal consultation, where failures would be immediately visible and damaging.
 
-Vorwerk's flagship Thermomix#super[#sym.trademark.registered] represents a multifunctional cooking system designed for years of intensive home use, creating a durability paradox. Products that must prove their field longevity require extensive validation before reaching customers, with traditional testing extending for months and consuming engineering resources.
+_Vorwerk's_ flagship _Thermomix#super[#sym.trademark.registered]_ represents a multifunctional cooking system designed for years of intensive home use, creating a durability paradox. Products that must prove their field longevity require extensive validation before reaching customers, with traditional testing extending for months and consuming engineering resources.
 
 Modern products contain complex electronic assemblies with mixed circuits, power devices, and mechanical systems that experience combined stresses varying dynamically with operating conditions. Traditional approaches often fail to efficiently capture these interactions within practical timelines.
 
-This thesis addresses this challenge by developing a methodology that preserves essential durability characteristics while dramatically reducing validation time. Using Thermomix#super[#sym.trademark.registered] TM7 as a case study, this work demonstrates how advanced signal processing and fatigue analysis can compress months of testing into days, enabling faster development without compromising reliability.
+This thesis addresses this challenge by developing a methodology that preserves essential durability characteristics while dramatically reducing validation time. Using _Thermomix#super[#sym.trademark.registered] TM7_ as a case study, this work demonstrates how advanced signal processing and fatigue analysis can compress months of testing into days, enabling faster development without compromising reliability.
 
 
 == Thermomix#super[#sym.trademark.registered] TM7
@@ -26,13 +26,13 @@ This thesis addresses this challenge by developing a methodology that preserves 
   #figure(
     [
     #image("../../Images/TM7_wo_background.jpg", width: 80mm)],
-    caption: [Thermomix#super[#sym.trademark.registered] TM7 @thermomix_tm7_image],
+    caption: [_Thermomix#super[#sym.trademark.registered] TM7_ @thermomix_tm7_image],
   ) <thermomix>
 ]
 
-Thermomix#super[#sym.trademark.registered] is Vorwerk's flagship kitchen system and a leading example of its product and service philosophy @vorwerk_group_about. The latest generation, *Thermomix#super[#sym.trademark.registered] TM7*, as shown in @thermomix, integrates the capabilities of many appliances into a single, compact platform, covering tasks such as chopping, blending, mixing, kneading, steaming, weighing, and precise temperature-controlled cooking. 
+_Thermomix#super[#sym.trademark.registered]_ is _Vorwerk's_ flagship kitchen system and a leading example of its product and service philosophy @vorwerk_group_about. The latest generation, *_Thermomix#super[#sym.trademark.registered] TM7_*, as shown in @thermomix, integrates the capabilities of many appliances into a single, compact platform, covering tasks such as chopping, blending, mixing, kneading, steaming, weighing, and precise temperature-controlled cooking.
 
-The device pairs a touchscreen interface with guided, step-by-step workflows and connects to the _Cookidoo#super[#sym.trademark.registered]_ digital recipe ecosystem, which provides a large, curated library of recipes plus meal planning and shopping-list tools. Thermomix#super[#sym.trademark.registered] is distributed through Vorwerk's direct sales network, where demonstrations and coaching help users get the most from the system. In this thesis, the TM7, more precisely the backend PCB, serves as the reference product context for the application of accelerated vibration testing.
+The device pairs a touchscreen interface with guided, step-by-step workflows and connects to the _Cookidoo#super[#sym.trademark.registered]_ digital recipe ecosystem, which provides a large, curated library of recipes plus meal planning and shopping-list tools. _Thermomix#super[#sym.trademark.registered]_ is distributed through _Vorwerk's_ direct sales network, where demonstrations and coaching help users get the most from the system. In this thesis, the _TM7_, more precisely the _backend PCB_, serves as the reference product context for the application of accelerated vibration testing.
 
 Key features and specifications,
 - Dimensions: 33.6 cm #sym.times 25.3 cm #sym.times 40.5 cm
@@ -48,28 +48,28 @@ Key features and specifications,
   #figure(
     box(stroke: 1pt+black)[
     #image("../../Images/Backend.jpg",width: 120mm)],
-    caption: [Backend PCB],
+    caption: [_Backend PCB_],
   ) <backend>
 ]
 
-The _backend PCB_ is the central power and control module of Thermomix#super[#sym.trademark.registered] TM7. It handles mains voltage input, performs power factor correction and DC conversion, controls the motor and heater through embedded microcontrollers, and manages all sensor and actuator interfaces @CoSyBackEndPCB2025. The board brings together high voltage switching devices (IGBTs, MOSFETs, TRIACs), multiple microcontrollers for real time control and communication, and various passive components such as capacitors, inductors, and resistors that handle filtering, regulation, and signal conditioning.
+The _backend PCB_ is the central power and control module of _Thermomix#super[#sym.trademark.registered] TM7_. It handles mains voltage input, performs power factor correction and DC conversion, controls the motor and heater through embedded microcontrollers, and manages all sensor and actuator interfaces @CoSyBackEndPCB2025. The board brings together high voltage switching devices (IGBTs, MOSFETs, TRIACs), multiple microcontrollers for real time control and communication, and various passive components such as capacitors, inductors, and resistors that handle filtering, regulation, and signal conditioning.
 
-The backend is a multilayer FR4 assembly measuring 220 mm × 165.5 mm and 1.6 mm thick. Its layout balances competing needs where high current traces and large power components generate concentrated heat that must be managed, while sensitive analog and digital circuits need careful grounding and EMI suppression. This design complexity makes the backend a good representative of modern mixed signal power electronics assemblies found in household appliances.
+The _backend_ is a multilayer FR4 assembly measuring 220 mm × 165.5 mm and 1.6 mm thick. Its layout balances competing needs where high current traces and large power components generate concentrated heat that must be managed, while sensitive analog and digital circuits need careful grounding and EMI suppression. This design complexity makes the _backend_ a good representative of modern mixed signal power electronics assemblies found in household appliances.
 
-The backend plays a critical role in system reliability. Motor speed commands, heater regulation, and safety interlocks all depend on it working continuously. Solder joint fatigue, capacitor degradation, or any interconnect failure can cause functional loss. The board experiences mechanical vibration from motor imbalance and blade interaction with liquid, as well as thermal cycling from heater operation, which makes it an ideal test specimen for validating accelerated vibration methods. Its internal resonances, mass distribution, and mounting constraints represent the kinds of complex boundary conditions encountered in real product qualification. This means findings from testing this component can be directly applied to other assemblies within the TM7 and similar appliances.
+The _backend_ plays a critical role in system reliability. Motor speed commands, heater regulation, and safety interlocks all depend on it working continuously. Solder joint fatigue, capacitor degradation, or any interconnect failure can cause functional loss. The board experiences mechanical vibration from motor imbalance and blade interaction with liquid, as well as thermal cycling from heater operation, which makes it an ideal test specimen for validating accelerated vibration methods. Its internal resonances, mass distribution, and mounting constraints represent the kinds of complex boundary conditions encountered in real product qualification. This means findings from testing this component can be directly applied to other assemblies within the _TM7_ and similar appliances.
 
 
 == Problem statement
 
-Modern consumer appliances must survive years of intensive use while maintaining performance and safety standards. Products like Thermomix#super[#sym.trademark.registered] TM7 experience complex loading patterns including internal vibration from motor operation, thermal cycling from heating elements, and external transport stresses. These combined loads gradually accumulate fatigue damage that can eventually cause component failure.
+Modern consumer appliances must survive years of intensive use while maintaining performance and safety standards. Products like _Thermomix#super[#sym.trademark.registered] TM7_ experience complex loading patterns including internal vibration from motor operation, thermal cycling from heating elements, and external transport stresses. These combined loads gradually accumulate fatigue damage that can eventually cause component failure.
 
-To ensure reliability, manufacturers develop comprehensive endurance testing profiles that validate products against their intended service life. For the TM7, Vorwerk employs a combined vibration and thermal endurance profile designed to replicate 4,000 field hours of operation. However, executing this complete profile on complex assemblies requires substantial time and resources, creating development bottlenecks that limit design iteration and delay product improvements.
+To ensure reliability, manufacturers develop comprehensive endurance testing profiles that validate products against their intended service life. For the _TM7_, _Vorwerk_ employs a combined vibration and thermal endurance profile designed to replicate 4,000 field hours of operation. However, executing this complete profile on complex assemblies requires substantial time and resources, creating development bottlenecks that limit design iteration and delay product improvements.
 
-This fundamental challenge drives the need for accelerated testing methodologies that preserve essential damage mechanisms while dramatically reducing validation time. This thesis develops such a methodology using advanced signal processing and fatigue damage equivalence principles. The approach reproduces field representative fatigue damage and operational loads in laboratory settings while compressing testing duration by orders of magnitude. Using the TM7 backend PCB as a case study, the methodology demonstrates broad applicability to complex electronic assemblies in consumer appliances.
+This fundamental challenge drives the need for accelerated testing methodologies that preserve essential damage mechanisms while dramatically reducing validation time. This thesis develops such a methodology using advanced signal processing and fatigue damage equivalence principles. The approach reproduces field representative fatigue damage and operational loads in laboratory settings while compressing testing duration by orders of magnitude. Using the _TM7 backend PCB_ as a case study, the methodology demonstrates broad applicability to complex electronic assemblies in consumer appliances.
 
 
 == Endurance profile for Thermomix#super[#sym.trademark.registered] TM7
-Vorwerk has developed an endurance testing profile for the Thermomix#super[#sym.trademark.registered] TM7 based on usage patterns observed in earlier product generations @Vorwerk2025HALT. In normal household use, the appliance experiences a characteristic distribution of motor speeds and heating temperatures over a lifetime of roughly 4,000 hours. To ensure that laboratory testing remains representative of real operation, the qualification profile was designed to reproduce this same distribution.
+_Vorwerk_ has developed an endurance testing profile for the _Thermomix#super[#sym.trademark.registered] TM7_ based on usage patterns observed in earlier product generations @Vorwerk2025HALT. In normal household use, the appliance experiences a characteristic distribution of motor speeds and heating temperatures over a lifetime of roughly 4,000 hours. To ensure that laboratory testing remains representative of real operation, the qualification profile was designed to reproduce this same distribution.
 
 Field data was analysed to understand how often each speed level is used, how long it typically remains active, and what temperature ranges are associated with these operating modes. Each mode was then assigned a proportional share of the total usage time so that the cumulative exposure during the test reflects actual customer behaviour.
 
@@ -77,9 +77,9 @@ To shorten the development cycle, an accelerated endurance profile was derived t
 
 === Development methodology
 
-The endurance profile was developed using a structured, data‑driven approach that ensures a realistic representation of the product's operation. The statistical distribution of speeds and heating levels observed in the field was aligned with the internal endurance requirements used for product qualification. Both operating time and the total number of revolutions were treated as governing parameters to reproduce fatigue accumulation and mechanical wear patterns.
+The endurance profile was developed using a structured, data driven approach that ensures a realistic representation of the product's operation. The statistical distribution of speeds and heating levels observed in the field was aligned with the internal endurance requirements used for product qualification. Both operating time and the total number of revolutions were treated as governing parameters to reproduce fatigue accumulation and mechanical wear patterns.
 
-This approach maintains the balance between duration and load intensity, allowing the test to simulate real‑world stress conditions within a shorter timeframe. The resulting load spectrum captures the essential dynamic characteristics of the motor, including dwell at each speed and the associated vibration behaviour. Minor refinements during physical testing may still be necessary to address effects that are difficult to model in advance.
+This approach maintains the balance between duration and load intensity, allowing the test to simulate real world stress conditions within a shorter timeframe. The resulting load spectrum captures the essential dynamic characteristics of the motor, including dwell at each speed and the associated vibration behaviour. Minor refinements during physical testing may still be necessary to address effects that are difficult to model in advance.
 
 The statistical distribution of motor speeds and their relative dwell times is summarised in @averagemotorload, which reports the average motor loads observed in customer use. The final row totals approximately 4,000 hours of field operation.
 
@@ -151,7 +151,7 @@ The statistical distribution of motor speeds and their relative dwell times is s
 }
 
 
-#figure(kind: table, caption: [Average Motor Load])[
+#figure(kind: table, caption: [Average motor load])[
 #tblr(columns: 5,
   stroke: black,
   align: center,
@@ -176,13 +176,13 @@ The statistical distribution of motor speeds and their relative dwell times is s
 
 === Heating and thermal load
 
-The heating element follows a complementary load profile designed to introduce representative and demanding thermal conditions. Heating is primarily applied at low rotational speeds since high-speed operation already produces significant frictional heating through the interaction of the blades with the water. This targeted strategy increases the load on the heating system while avoiding excessive stress on the motor.
+The heating element follows a complementary load profile designed to introduce representative and demanding thermal conditions. Heating is primarily applied at low rotational speeds since high speed operation already produces significant frictional heating through the interaction of the blades with the water. This targeted strategy increases the load on the heating system while avoiding excessive stress on the motor.
 
-In certain test segments, the bowl is intentionally left without water so that the heating element can reach temperatures above 100 °C. These dry-heating phases are intended to place the heating circuit under additional stress, providing a more complete evaluation of the system's reliability.
+In certain test segments, the bowl is intentionally left without water so that the heating element can reach temperatures above 100 °C. These dry heating phases are intended to place the heating circuit under additional stress, providing a more complete evaluation of the system's reliability.
 
 === Actuator cycles and test sequence
 
-Each endurance cycle consists of 20 minutes of operation followed by a 4-minute pause. During the pause, the actuator completes 20 full movements. Three consecutive cycles form one cycle block, representing approximately one hour of total operation.
+Each endurance cycle consists of 20 minutes of operation followed by a 4 minute pause. During the pause, the actuator completes 20 full movements. Three consecutive cycles form one cycle block, representing approximately one hour of total operation.
 
 For profiles that involve heating in the standard endurance programme, the bowl is typically filled with 1.5 litres at the start of each block to compensate for evaporation and spillage through the lid opening, yielding about 1.0 litre working volume. In this thesis, heating and evaporation are not modelled, and all tests are conducted with 1.0 litre of water. This structured repetition of load, rest, and actuation creates a controlled and repeatable simulation of household use, allowing consistent evaluation of long-term durability.
 
@@ -262,7 +262,7 @@ text(fill: white, x)
 }
 
 
-#figure(kind: table, caption: [Endurance Motor Loads and Heater Loads])[
+#figure(kind: table, caption: [Endurance motor loads and heater loads])[
 #tblr(columns: 9, header-rows: 2,
   stroke: black,
   align: center,

@@ -46,14 +46,14 @@
     [Mode 29], [1061.40], [1043.60],
     [Mode 30], [1126.20], [1052.90],
   ),
-  caption: [Modes of Backend PCB from ANSYS Workbench 2025 R2],
+  caption: [Modes of _backend PCB_ from _ANSYS Workbench 2025 R2_],
 )
 
 = Appendix B: Data Acquisition Hardware
 
 == SQuadriga II Data Acquisition System
-- Manufacturer: HEAD acoustics GmbH
-- Model: SQuadriga II
+- Manufacturer: _HEAD acoustics GmbH_
+- Model: _SQuadriga II_
 - Configuration: Two units connected (Control + Module mode)
 - Total Channels: 8 channels
 - Purpose: Simultaneous multi-channel vibration data acquisition 
@@ -63,37 +63,37 @@
 = Appendix C: Software and Analysis Tools
 
 == ANSYS Workbench
-- Manufacturer: ANSYS, Inc.
-- Version: 2025 R2
+- Manufacturer: _ANSYS, Inc._
+- Version: _2025 R2_
 - Application: Finite Element Modal Analysis, Design
-- Modules Used: Mechanical, Modal Analysis, SpaceClaim
+- Modules Used: Mechanical, Modal Analysis, _SpaceClaim_
 
 == HEAD acoustics ArtemiS SUITE
-- Manufacturer: HEAD acoustics GmbH
-- Version: 16.7
+- Manufacturer: _HEAD acoustics GmbH_
+- Version: _16.7_
 - Application: Data acquisition and signal analysis, Impulse Hammer Test
 - Modules Used: Modal Analysis Project, Data Acquisition, Pool Project
 - Sampling Frequency: 48 kHz
 
 == m+p VibControl 
 
-- Manufacturer: m+p international
-- Version: 2.16.12.1
+- Manufacturer: _m+p international_
+- Version: _2.16.12.1_
 - Application: Vibration control and data acquisition for shaker testing
 - Modules Used: Random
 
 #pagebreak()
 = Appendix D: Shaker System Specifications
 
-This thesis used the TIRA Schwingprüfanlage TV 55240 LS 340 electromagnetic shaker system to execute the accelerated vibration profiles. The technical specifications reproduced here are taken from the manufacturer’s datasheet @tira2018tv55240 and are provided for reference and completeness.
+This thesis used the _TIRA Schwingprüfanlage TV 55240 LS 340_ electromagnetic shaker system to execute the accelerated vibration profiles. The technical specifications reproduced here are taken from the manufacturer’s datasheet @tira2018tv55240 and are provided for reference and completeness.
 
 == Shaker System Overview
 
-The TV 55240 LS 340 is a uniaxial vibration test system with a nominal sinusoidal force capacity of 4 kN. The system consists of a shaker head, an 11 kVA power amplifier and a forced air cooling unit. It is mounted on a pivoting frame that allows operation in vertical and horizontal orientations.
+The _TV 55240 LS 340_ is a uniaxial vibration test system with a nominal sinusoidal force capacity of 4 kN. The system consists of a shaker head, an 11 kVA power amplifier and a forced air cooling unit. It is mounted on a pivoting frame that allows operation in vertical and horizontal orientations.
 
 == Main Technical Parameters
 
-Shaker (S 55240 LS 340)
+Shaker (_S 55240 LS 340_)
 - Nominal force sinusoidal RMS and shock - 4000 N, 3600 N and 12000 N
 - Frequency range - 2 Hz to 3000 Hz
 - Maximum displacement peak to peak -  50.8 mm
@@ -109,7 +109,7 @@ These parameters are taken from the technical table on page one of the datasheet
 
 == Amplifier
 
-The A 1 01 11 010 power amplifier supplies the required drive current and field current for the shaker system.
+The _A 1 01 11 010_ power amplifier supplies the required drive current and field current for the shaker system.
 Key specifications from page two of the datasheet @tira2018tv55240 include:
 
 - Continuous output power - 11 kVA
@@ -121,7 +121,7 @@ Key specifications from page two of the datasheet @tira2018tv55240 include:
 
 == Cooling System
 
-The TB 0310 forced air cooling unit provides the airflow required to maintain safe operating temperature.
+The _TB 0310_ forced air cooling unit provides the airflow required to maintain safe operating temperature.
 Specifications from page two include:
 
 - Maximum volume flow - 315 m³/hr
@@ -129,7 +129,7 @@ Specifications from page two include:
 - Power consumption - 4 kW
 - Acoustic level - 69 dB(A)
 - Supplied air hose diameter - 60 mm
-- Optional noise reduction attachments such as the TB 0310 SI muffler and TB 0310 AE acoustic enclosure can reduce noise by 6 to 23 dB(A).
+- Optional noise reduction attachments such as the _TB 0310 SI_ muffler and _TB 0310 AE_ acoustic enclosure can reduce noise by 6 to 23 dB(A).
 
 == Accessories and Safety
 

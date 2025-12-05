@@ -68,8 +68,8 @@
     [Symbol & Meaning & Unit],
     [$a$ & Linear scaling coefficient & -],
     [$a_{abs}(t)$ & Absolute acceleration & $m/s^2$],
-    [$b$ & Basquin exponent & -],
-    [$C$ & Material constant in Basquin's law & -],
+    [$b$ & _Basquin_ exponent & -],
+    [$C$ & Material constant in _Basquin's law_ & -],
     [$D$ & Cumulative fatigue damage & -],
     [$F$ & Time Compression Factor & -],
     [$dot.double(x)_(r m s)$ & RMS acceleration & $m/s^2$],
@@ -81,7 +81,7 @@
     [$G_(t e s t)$ & PSD level in test & $(m/s^2)^2/(H z)$],
     [$H$ & SDOF transfer function & -],
     [$K$ & Stiffness constant relating stress to displacement & $N/m$],
-    [$k$ & Peak factor (Vanmarcke model) & -],
+    [$k$ & Peak factor (_Vanmarcke_ model) & -],
     [$m$ & Number of stress levels & -],
     [$m_0$ & Spectral moments (orders 0) & $(m/s^2)^2$],
     [$m_2$ & Spectral moment (order 2) & $(m/s^2)^2·(H z)^2$],
@@ -102,7 +102,7 @@
     [$z_p$ & Peak relative displacement & $m$],
     [$z_(p,i)$ & Peak displacement amplitude at level i & $m$],
     [$alpha$ & Under-relaxation factor & -],
-    [$gamma$ & Euler–Mascheroni constant & -],
+    [$gamma$ & _Euler–Mascheroni_ constant & -],
     [$Gamma$ & Gamma function & -],
     [$epsilon$ & Irregularity factor (bandwidth correction) & -],
     [$zeta$ & Damping ratio & -],
@@ -148,18 +148,18 @@
   ],
   abstract: [
 
-Vibration endurance testing of complex electronic assemblies traditionally requires hundreds of hours to validate product durability. This thesis develops a systematic approach to compress these lengthy tests while preserving the essential fatigue characteristics that determine real world performance.
+Operational endurance testing of complex electronic assemblies traditionally requires hundreds of hours to validate product durability. This thesis develops a systematic approach to compress these lengthy tests while preserving the essential fatigue characteristics that determine real world performance.
 
-The methodology transforms operational vibration data from the Thermomix#super(sym.trademark.registered) TM7 backend printed circuit board into accelerated laboratory test profiles. Time domain measurements from actual kitchen use are processed through _Fatigue Damage Spectra_, or FDS analysis to identify the frequency content that drives material degradation. This damage equivalent approach enables the creation of accelerated _Power Spectral Density_, or PSD profiles that reproduce field fatigue in dramatically shorter laboratory tests.
+The methodology transforms operational vibration data from the _Thermomix#super(sym.trademark.registered) TM7_ _backend printed circuit board_ into accelerated laboratory test profiles. Time domain measurements from actual kitchen use are processed through _Fatigue Damage Spectra_, or FDS analysis to identify the frequency content that drives material degradation. This damage equivalent approach enables the creation of accelerated _Power Spectral Density_, or PSD profiles that reproduce field fatigue in dramatically shorter laboratory tests.
 
-The work introduces _VibeAccelKit_, a Python library that accommodates the complete workflow from vibration measurement to accelerated test synthesis. Comprehensive validation through both fatigue damage comparison and shock response verification ensures that laboratory conditions remain physically realistic and representative of operational stresses.
+The work introduces _VibeAccelKit_, a _Python_ library that accommodates the complete workflow from vibration measurement to accelerated test synthesis. Comprehensive validation through both fatigue damage comparison and shock response verification ensures that laboratory conditions remain physically realistic and representative of operational stresses.
 
 Experimental validation on a uniaxial shaker confirms that the method successfully bridges the gap between lengthy endurance requirements and practical test schedules. The approach promises to transform product validation by making thorough durability assessment both feasible and routine in modern engineering practice.
   ],
   acknowledgements: [
     _First and foremost, I would like to thank my supervisor and mentor, *Clément Corselli*, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me._
     
-    _I would also like to thank *Dr.-Ing. Philipp Ingelath*, *Dr. Roland Kraus* and other professionals at *Vorwerk* for the wisdom and guidance that made it possible to carry out my thesis as smoothly and efficiently as I did, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
+    _I would also like to thank *Dr.-Ing. Philipp Ingenlath*, *Dr. Roland Kraus* and other professionals at *Vorwerk* for the wisdom and guidance that made it possible to carry out my thesis as smoothly and efficiently as I did, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
 
     _My deepest gratitude to *Prof. Dr.-Ing. Bettar Ould el Moctar* for supervising the academic side of this work, and to *Dr.-Ing. Galal Galal* for his insights and encouragement throughout the project._
 

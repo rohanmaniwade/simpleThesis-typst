@@ -8,11 +8,11 @@
 
 = Conclusion
 
-This methodology successfully delivered on its core promise, reducing test time by a factor of up to 178 while preserving essential fatigue characteristics. Thermomix#super(sym.trademark.registered) TM7 backend PCB case study demonstrated that real operational vibration can be faithfully compressed using fatigue damage equivalence.
+This methodology successfully delivered on its core promise, reducing test time by a factor of up to 178 while preserving essential fatigue characteristics. _Thermomix#super[#sym.trademark.registered] TM7_ _backend PCB_ case study demonstrated that real operational vibration can be faithfully compressed using fatigue damage equivalence.
 
 The validation confirmed that laboratory testing reproduced field damage patterns across critical frequencies. While minor deviations occurred near structural resonances, these reflected natural modal behaviour rather than methodological shortcomings. Shock response verification showed that accelerated profiles remained within physically realistic bounds, avoiding the overtesting that often compromises accelerated durability methods.
 
-Two key technical achievements emerged. First, the VibeAccelKit Python library provides a reproducible computational framework that bridges vibration measurement and accelerated test synthesis. Second, the systematic validation approach combining fatigue damage comparison with shock response verification establishes confidence in laboratory results.
+Two key technical achievements emerged. First, the _VibeAccelKit_ _Python_ library provides a reproducible computational framework that bridges vibration measurement and accelerated test synthesis. Second, the systematic validation approach combining fatigue damage comparison with shock response verification establishes confidence in laboratory results.
 
 The broader impact of this work lies in making vibration endurance testing practical for complex electronic assemblies. By reducing test time by such significant factors while maintaining damage equivalence, this approach enables more frequent validation cycles and supports faster product development. The methodology scales beyond individual components, providing a foundation for full system qualification in modern engineering practice.
 

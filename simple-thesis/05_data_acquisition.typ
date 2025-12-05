@@ -9,22 +9,22 @@
 
 The first step of the test tailoring methodology is data acquisition. In this step, situations of differing severities are categorised and recorded. These situations that the product undergoes can occur either in series or in parallel, depending on the operational scenario.
 
-Thermomix#super(sym.trademark.registered) TM7 operates across multiple knife rotational speeds, spanning from 40 rpm to 10,000 rpm in both clockwise and counter-clockwise directions. The endurance profile also includes a dough mode where the knife alternates between 600 rpm in CW and CCW. The complete set of rotational speeds and their contribution to the endurance load profile are detailed in @averagemotorload and @endurancemotorload. Since the endurance profile represents the device lifetime, all speed modes with their defined operational hours occur in series rather than parallelly.  
+_Thermomix#super[#sym.trademark.registered] TM7_ operates across multiple knife rotational speeds, spanning from 40 rpm to 10,000 rpm in both clockwise and counter-clockwise directions. The endurance profile also includes a dough mode where the knife alternates between 600 rpm in CW and CCW. The complete set of rotational speeds and their contribution to the endurance load profile are detailed in @averagemotorload and @endurancemotorload. Since the endurance profile represents the device lifetime, all speed modes with their defined operational hours occur in series rather than parallelly.  
 
 == Modal analysis of backend PCB
 
 Modal analysis reveals the dynamic behaviour of a component by identifying its natural frequencies, damping ratios, and corresponding mode shapes. These parameters govern how the structure responds to excitation and how fatigue accumulates over time.
 
-For this reason, modal anaysis was performed on the Thermomix#super(sym.trademark.registered) TM7 backend PCB before vibration measurements were taken. The results helped act as a guide for optimum accelerometer placement.
+For this reason, modal anaysis was performed on the _Thermomix#super[#sym.trademark.registered] TM7_ _backend PCB_ before vibration measurements were taken. The results helped act as a guide for optimum accelerometer placement.
 
 A combination of experimental modal analysis, _impulse hammer test_, using _HEAD acoustics ArtemiS Suite_ and FEM analysis in _ANSYS Workbench 2025 R2_ was used to obtain a complete description of the board's modal characteristics.
 
 === Experimental modal analysis (Impulse Hammer Test)
 
 
-The impulse hammer test was performed using HEAD acoustics ArtemiS Suite, which served both as the acquisition and analysis platform.
+The impulse hammer test was performed using _HEAD acoustics ArtemiS Suite_, which served both as the acquisition and analysis platform.
 
-For the test, the backend PCB was suspended on a string to approximate free-free boundary conditions. Three uniaxial accelerometers were carefully glued at selected locations to capture the response, and a total of 26 measurement points were defined on both the top and bottom sides of the PCB, as depicted in @measurementpointstop and @measurementpointsbottom.
+For the test, the _backend PCB_ was suspended on a string to approximate free-free boundary conditions. Three uniaxial accelerometers were carefully glued at selected locations to capture the response, and a total of 26 measurement points were defined on both the top and bottom sides of the _PCB_, as depicted in @measurementpointstop and @measurementpointsbottom.
 
 #let img1 = box(stroke: black, inset: 0.5em)[#image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_3.png")]
 
@@ -37,7 +37,7 @@ For the test, the backend PCB was suspended on a string to approximate free-free
 )
 
 
-The impulse hammer test was conducted using the roving hammer method, where the hammer is moved between measurement points while the sensors remain fixed. This approach was chosen over the roving sensor method, in which the sensor is moved and the excitation point is fixed, as it is more practical for lightweight structures like PCBs.
+The impulse hammer test was conducted using the roving hammer method, where the hammer is moved between measurement points while the sensors remain fixed. This approach was chosen over the roving sensor method, in which the sensor is moved and the excitation point is fixed, as it is more practical for lightweight structures like _PCBs_.
 
 The roving hammer method is advantageous for lightweight or delicate structures because it avoids repeatedly attaching and detaching sensors, which can affect mass loading and measurement consistency. However, it requires careful control of the excitation force at each point. The roving sensor method, on the other hand, keeps the excitation location fixed and moves the sensor, which can be beneficial for larger or more robust structures but may introduce variability due to sensor handling and repeated mounting.
 
@@ -45,14 +45,14 @@ The roving hammer method is advantageous for lightweight or delicate structures 
   figure(
     box(stroke: 1pt+black, inset: 1mm)[
       #image("../../Images/ArtemiS Suite screenshots/Impulsehammertest_9.png", width: 100mm)
-    ], caption: "Impulse Hammer Test for the Backend PCB on HEAD acoustics ArtemiS"
+    ], caption: [Impulse hammer test for the _backend PCB_ on _HEAD acoustics ArtemiS_]
   ) 
 )<impulsehammer1>
 
-@impulsehammerfrequencies summarizes the experimentally identified natural frequencies and corresponding damping ratios for each mode of the backend PCB. The mode number indicates the order of the vibration mode, the frequency column lists the measured natural frequency in hertz, and the damping percentage quantifies how quickly vibrations in each mode decay after excitation.
+@impulsehammerfrequencies summarises the experimentally identified natural frequencies and corresponding damping ratios for each mode of the _backend PCB_. The mode number indicates the order of the vibration mode, the frequency column lists the measured natural frequency in hertz, and the damping percentage quantifies how quickly vibrations in each mode decay after excitation.
 
 
-#figure(kind: table, caption: [Experimentally identified natural frequencies and damping ratios for the backend PCB])[ 
+#figure(kind: table, caption: [Experimentally identified natural frequencies and damping ratios for the _backend PCB_])[ 
   #tblr(
     columns: (auto, auto, auto),
     align: (center, center, center),
@@ -100,15 +100,15 @@ The roving hammer method is advantageous for lightweight or delicate structures 
 
 === Modal analysis in ANSYS Workbench
 
-To complement the experimental modal analysis and provide a predictive tool for design modifications, a finite element modal analysis was performed in ANSYS Workbench 2025 R2.
+To complement the experimental modal analysis and provide a predictive tool for design modifications, a finite element modal analysis was performed in _ANSYS Workbench 2025 R2_.
 
 #figure(
     box(stroke: 1pt+black)[
       #image("../../Images/Backend_CAD_file.png", width: 120mm)
-    ], caption: "Backend PCB CAD model"
+    ], caption: [_Backend PCB_ CAD model]
   )<backendcadmodel>
 
-The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANSYS Workbench 2025 R2. The mesh was generated using tetrahedral elements with an element size of 1 mm, and adaptive sizing was used to ensure adequate resolution of local features and mode shapes while maintaining computational efficiency. Appropriate element designations were assigned to all components, each with their respective material properties @CoSyBackEndPCB2025. The total mass of the model was adjusted so that the simulated PCB weight was approximately 550 grams, matching the actual measured weight of the physical PCB.
+The CAD model of the _backend PCB_, shown in @backendcadmodel, was imported in _ANSYS Workbench 2025 R2_. The mesh was generated using tetrahedral elements with an element size of 1 mm, and adaptive sizing was used to ensure adequate resolution of local features and mode shapes while maintaining computational efficiency. Appropriate element designations were assigned to all components, each with their respective material properties @CoSyBackEndPCB2025. The total mass of the model was adjusted so that the simulated _PCB_ weight was approximately 550 grams, matching the actual measured weight of the physical _PCB_.
 
 #show figure: set block(breakable: true)
 
@@ -123,7 +123,7 @@ The CAD model of the backend PCB, shown in @backendcadmodel, was imported in ANS
     figure(img2, caption: [Mesh - Side view (2)]),<backendmesh2>,
     figure(img3, caption: [Mesh - Top view]),<backendmesh3>,
     figure(img4, caption: [Mesh - Isometric view]),<backendmesh4>,
-    caption: "Backend PCB CAD-model discretisation",
+    caption: [_Backend PCB_ CAD model discretisation],
   )<backendmesh>
 
 
@@ -145,16 +145,16 @@ The analysis was conducted under two boundary conditions to understand how mount
     figure(img4, caption: [Mode 4 - 148.6 Hz]),<modalshapeswoconstraint4>,
     figure(img5, caption: [Mode 5 - 172.24 Hz]),<modalshapeswoconstraint5>,
     figure(img6, caption: [Mode 6 - 179.34 Hz]),<modalshapeswoconstraint6>,
-    caption: "Backend PCB mode shapes without constraint",
+    caption: [_Backend PCB_ mode shapes without constraint],
   )
 
 
-Second, a constrained analysis was performed with fixed supports applied at the four mounting locations where the backend is held to the TM7 chassis, as illustrated in @fixingpointsofbackend. This configuration represents the operational mounting condition and produces mode shapes shown in @modalshapeswithconstraint1 through @modalshapeswithconstraint6.
+Second, a constrained analysis was performed with fixed supports applied at the four mounting locations where the _backend_ is held to the _TM7_ chassis, as illustrated in @fixingpointsofbackend. This configuration represents the operational mounting condition and produces mode shapes shown in @modalshapeswithconstraint1 through @modalshapeswithconstraint6.
 
 #figure(
     box(stroke: 1pt+black)[
       #image("../../Images/ANSYS_backendmodal_screenshots/Backend with constraints/constraintswlabel.png", width: 100mm)
-    ], caption: "Mounting of backend in TM7"
+    ], caption: [Mounting of _backend_ in _TM7_]
   )<fixingpointsofbackend>
 
 The constrained boundary condition introduces stiffness at the mounting points, which shifts the natural frequencies and alters the mode shapes compared to the free-free case. This comparison provides insight into how the mounting affects the dynamic response and helps identify which modes are most sensitive to boundary conditions. For all the natural frequencies with and without constraints, see Appendix. 
@@ -174,18 +174,18 @@ The constrained boundary condition introduces stiffness at the mounting points, 
     figure(img4, caption: [Mode 4 - 130.93 Hz]),<modalshapeswithconstraint4>,
     figure(img5, caption: [Mode 5 - 170.77 Hz],),<modalshapeswithconstraint5>,
     figure(img6, caption: [Mode 6 - 194.35 Hz]),<modalshapeswithconstraint6>,
-    caption: "Backend PCB mode shapes with constraint",
+    caption: [_Backend PCB_ mode shapes with constraint],
   )
 
 
 === Modal correlation between simulation and experiment
 
-The comparison between the experimental (impact hammer test) and numerical (ANSYS Modal) modal frequencies revealed a systematic deviation that increased with frequency as shown in @modescomparison. The FE model overpredicted the lower modes and increasingly underpredicted the higher modes.
+The comparison between the experimental (impact hammer test) and numerical (_ANSYS Modal_) modal frequencies revealed a systematic deviation that increased with frequency as shown in @modescomparison. The FE model overpredicted the lower modes and increasingly underpredicted the higher modes.
 
 #figure(
   box(stroke: 1pt+black, )[
     #image("../../Images/ANSYS_backendmodal_screenshots/frequencycomparison.png", width: 150mm)
-  ], caption: "Frequency Comparison - Impact Hammer Test vs ANSYS Modal",
+  ], caption: [Frequency comparison - Impact hammer test vs _ANSYS Modal_],
 )<modescomparison>
 
 
@@ -202,7 +202,7 @@ where $a=0.6914$, $b=0.0011$, and $s(f)$ is the incremental scaling factor, as o
 #figure(
   box(stroke: 1pt+black, )[
     #image("../../Images/ANSYS_backendmodal_screenshots/ratiovsfrequency.png", width: 120mm)
-  ], caption: "Ratio vs Frequency",
+  ], caption: "Ratio vs frequency",
 ) <ratiovsfrequency>
 
 The scaled frequency for each mode was then calculated as,
@@ -211,7 +211,7 @@ $ f_i^"scaled" = s(f_i^"ANSYS") · f_i^"ANSYS" $
 #figure(
   box(stroke: 1pt+black, )[
     #image("../../Images/ANSYS_backendmodal_screenshots/frequencycomparisonafterscaling.png", width: 120mm)
-  ], caption: "Frequency Comparison After Scaling",
+  ], caption: "Frequency comparison after scaling",
 )<scaledfrequencies>
 
 This procedure preserves the general distribution of modal frequencies while compensating for the frequency-dependent deviation observed experimentally.
@@ -269,11 +269,11 @@ Applying the frequency‑dependent linear scaling reduced the mean absolute freq
 
 == Accelerometer placement
 
-Accelerometer placement was driven by mode shapes from ANSYS together with the impulse hammer modal test. Two boundary conditions were reviewed, free-free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
+Accelerometer placement was driven by mode shapes from _ANSYS_ together with the impulse hammer modal test. Two boundary conditions were reviewed, free-free (unconstrained) and with mounting constraints representative of the fixture. In both, antinodes of the first bending mode were selected as primary locations to maximise signal to noise and avoid nodal lines, subject to component clearance, adhesive area, and cable routing @ci_pcb_modal_2020. The mode 1 shapes for both cases are shown in @mode1wconstraints and @mode1woconstraints.
 
 To separate bending and torsion with a small channel count, sensors were distributed to regions with distinct modal participation. This follows information based optimal sensor placement principles with independence verified through coherence measurements to ensure good data quality @zacharakis2024_osp_tf @ci_pcb_modal_2020.
 
-Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the PCB was suspended during hammer tests to approximate free-free boundary conditions. The resulting frequency response functions did not show mass loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
+Instrumentation effects were minimised. Miniature sensors with short leads limited mass loading, and the _PCB_ was suspended during hammer tests to approximate free-free boundary conditions. The resulting frequency response functions did not show mass loading artefacts, indicating that the measured behaviour reflected the structure rather than the instrumentation @ci_pcb_modal_2020.
 
 Placement was also aligned with reliability. Solder joint fatigue correlates with relative displacement and local stress near components, so measuring in component dense regions that coincide with dominant bending and torsion shapes links dynamics to durability. Increasing board stiffness is known to shift modes and reduce relative displacement at the joints @doranga2022_pcb_stiffening. With these considerations, three triaxial accelerometers were installed at antinodes of the first bending mode that persist across both boundary conditions.
 
@@ -287,13 +287,13 @@ Placement was also aligned with reliability. Solder joint fatigue correlates wit
 )
 
 
-Three triaxial accelerometers were installed to capture the full three dimensional vibration response of the backend PCB. The sensor specifications and placement details are summarised in @accelerometertable.
+Three triaxial accelerometers were installed to capture the full three dimensional vibration response of the _backend PCB_. The sensor specifications and placement details are summarised in @accelerometertable.
 
 #figure(
 box(stroke: 1pt + black)[
   #image("../../Images/acc_placement_w_axis.svg", width: 80mm)
 ],
-caption: [Accelerometer Placement on Backend PCB],
+caption: [Accelerometer placement on _backend PCB_],
 )<accelerometerplacement>
 
 
@@ -303,48 +303,48 @@ caption: [Accelerometer Placement on Backend PCB],
     align: (left, left, left, center, left),
     stroke: 0.05em,
     table.header([*Sensor ID*], [*Model*], [*Type*], [*Mounting Location*], [*Modal Justification*]),
-    [`PCB_LEFT`], [PCB 356A06/NC], [Triaxial], [#image("../../Images/Pictures/PCB_LEFT_closeup.png", width: 30mm)], [Mode 1 out of plane antinode with high curvature],
-    [`PCB_TOP`], [PCB 356A06/NC], [Triaxial], [#image("../../Images/Pictures/PCB_TOP_closeup.png", width: 30mm)], [Direct response measurement on central component],
-    [`PCB_CENTER`], [4524-B-001], [Triaxial], [#image("../../Images/Pictures/PCB_CENTER_closeup.png", width: 30mm)], [Global motion capture and reference for relative deformation],
+    [`PCB_LEFT`], [_PCB 356A06/NC_], [Triaxial], [#image("../../Images/Pictures/PCB_LEFT_closeup.png", width: 30mm)], [Mode 1 out of plane antinode with high curvature],
+    [`PCB_TOP`], [_PCB 356A06/NC_], [Triaxial], [#image("../../Images/Pictures/PCB_TOP_closeup.png", width: 30mm)], [Direct response measurement on central component],
+    [`PCB_CENTER`], [_4524-B-001_], [Triaxial], [#image("../../Images/Pictures/PCB_CENTER_closeup.png", width: 30mm)], [Global motion capture and reference for relative deformation],
   )
 ]<accelerometertable>
 
-`PCB_LEFT` was placed at the left front edge where Mode 1 shows an out of plane antinode and high curvature. `PCB_TOP` was bonded on top of the high voltage capacitor CAP-E @CoSyBackEndPCB2025 to sample the response directly on a central component. `PCB_CENTER`, a cubic triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading. The sensor placements are shown in @accelerometerplacement.
+`PCB_LEFT` was placed at the left front edge where Mode 1 shows an out of plane antinode and high curvature. `PCB_TOP` was bonded on top of the high voltage capacitor _CAP-E_ @CoSyBackEndPCB2025 to sample the response directly on a central component. `PCB_CENTER`, a cubic triaxial sensor, was positioned near the geometric centre to capture global motion and provide a reference for relative deformation. This layout maximises modal observability, separates bending and torsional participation, avoids nodal lines, and minimises mass loading. The sensor placements are shown in @accelerometerplacement.
 
 
 
 == Vibration data acquisition
 
-With the sensors positioned, vibration data was collected for all operating conditions in the endurance profile. The backend PCB was kept in its normal assembly to maintain realistic vibration coupling with the rest of the device.
+With the sensors positioned, vibration data was collected for all operating conditions in the endurance profile. The _backend PCB_ was kept in its normal assembly to maintain realistic vibration coupling with the rest of the device.
 
 #let img1 = box(stroke: 1pt+black, inset: 0em)[#image("../../Images/Pictures/dataacqsetup.jpg")]
 #let img2 = box(stroke: 1pt+black)[#image("../../Images/Pictures/squadrigaimage2.jpg")]
 
 #subpar.grid(columns: 2, inset: 0.5em,
-  figure(img1, caption: [Data Acquisition setup (1)]),
-  figure(img2, caption: [Data Acquisition setup (2)]),
-  caption: "Data Acquisition setup with HEAD acoustics ArtemiS",
+  figure(img1, caption: [Data acquisition setup (1)]),
+  figure(img2, caption: [Data acquisition setup (2)]),
+  caption: [Data acquisition setup with _HEAD acoustics ArtemiS Suite_],
 )<dataacquisitionsetup>
 
-Data collection used two _SQuadriga_ units connected together to handle all nine measurement channels (three sensors × three axes each). The first unit connected to the laptop in "Control" mode, while the second acted as an extension in "Module" mode. HEAD acoustics ArtemiS Suite recorded the vibrations at a sampling frequency of 48 kHz, capturing all channels simultaneously to preserve timing relationships. This sampling rate was chosen to ensure adequate temporal resolution for subsequent FDS and SRS calculations, which require the sampling frequency to be 7 to 10 times the maximum spectrum frequency of interest. For SRS calculations, a factor of 10 is typically recommended, making 48 kHz a conservative choice that provides substantial margin for frequencies up to 4.8 kHz. @lalanne2010mechanicalvol
+Data collection used two _SQuadriga_ units connected together to handle all nine measurement channels (three sensors × three axes each). The first unit connected to the laptop in "Control" mode, while the second acted as an extension in "Module" mode. _HEAD acoustics ArtemiS Suite_ recorded the vibrations at a sampling frequency of 48 kHz, capturing all channels simultaneously to preserve timing relationships. This sampling rate was chosen to ensure adequate temporal resolution for subsequent FDS and SRS calculations, which require the sampling frequency to be 7 to 10 times the maximum spectrum frequency of interest. For SRS calculations, a factor of 10 is typically recommended, making 48 kHz a conservative choice that provides substantial margin for frequencies up to 4.8 kHz. @lalanne2010mechanicalvol
 
-For each motor speed from 40 to 10,000 rpm in clockwise and counter-clockwise directions, one‑minute recordings captured the vibration patterns during steady operation. The bowl contained 1000 grams of water throughout testing, matching the endurance test setup. This water load creates realistic blade interactions and damping that affect how the structure vibrates.
+For each motor speed from 40 to 10,000 rpm in clockwise and counter-clockwise directions, one minute recordings captured the vibration patterns during steady operation. The bowl contained 1000 grams of water throughout testing, matching the endurance test setup. This water load creates realistic blade interactions and damping that affect how the structure vibrates.
 
 
-In addition to these recordings, a "dough mode" was also recorded which is mentioned in the endurance profile in @endurancemotorload. For this mode, instead of 1000 grams of water, 800 grams of pizza dough was used. The dough was kneaded for 30 seconds using the "Pizzateig" recipe from Cookidoo#super(sym.trademark.registered) @cookidoo_pizzateig_recipe. In this mode, the blade alternates between clockwise and counter-clockwise rotations with one-second stops between direction changes. This creates strong, low frequency forces when the blade encounters dough resistance.
+In addition to these recordings, a "_dough mode_" was also recorded which is mentioned in the endurance profile in @endurancemotorload. For this mode, instead of 1000 grams of water, 800 grams of pizza dough was used. The dough was kneaded for 30 seconds using the "_Pizzateig_" recipe from _Cookidoo#super(sym.trademark.registered)_ @cookidoo_pizzateig_recipe. In this mode, the blade alternates between clockwise and counter-clockwise rotations at a speed of 600 rpm with 2.5 second stops between direction changes. This creates strong, low frequency forces when the blade encounters dough resistance.
 
 #let img1 = box(stroke: 1pt+black, inset: 0em)[#image("../../Images/Pictures/cheeseblendingtop.jpg")]
 #let img2 = box(stroke: 1pt+black)[#image("../../Images/Pictures/blendedcheese.jpg")]
 
 #subpar.grid(columns: 2, inset: 01em,
-  figure(img1, caption: [Blending of Grana Padano (1)]),<blendingofgranapadano1>,
-  figure(img2, caption: [Blending of Grana Padano (2)]),<blendingofgranapadano2>,
-  caption: "Shock event - Blending of 400 grams of Grana Padano blocks",
+  figure(img1, caption: [Blending of _Grana Padano_ (1)]),<blendingofgranapadano1>,
+  figure(img2, caption: [Blending of _Grana Padano_ (2)]),<blendingofgranapadano2>,
+  caption: [Shock event - Blending of 400 grams of _Grana Padano_ blocks],
 )
 
 One shock event was recorded to set reference limits for validating the accelerated test profiles later. This event, shown in @blendingofgranapadano1 and @blendingofgranapadano2 represents a severe operating condition that creates transient impact loads,
 
-- Cheese block blending: Two 200 grams Grana Padano blocks processed for 30 seconds in "Blend" mode at Speed 8, from the "Rosmarin‑Parmesan Waffeln" recipe. This generates high‑frequency vibrations from blade strikes on hard cheese.
+- Cheese block blending - Two 200 grams _Grana Padano_ blocks processed for 30 seconds in "_Blend_" mode at Speed 8 or 5800 rpm, from the "_Rosmarin‑Parmesan Waffeln_" recipe. @cookidoo_rosmarin_parmesan_waffeln
 
 These recordings define the life cycle of the device by capturing the full range of operational vibration environments. They form the basis for calculating fatigue damage and deriving accelerated test profiles. The shock event is used to ensure that accelerated test conditions stay within realistic limits.
 

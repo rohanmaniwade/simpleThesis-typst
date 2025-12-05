@@ -9,7 +9,7 @@
 = Shaker Table Tests
 
 
-The accelerated PSD profiles developed in the previous chapters were validated experimentally on a uniaxial electrodynamic shaker. The purpose of these tests was to reproduce the accelerated vibration environment on the PCB, measure the structural responses, and verify whether the accelerated PSDs generated in software can be stably executed in closed loop control. The shaker setup also accomodated data acquisition for response measurement, which can be used for the computation of FDS, which was essential for evaluating the damage equivalence between the analytical predictions and the physical test responses.
+The accelerated PSD profiles developed in the previous chapters were validated experimentally on a uniaxial electrodynamic shaker. The purpose of these tests was to reproduce the accelerated vibration environment on the _PCB_, measure the structural responses, and verify whether the accelerated PSD generated in software can be stably executed in closed loop control. The shaker setup also accommodated data acquisition for response measurement, which can be used for the computation of FDS, which was essential for evaluating the damage equivalence between the analytical predictions and the physical test responses.
 
 == Shaker system
 
@@ -17,15 +17,15 @@ The accelerated PSD profiles developed in the previous chapters were validated e
 box(stroke: 1pt + black)[
   #image("../../Images/Shaker test pictures/shaker.jpg", width: 60mm)
 ],
-caption: [TIRA uniaxial electrodynamic shaker],
+caption: [_TIRA_ uniaxial electrodynamic shaker],
 )<tirashaker>
 
 
 
 
-The experimental work was performed using a uniaxial electrodynamic shaker system, specifically the TIRA TV 55240 LS 340. This system is capable of delivering controlled broadband random excitation in the frequency range from 2 Hz to 3000 Hz, with a maximum force output of 4 kN. These capabilities are well suited for the backend printed circuit board and its supporting fixture. The shaker system is equipped with a matched power amplifier, forced air cooling, and a suite of safety features that ensure stable operation and precise control during extended vibration tests. Further details regarding the hardware and its specifications are provided in the appendix.
+The experimental work was performed using a uniaxial electrodynamic shaker system, specifically the _TIRA TV 55240 LS 340_. This system is capable of delivering controlled broadband random excitation in the frequency range from 2 Hz to 3000 Hz, with a maximum force output of 4 kN. These capabilities are well suited for the backend printed circuit board and its supporting fixture. The shaker system is equipped with a matched power amplifier, forced air cooling, and a suite of safety features that ensure stable operation and precise control during extended vibration tests. Further details regarding the hardware and its specifications are provided in the Appendix.
 
-The backend PCB was mounted on the custom test fixture and instrumented with three triaxial accelerometers located at `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP`. The same three triaxial accelerometers described in @accelerometertable were used for all tests, each installed at the identical locations as during data acquisition. This ensured consistency in sensor placement and allowed direct comparison between field and laboratory measurements.
+The _backend PCB_ was mounted on the custom test fixture and instrumented with three triaxial accelerometers located at `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP`. The same three triaxial accelerometers described in @accelerometertable were used for all tests, each installed at the identical locations as during data acquisition. This ensured consistency in sensor placement and allowed direct comparison between field and laboratory measurements.
 
 Accelerated profiles were generated for both fatigue exponents, $b=8$ and $b=9$, to evaluate their influence on test specifications. However, as discussed in @limitsoftimecompression and illustrated in @testtimereduction, there are practical limits on how much a test can be compressed whilst maintaining realistic severity levels.
 
@@ -83,7 +83,7 @@ The shaker used in this work is uniaxial and can therefore excite only one direc
     [], [`PCB_LEFT` Y], [1.5],[],
     [], [`PCB_LEFT` Z], [1.5],[],
   ),
-  caption: [Shaker Tests]
+  caption: [Shaker tests]
 )<finalshakertests>
 
 
@@ -102,33 +102,33 @@ Although the sensor at `PCB_LEFT` measures three orthogonal directions, only one
 
 
 
-During each test, the selected axis of the `PCB_LEFT` accelerometer provided the feedback signal for closed loop control, while all axes of all sensors were recorded simultaneously. The control signal was split using a T-connector so that _m+p VibControl_ software received the conditioned accelerometer signal for feedback, while SQuadriga recorded the same signal together with the response channels at `PCB_CENTER` and `PCB_TOP`. All measurements were collected in ArtemiS Suite and served as the basis for computing the FDS.
+During each test, the selected axis of the `PCB_LEFT` accelerometer provided the feedback signal for closed loop control, while all axes of all sensors were recorded simultaneously. The control signal was split using a _T-connector_ so that _m+p VibControl_ software received the conditioned accelerometer signal for feedback, while _SQuadriga_ recorded the same signal together with the response channels at `PCB_CENTER` and `PCB_TOP`. All measurements were collected in _ArtemiS Suite_ and served as the basis for computing the FDS.
 
 
 == Signal routing and sensor conditioning
 
 #figure(
 box(stroke: 1pt + black, inset: 1em)[
-  #image("../../Images/shakerarchitecture_cropped.pdf", width: 130mm)
+  #image("../../Images/shakerarchitecture_cropped.pdf", width: 120mm)
 ],
 caption: [Shaker test architecture],
 )<shakertestarchitecture>
 
-The selected axis from the `PCB_LEFT` triaxial accelerometer needed to support two independent functions. It had to supply the feedback required for closed loop control in m+p VibControl and it had to provide an unmodified signal for multi channel recording in SQuadriga. To achieve this with a single physical sensor, its output signal was passed through a BNC T-connector. The T-connector produced two electrically identical branches.
+The selected axis from the `PCB_LEFT` triaxial accelerometer needed to support two independent functions. It had to supply the feedback required for closed loop control in _m+p VibControl_ and it had to provide an unmodified signal for multi channel recording in _SQuadriga_. To achieve this with a single physical sensor, its output signal was passed through a _BNC T-connector_. The _T-connector_ produced two electrically identical branches.
 
-@shakertestarchitecture provides a clear overview. One branch of the accelerometer signal was routed to the m+p VibControl frontend, configured in ICP mode to supply constant current and perform signal conditioning for closed loop control. The other branch was sent to the HEAD SQuadriga I, operated in AC coupled mode to read the conditioned voltage without supplying additional power, preventing conflicts between ICP excitation and the SQuadriga input. SQuadriga I and II were linked to record all sensor channels, mirroring the data acquisition setup. For response measurement, SQuadriga I (connected to the laptop) was set to "Control" mode and SQuadriga II to "Module" mode. Data acquisition was managed in HEAD acoustics ArtemiS. This setup ensured the accelerometer was powered only once while supporting both control and data recording.
+@shakertestarchitecture provides a clear overview. One branch of the accelerometer signal was routed to the _m+p VibControl_ frontend, configured in ICP mode to supply constant current and perform signal conditioning for closed loop control. The other branch was sent to the _HEAD SQuadriga I_, operated in AC coupled mode to read the conditioned voltage without supplying additional power, preventing conflicts between ICP excitation and the _SQuadriga_ input. _SQuadriga I_ and _II_ were linked to record all sensor channels, mirroring the data acquisition setup. For response measurement, _SQuadriga I_ (connected to the laptop) was set to "Control" mode and _SQuadriga II_ to "Module" mode. Data acquisition was managed in _HEAD acoustics ArtemiS_. This setup ensured the accelerometer was powered only once while supporting both control and data recording.
 
-All accelerometer channels from `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP` were recorded in ArtemiS Suite. Recording all nine channels for every test direction ensured that the structural response of the backend PCB was fully captured and allowed for a detailed comparison with the analytical spectra.
+All accelerometer channels from `PCB_LEFT`, `PCB_CENTER`, and `PCB_TOP` were recorded in _ArtemiS Suite_. Recording all nine channels for every test direction ensured that the structural response of the _backend PCB_ was fully captured and allowed for a detailed comparison with the analytical spectra.
 
 == Shaker PSD control
 
 All tests were conducted under closed loop control with _m+p VibControl_. In this mode, the software continuously monitored the vibration measured by the control channel and automatically adjusted the drive voltage to match the target PSD. 
 
-The accelerated PSDs were imported in _VibEdit_ in the m+p VibControl software in `.csv` format. To ensure safe operation, the shaker's maximum acceleration was limited to 5G. The PSD control included ±3 dB warning limits and ±6 dB abort limits to ensure the drive signal remained within acceptable bounds during testing. The frequency resolution for all tests was set to 1 Hz. Before each test, the calibration for the relevant axis was set according to the direction being tested, using the corresponding value from the calibration sheet to ensure accurate control and measurement.
+The accelerated PSD were imported in _VibEdit_ in the _m+p VibControl_ software in `.csv` format. To ensure safe operation, the shaker's maximum acceleration was limited to 5G. The PSD control included ±3 dB warning limits and ±6 dB abort limits to ensure the drive signal remained within acceptable bounds during testing. The frequency resolution for all tests was set to 1 Hz. Before each test, the calibration for the relevant axis was set according to the direction being tested, using the corresponding value from the calibration sheet to ensure accurate control and measurement.
 
-All the required tests were ran on the backend PCB as mentioned in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were printed directly from the PSD control channel windows in m+p VibControl, which illustrate the reference and control PSDs along with the warning and abort limits. The control PSDs will form the basis for calculating FDS. The control PSDs were all under limits and the tests ran without an error.
+All the required tests were ran on the _backend PCB_ as mentioned in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were printed directly from the PSD control channel windows in _m+p VibControl_, which illustrate the reference and control PSD along with the warning and abort limits. The control PSD will form the basis for calculating FDS. The control PSD were all under limits and the tests ran without an error.
 
-All required tests were performed on the backend printed circuit board as described in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were exported directly from the PSD control channel windows in the m+p VibControl software. These figures display both the reference and control PSDs, as well as warning and abort limits. The control PSDs and the response vibrations measured through the SQuadrigas formed basis for subsequent FDS validations. All control PSDs remained within the specified limits, and the tests were completed successfully without any errors.
+All required tests were performed on the _backend_ printed circuit board as described in @finalshakertests. @shakercontrolpsd1 through @shakercontrolpsd6 were exported directly from the PSD control channel windows in the _m+p VibControl_ software. These figures display both the reference and control PSD, as well as warning and abort limits. The control PSD and the response vibrations measured through the _SQuadrigas_ formed basis for subsequent FDS validations. All control PSD remained within the specified limits, and the tests were completed successfully without any errors.
 
 #show figure: set block(breakable: true)
 
@@ -140,7 +140,7 @@ All required tests were performed on the backend printed circuit board as descri
         read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_X_b8_2000Hz_4h_cropped.pdf", encoding: none)
       )
     ],
-    caption: [Shaker Control `PCB_LEFT` X-axis, $b=8$, $T_(t e s t)=4h$]
+    caption: [Shaker control `PCB_LEFT` X-axis, $b=8$, $T_(t e s t)=4h$]
   ),<shakercontrolpsd1>,
   figure(
     box(stroke: 1pt+black)[
@@ -148,7 +148,7 @@ All required tests were performed on the backend printed circuit board as descri
         read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Y_b8_2000Hz_4h_cropped.pdf", encoding: none)
       )
     ],
-    caption: [Shaker Control `PCB_LEFT` Y-axis, $b=8$, $T_(t e s t)=4h$]
+    caption: [Shaker control `PCB_LEFT` Y-axis, $b=8$, $T_(t e s t)=4h$]
   ),<shakercontrolpsd2>,
   figure(
     box(stroke: 1pt+black)[
@@ -156,7 +156,7 @@ All required tests were performed on the backend printed circuit board as descri
         read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Z_b8_2000Hz_4h_cropped.pdf", encoding: none)
       )
     ],
-    caption: [Shaker Control `PCB_LEFT` Z-axis, $b=8$, $T_(t e s t)=4h$]
+    caption: [Shaker control `PCB_LEFT` Z-axis, $b=8$, $T_(t e s t)=4h$]
   ),<shakercontrolpsd3>,
   figure(
     box(stroke: 1pt+black)[
@@ -164,7 +164,7 @@ All required tests were performed on the backend printed circuit board as descri
         read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_X_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
       )
     ],
-    caption: [Shaker Control `PCB_LEFT` X-axis, $b=9$, $T_(t e s t)=1.5h$]
+    caption: [Shaker control `PCB_LEFT` X-axis, $b=9$, $T_(t e s t)=1.5h$]
   ),<shakercontrolpsd4>,
   figure(
     box(stroke: 1pt+black)[
@@ -172,7 +172,7 @@ All required tests were performed on the backend printed circuit board as descri
         read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Y_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
       )
     ],
-    caption: [Shaker Control `PCB_LEFT` Y-axis, $b=9$, $T_(t e s t)=1.5h$]
+    caption: [Shaker control `PCB_LEFT` Y-axis, $b=9$, $T_(t e s t)=1.5h$]
   ),<shakercontrolpsd5>,
   figure(
     box(stroke: 1pt+black)[
@@ -180,7 +180,7 @@ All required tests were performed on the backend printed circuit board as descri
         read("../../Images/SHAKER_TESTS_ROHAN/Control_LEFT_Z_b9_2000Hz_1.5h_cropped.pdf", encoding: none)
       )
     ],
-    caption: [Shaker Control `PCB_LEFT` Z-axis, $b=9$, $T_(t e s t)=1.5h$]
+    caption: [Shaker control `PCB_LEFT` Z-axis, $b=9$, $T_(t e s t)=1.5h$]
   ),<shakercontrolpsd6>,
-  caption: [Shaker control PSDs for all axes and both fatigue exponents],
+  caption: [Shaker control PSD for all axes and both fatigue exponents],
 )
