@@ -159,7 +159,7 @@ Experimental validation on a uniaxial shaker confirms that the method successful
   acknowledgements: [
     _First and foremost, I would like to thank my supervisor and mentor, *Clément Corselli*, for his invaluable teachings, for believing in me, and for consistently bringing out the best in me._
     
-    _I would also like to thank *Dr.-Ing. Philipp Ingenlath*, *Dr. Roland Kraus* and other professionals at *Vorwerk* for the wisdom and guidance, which made it possible to carry out my thesis as smoothly and efficiently, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
+    _I would also like to thank *Dr.-Ing. Philipp Ingenlath*, *Dr. Roland Kraus* and other professionals at *Vorwerk* for the wisdom and guidance, which made it possible to carry out my thesis smoothly and efficiently, and *Chris Sensor* from Siemens US for his helpful discussions and technical input, which helped steer this work in the right direction._
 
     _My deepest gratitude to *Prof. Dr.-Ing. Bettar Ould el Moctar* for supervising the academic side of this work, and to *Dr.-Ing. Galal Galal* for his insights and encouragement throughout the project._
 
